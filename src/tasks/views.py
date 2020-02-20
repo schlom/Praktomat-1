@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 import django.utils.timezone
-
+from django.utils.translation import ugettext_lazy as _
 from tasks.models import Task
 from solutions.forms import ModelSolutionFormSet
 from solutions.models import Solution, SolutionFile
@@ -73,10 +73,10 @@ def taskDetail(request, task_id):
                   })
 
 class ImportForm(forms.Form):
-    file = forms.FileField()
+    file = forms.FileField(label=_('File'))
     is_template = forms.BooleanField(initial=True,
                                      required=False,
-                                     help_text="Enabled if the imported task is just used as template to create another task. If disabled, the publication date and the rating scale are also imported. This means that students might see the task immediately, and rating scales might be duplicated.")
+                                     help_text="Enabled if the imported task is just used as template to create another task. If disabled, the publication date and the rating scale are also imported. This means that students might see the task immediately, and rating scales might be duplicated.", label=_('Is template'))
 
 @staff_member_required
 def import_tasks(request):
@@ -86,15 +86,15 @@ def import_tasks(request):
         if form.is_valid():
             try:
                 Task.import_Tasks(form.files['file'], request.user, form.cleaned_data['is_template'])
-                messages.success(request, "The import was successful.")
+                messages.success(request, _("The import was successful."))
                 return HttpResponseRedirect(reverse('admin:tasks_task_changelist'))
             except Exception as e:
                 from django.forms.utils import ErrorList
-                msg = "An Error occured. The import file was probably malformed: %s" % str(e)
+                msg = _("An Error occured. The import file was probably malformed: %s") % str(e)
                 form._errors["file"] = ErrorList([msg])
     else:
         form = ImportForm()
-    return render(request, 'admin/tasks/task/import.html', {'form': form, 'title':"Import Task"  })
+    return render(request, 'admin/tasks/task/import.html', {'form': form, 'title':_("Import Task")  })
 
 @staff_member_required
 def download_final_solutions(request, task_id):
@@ -134,5 +134,5 @@ def model_solution(request, task_id):
                 raise                # don't commit db changes
     else:
         formset = ModelSolutionFormSet()
-    context = {"formset": formset, "task": task, 'title': "Model Solution", 'is_popup': True, }
+    context = {"formset": formset, "task": task, 'title': _("Model Solution"), 'is_popup': True, }
     return render(request, "admin/tasks/task/model_solution.html", context)

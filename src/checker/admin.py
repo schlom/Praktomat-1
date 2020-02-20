@@ -3,6 +3,7 @@ from django.forms.models import BaseInlineFormSet, ModelForm
 from django.urls import reverse
 from django.utils.html import format_html
 from .basemodels import CheckerResult
+from django.utils.translation import ugettext_lazy as _
 
 class AlwaysChangedModelForm(ModelForm):
     """ This fixes the creation of inlines without modifying any of it's values. The standart ModelForm would just ignore these inlines. """
@@ -44,11 +45,11 @@ class CheckerResultAdmin(admin.ModelAdmin):
 
     def edit(self, checkerResult):
         return 'Edit'
-    edit.short_description = 'Edit (Admin Site)'
+    edit.short_description = _('Edit (Admin Site)')
 
     def view_solution(self, checkerResult):
         return format_html('<a href="{0}">{1}</a>', reverse('solution_detail_full', args=[checkerResult.solution.id]), checkerResult.solution)
-    view_solution.short_description = 'View Solution (User Site)'
+    view_solution.short_description = _('View Solution (User Site)')
 
     def solution_final(self, checkerResult):
         return checkerResult.solution.final

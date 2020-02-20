@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 import attestation.views
+from django.utils.translation import ugettext_lazy as _
 
 admin.autodiscover()
 
@@ -74,7 +75,7 @@ class AttestationAdmin(admin.ModelAdmin):
                            reverse('admin:accounts_user_change', args=(instance.solution.author.pk,)),
                            instance.solution.author,
                           )
-    show_solution.short_description = 'Solution'
+    show_solution.short_description = _('Solution')
 
 
     def get_urls(self):

@@ -18,7 +18,7 @@ class LazyUser(object):
         return request._cached_user
 
 class AuthenticationMiddleware(AuthenticationMiddleware, MiddlewareMixin):
-    """ Get user subclass insted of baseclass in request.user"""
+    """ Get user subclass instead of baseclass in request.user"""
     def process_request(self, request):
         request.__class__.user = LazyUser()
         return None

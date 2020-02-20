@@ -13,7 +13,7 @@ from checker.basemodels import Checker
 
 class LineWidthChecker(Checker):
 
-    max_line_length = models.IntegerField(default = 80, help_text=_("The maximum length of a line of code."))
+    max_line_length = models.IntegerField(default = 120, help_text=_("The maximum length of a line of code."))
     tab_width =  models.IntegerField(default = 4, help_text=_("The amount of characters a tab represents."))
     include = models.CharField(max_length=100, blank = True, default=".*", help_text=_("Regular expression describing the filenames to be checked. Case insensitive. Blank: use all files."))
     exclude = models.CharField(max_length=100, blank = True, default=".*\.txt$", help_text=_("Regular expression describing included filenames, which shall be excluded. Case insensitive. Blank: use all files."))
@@ -60,7 +60,7 @@ class LineWidthChecker(Checker):
 
                 if len(line) > self.max_line_length:
                     msg = ( escape(name) + ":" + repr(line_number) +
-                           ": Zeile zu breit (" + repr(len(line)) + " Zeichen)" + "<BR>")
+                           ": Zeile zu breit (" + repr(len(line)) + " Zeichen)" + "<br>")
                     log = log + msg
                     passed = 0
 
@@ -69,7 +69,7 @@ class LineWidthChecker(Checker):
                 line_number = line_number + 1
 
             msg = (escape(name) + ": Maximale Zeilenbreite: " +
-                   repr(max_line_length) + " Zeichen\n" + "<BR>")
+                   repr(max_line_length) + " Zeichen\n" + "<br>")
             log = log + msg
 
         # At the end of each run, be sure to set LOG and PASSED.

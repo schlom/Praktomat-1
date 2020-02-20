@@ -108,7 +108,7 @@ class Checker(models.Model):
         return []
 
     def clean(self):
-        if self.required and (not self.show_publicly(False)): raise ValidationError("Checker is required, but failure isn't publicly reported to student during submission")
+        if self.required and (not self.show_publicly(False)): raise ValidationError(_("Checker is required, but failure isn't publicly reported to student during submission"))
 
 
 class CheckerEnvironment:
@@ -220,11 +220,11 @@ class CheckerResult(models.Model):
     def set_log(self, log,timed_out=False,truncated=False,oom_ed=False):
         """ Sets the log of the Checker run. timed_out and truncated indicated if appropriate error messages shall be appended  """
         if timed_out:
-            log = '<div class="error">Timeout occured!</div>' + log
+            log = _('<div class="error">Timeout occured!</div>') + log
         if truncated:
-            log = '<div class="error">Output too long, truncated</div>' + log
+            log = _('<div class="error">Output too long, truncated</div>') + log
         if oom_ed:
-            log = '<div class="error">Memory limit exceeded, execution cancelled.</div>' + log
+            log = _('<div class="error">Memory limit exceeded, execution cancelled.</div>') + log
 
         self.log = log
 
@@ -357,12 +357,12 @@ def run_checks(solution, env, run_all):
                         result = checker.run(env)
                     except:
                         result = checker.create_result(env)
-                        result.set_log("The Checker caused an unexpected internal error.")
+                        result.set_log(_("The Checker caused an unexpected internal error."))
                         result.set_passed(False)
                         #TODO: Email Admins
             else:
                 # make non passed result
-                # this as well as the dependency check should propably go into checker class
+                # this as well as the dependency check should probably go into checker class
                 result = checker.create_result(env)
                 result.set_log("Checker konnte nicht ausgeführt werden, da benötigte Checker nicht bestanden wurden.")
                 result.set_passed(False)

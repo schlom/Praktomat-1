@@ -8,7 +8,7 @@ from django.db import transaction
 from django.urls import reverse
 from tinymce.widgets import TinyMCE
 from django.utils.html import format_html
-
+from django.utils.translation import ugettext_lazy as _
 from tasks.models import Task, MediaFile, HtmlInjector
 from solutions.models import Solution, SolutionFile
 from attestation.admin import RatingAdminInline
@@ -91,25 +91,26 @@ class TaskAdmin(admin.ModelAdmin):
         return my_urls + urls
 
     def attestations_url(self, task):
-        return format_html ('<a href="{0}">Attestations (User site)</a>',
+        return format_html (_('<a href="{0}">Attestations (User site)</a>'),
                             reverse('attestation_list', kwargs={'task_id': task.id}))
-    attestations_url.short_description = 'Attestations'
+    attestations_url.short_description = _('Attestations')
 
     def testupload_url(self, task):
-        return format_html ('<a href="{0}">Test Submission</a>',
+        return format_html (_('<a href="{0}">Test Submission</a>'),
                             reverse('upload_test_solution', kwargs={'task_id': task.id}))
-    testupload_url.short_description = 'Test Submission'
+    testupload_url.short_description = _('Test Submission')
 
     def useful_links(self, instance):
         if instance.id:
             return format_html (
-                '<a href="{0}">Attestations (including for-user-submission)</a> • ' +
-                '<a href="{1}">Test upload</a>',
+                _('<a href="{0}">Attestations (including for-user-submission)</a> • ') +
+                _('<a href="{1}">Test upload</a>'),
                 reverse('attestation_list', kwargs={'task_id': instance.id}),
                 reverse('upload_test_solution', kwargs={'task_id': instance.id})
                 )
         else:
             return ""
+    useful_links.short_description = _('Useful Links')
 
 
 admin.site.register(Task, TaskAdmin)

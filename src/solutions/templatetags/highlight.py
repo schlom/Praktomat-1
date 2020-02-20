@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 from django.utils.html import escape
 import re
 from pygments import highlight
-from pygments.formatters import HtmlFormatter
+from pygments.formatters.html import HtmlFormatter
 from pygments.lexers import get_lexer_by_name, guess_lexer, guess_lexer_for_filename, ClassNotFound
 from pygments.lexers._mapping import LEXERS
 

@@ -20,21 +20,23 @@ from configuration import get_settings
 def validate_mat_number(value):
     regex = get_settings().mat_number_validation_regex
     if regex:
-        RegexValidator("^"+regex+"$", message="This is not a valid student number.", code="")(value)
+        RegexValidator("^"+regex+"$", message=_("This is not a valid student number."), code="")(value)
 
 class User(BasicUser):
     # all fields need to be null-able in order to create user
-    tutorial = models.ForeignKey('Tutorial', on_delete=models.SET_NULL, null=True, blank=True, help_text = _("The tutorial the student belongs to."))
-    mat_number = models.IntegerField( null=True, blank=True, validators=[validate_mat_number]) # special blank and unique validation in forms
-    final_grade = models.CharField( null=True, blank=True, max_length=100,  help_text = _('The final grade for the whole class.'))
-    programme = models.CharField(null=True, blank=True, max_length=100, help_text = _('The programme the student is enlisted in.'))
+    tutorial = models.ForeignKey('Tutorial', verbose_name=_("Tutorial"), on_delete=models.SET_NULL, null=True, blank=True, help_text = _("The tutorial the student belongs to."))
+    mat_number = models.IntegerField(verbose_name=_("Mat number"), null=True, blank=True, validators=[validate_mat_number]) # special blank and unique validation in forms
+    final_grade = models.CharField(verbose_name=_("Final Grade"), null=True, blank=True, max_length=100,  help_text = _('The final grade for the whole class.'))
+    programme = models.CharField(verbose_name=_("Programme"), null=True, blank=True, max_length=100, help_text = _('The programme the student is enlisted in.'))
     activation_key=models.CharField(_('activation key'), max_length=40, editable=False)
-    user_text=models.CharField(null=True, blank=True, max_length=500, help_text = _("Custom text which will be shown to this student."))
+    user_text=models.CharField(verbose_name=_("User text"), null=True, blank=True, max_length=500, help_text = _("Custom text which will be shown to this student."))
 
     # Use UserManager to get the create_user method, etc.
     objects = UserManager()
 
     class Meta:
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
         ordering = ['first_name', 'last_name']
 
     def __init__(self, *args, **kwargs):
@@ -128,16 +130,19 @@ class User(BasicUser):
 
     @property
     def is_user(self):
-        return 'User' in self.cached_groups()
+        return _('User') in self.cached_groups()
+
     @property
     def is_tutor(self):
-        return 'Tutor' in self.cached_groups()
+        return _('Tutor') in self.cached_groups()
+
     @property
     def is_trainer(self):
-        return 'Trainer' in self.cached_groups()
+        return _('Trainer') in self.cached_groups()
+
     @property
     def is_coordinator(self):
-        return 'Coordinator' in self.cached_groups()
+        return _('Coordinator') in self.cached_groups()
 
     @classmethod
     def export_user(cls, queryset):
@@ -198,6 +203,10 @@ class Tutorial(models.Model):
     name = models.CharField(max_length=100, blank=True, help_text=_("The name of the tutorial"))
     # A Tutorial may have many tutors as well as a Tutor may have multiple tutorials
     tutors = models.ManyToManyField('User', limit_choices_to = {'groups__name': 'Tutor'}, related_name='tutored_tutorials', help_text = _("The tutors in charge of the tutorial."))
+
+    class Meta:
+        verbose_name = _('Tutorial')
+        verbose_name_plural = _('Tutorials')
 
     def tutors_flat(self):
         return reduce(lambda x, y: x + ', ' + y.get_full_name(), self.tutors.all(), '')[2:]

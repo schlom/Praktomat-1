@@ -22,13 +22,13 @@ class LineCounter(Checker):
     def title(self):
         """ Returns the title for this checker category. """
         # _de("Lexikalische Statistik")
-        return ugettext("Lexical statistics")
+        return _("Lexical statistics")
 
     @staticmethod
     def description():
         """ Returns a description for this Checker. """
         # _de(u"Diese Prüfung wird immer bestanden.")
-        return ugettext("This check is always passed.")
+        return _("This check is always passed.")
 
     def run(self, env):
         """ Here's the actual work.     This runs the check in the environment ENV,
@@ -159,8 +159,8 @@ class LineCounter(Checker):
 
         except ZeroDivisionError:
             # FIXME
-            log = log + "Line Width Checker (l 197): ZeroDivisionError " + \
-                  " (no comment / code / coco lines in file!)"
+            log = log + _("Line Width Checker (l 197): ZeroDivisionError ") + \
+                  _(" (no comment / code / coco lines in file!)")
 
         # Generate the result.
         result = self.create_result(env)

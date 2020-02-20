@@ -1,5 +1,5 @@
 # Settings for development in the source tree
-
+import os
 from os.path import join, dirname
 
 # The name that will be displayed on top of the page and in emails.
@@ -22,7 +22,8 @@ STATIC_URL = BASE_PATH + 'static/'
 # Example: "/home/media/media.lawrence.com/"
 UPLOAD_ROOT = join(dirname(dirname(dirname(__file__))), 'data')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# import email settings from file located in Praktomat parent folder
+from email_settings import *
 
 DATABASES = {
     'default': {

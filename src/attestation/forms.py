@@ -44,7 +44,7 @@ class AnnotatedFileForm(ModelForm):
         try:
             solution_file  = SolutionFile.objects.get(pk=solution_file_id)
         except SolutionFile.DoesNotExist:
-            raise forms.ValidationError("No Solutionfile exists by id"+solution_file_id)
+            raise forms.ValidationError(_("No Solutionfile exists by id")+solution_file_id)
 
         return solution_file
 
@@ -74,10 +74,10 @@ class PublishFinalGradeForm(ModelForm):
         fields = ('final_grades_published',)
 
 class GenerateRatingScaleForm(forms.Form):
-    name = forms.CharField(max_length=200,  help_text = 'The Name of the rating scale for the aspects. E.g.: "School marks"')
-    start = forms.FloatField(initial=0, help_text="The first RatingScaleItem to generate.")
-    end = forms.FloatField(initial=15, help_text="The last RatingScaleItem to generate.")
-    step = forms.FloatField(initial=1, help_text="The step size between the RatingScaleItems.")
+    name = forms.CharField(max_length=200,  help_text = _('The Name of the rating scale for the aspects. E.g.: "School marks"'), label=_('Name'))
+    start = forms.FloatField(initial=0, help_text=_("The first RatingScaleItem to generate."), label=_('Start'))
+    end = forms.FloatField(initial=15, help_text=_("The last RatingScaleItem to generate."), label=_("End"))
+    step = forms.FloatField(initial=1, help_text=_("The step size between the RatingScaleItems."), label=_("Step"))
 
 
 class FinalGradeOptionForm(ModelForm):

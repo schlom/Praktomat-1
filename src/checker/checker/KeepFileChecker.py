@@ -27,7 +27,7 @@ class KeepFileChecker(Checker):
             result.add_artefact(self.filename, path)
             result.set_passed(True)
         else:
-            result.set_log("<p>Could not find file <tt>%s</tt>.</p>" % escape(self.filename))
+            result.set_log(_("<p>Could not find file <tt>%s</tt>.</p>") % escape(self.filename))
             result.set_passed(False)
 
         return result

@@ -10,7 +10,7 @@ from django.db import transaction
 from django.db.models import Max
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-
+from django.utils.translation import ugettext_lazy as _
 
 
 class CheckerResultInline(admin.TabularInline):
@@ -41,16 +41,16 @@ class SolutionAdmin(admin.ModelAdmin):
     def run_checkers_all(self, request, queryset):
         """ Run Checkers (including those not run at submission) for selected solution """
         check_multiple(queryset, True)
-        self.message_user(request, "Checkers (including those not run at submission) for selected solutions were successfully run.")
+        self.message_user(request, _("Checkers (including those not run at submission) for selected solutions were successfully run."))
 
-    run_checkers_all.short_description = "Run Checkers (including those not run at submission) for selected solution "
+    run_checkers_all.short_description = _("Run Checkers (including those not run at submission) for selected solution ")
 
     def run_checkers(self, request, queryset):
         """ Run Checkers (only those also run at submission) for selected solutions"""
         check_multiple(queryset, False)
-        self.message_user(request, "Checkers (only those also run at submission) for selected solutions were successfully run.")
+        self.message_user(request, _("Checkers (only those also run at submission) for selected solutions were successfully run."))
 
-    run_checkers.short_description = "Run Checkers (only those also run at submission) for selected solutions"
+    run_checkers.short_description = _("Run Checkers (only those also run at submission) for selected solutions")
 
     def mod_plagiarism(self, queryset, value):
         count = 0
@@ -63,40 +63,40 @@ class SolutionAdmin(admin.ModelAdmin):
 
     def mark_plagiarism(self, request, queryset):
         count = self.mod_plagiarism(queryset, True)
-        self.message_user(request, "%d solutions marked as plagiated" % count)
-    mark_plagiarism.short_description = "Mark as plagiated"
+        self.message_user(request, _("%d solutions marked as plagiated") % count)
+    mark_plagiarism.short_description = _("Mark as plagiated")
 
     def mark_no_plagiarism(self, request, queryset):
         count = self.mod_plagiarism(queryset, False)
-        self.message_user(request, "%d solutions marked as not plagiated" % count)
-    mark_no_plagiarism.short_description = "Mark as not plagiated"
+        self.message_user(request, _("%d solutions marked as not plagiated") % count)
+    mark_no_plagiarism.short_description = _("Mark as not plagiated")
 
 
     def edit(self, solution):
         return 'Edit'
-    edit.short_description = 'Edit (Admin Site)'
+    edit.short_description = _('Edit (Admin Site)')
 
     def view_url(self, solution):
-        return mark_safe('<a href="%s">View</a>' % (reverse('solution_detail_full', args=[solution.id])))
-    view_url.short_description = 'View (User Site)'
+        return mark_safe(_('<a href="%s">View</a>') % (reverse('solution_detail_full', args=[solution.id])))
+    view_url.short_description = _('View (User Site)')
 
     def download_url(self, solution):
         return mark_safe('<a href="%s">Download</a>' % (reverse('solution_download', args=[solution.id])))
     download_url.short_description = 'Download'
 
     def run_checker_url(self, solution):
-        return mark_safe('<a href="%s">Run Checkers</a>' % (reverse('solution_run_checker', args=[solution.id])))
-    run_checker_url.short_description = 'Run Checker (incl. those run at submission)'
+        return mark_safe(_('<a href="%s">Run Checkers</a>') % (reverse('solution_run_checker', args=[solution.id])))
+    run_checker_url.short_description = _('Run Checker (incl. those run at submission)')
 
     def show_author(self, instance):
         return format_html('<a href="{0}">{1}</a>',
                            reverse('admin:accounts_user_change', args=(instance.author.pk,)),
                            instance.author)
-    show_author.short_description = 'Solution author'
+    show_author.short_description = _('Solution author')
 
     def useful_links(self, instance):
         if instance.pk:
-            return format_html ('<a href="{0}">Attestations of this solution</a> • <a href="{1}">User Site view of this solution</a>',
+            return format_html (_('<a href="{0}">Attestations of this solution</a> • <a href="{1}">User Site view of this solution</a>'),
                 reverse('admin:attestation_attestation_changelist') + ("?solution__exact=%d" % instance.pk),
                 reverse('solution_detail', args=[instance.pk])
                 )

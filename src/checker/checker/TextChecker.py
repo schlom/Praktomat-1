@@ -14,8 +14,8 @@ class TextChecker(Checker):
     """ Checks if the specified text is included in a submitted file """
 
     #Code OTH Regensburg Francesco Cucinotta
-    SET_OF_CHOICES = [(0, 'The text must not be in the solution'),
-                      (1, 'The text has to be in the solution'),]
+    SET_OF_CHOICES = [(0, _('The text must not be in the solution')),
+                      (1, _('The text has to be in the solution')),]
 
     text = models.TextField()
     choices = models.IntegerField(default=1, verbose_name='Select:', choices=SET_OF_CHOICES, blank=False)

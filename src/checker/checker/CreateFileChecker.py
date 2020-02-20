@@ -62,7 +62,7 @@ class CheckerWithFile(Checker):
         if clashes:
             result = self.create_result(env)
             result.set_passed(False)
-            result.set_log("These files already existed. Do NOT include them in your submissions:<br/><ul>\n" + "\n".join(["<li>%s</li>" % escape(f) for f in clashes]) + "</ul>")
+            result.set_log(_("These files already existed. Do NOT include them in your submissions:<br/><ul>\n") + "\n".join(["<li>%s</li>" % escape(f) for f in clashes]) + "</ul>")
             return result
 
         return None

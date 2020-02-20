@@ -13,7 +13,7 @@ from utilities.file_operations import *
 class CheckStyleChecker(Checker):
 
     name = models.CharField(max_length=100, default="CheckStyle", help_text=_("Name to be displayed on the solution detail page."))
-    configuration = CheckerFileField(help_text=_("XML configuration of CheckStyle. See http://checkstyle.sourceforge.net/"))
+    configuration = CheckerFileField(help_text=_("XML configuration of CheckStyle. See https://github.com/checkstyle/checkstyle"))
 
     def title(self):
         """ Returns the title for this checker category. """
@@ -22,7 +22,7 @@ class CheckStyleChecker(Checker):
     @staticmethod
     def description():
         """ Returns a description for this Checker. """
-        return "Runs checkstyle (http://checkstyle.sourceforge.net/)."
+        return "Runs checkstyle (https://github.com/checkstyle/checkstyle)."
 
 
     def run(self, env):
@@ -42,9 +42,9 @@ class CheckStyleChecker(Checker):
 
         log = '<pre>' + escape(output) + '</pre>'
         if timed_out:
-            log = log + '<div class="error">Timeout occured!</div>'
+            log = log + _('<div class="error">Timeout occured!</div>')
         if oom_ed:
-            log = log + '<div class="error">Out of memory!</div>'
+            log = log + _('<div class="error">Out of memory!</div>')
         result.set_log(log)
 
 

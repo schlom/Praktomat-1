@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from random import randint
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _, gettext_lazy
 from django.contrib import admin, messages
 from django.contrib.auth.models import User as UserBase, Group
 from django.contrib.auth.admin import UserAdmin as UserBaseAdmin, GroupAdmin as GroupBaseAdmin
@@ -44,29 +44,35 @@ class UserAdmin(UserBaseAdmin):
     def is_trainer(self, user):
         return user.is_trainer
     is_trainer.boolean = True
+    is_trainer.short_description = gettext_lazy("is trainer")
 
     def is_tutor(self, user):
         return user.is_tutor
     is_tutor.boolean = True
+    is_tutor.short_description = gettext_lazy("is tutor")
 
     def is_coordinator(self, user):
         return user.is_coordinator
     is_coordinator.boolean = True
+    is_coordinator.short_description = gettext_lazy("is coordinator")
 
     def is_failed_attempt(self, user):
         successfull = [ u for u in User.objects.all().filter(mat_number=user.mat_number) if u.is_active]
         return (not successfull)
     is_failed_attempt.boolean = True
+    is_failed_attempt.short_description = gettext_lazy("is failed attempt")
 
     def set_active(self, request, queryset):
         """ Set active action """
         queryset.update(is_active=True)
-        self.message_user(request, "Users were successfully activated.")
+        self.message_user(request, _("Users were successfully activated."))
+    set_active.short_description = gettext_lazy("set active")
 
     def set_inactive(self, request, queryset):
         """ Set inactive action """
         queryset.update(is_active=False)
-        self.message_user(request, "Users were successfully inactivated.")
+        self.message_user(request, _("Users were successfully inactivated."))
+    set_inactive.short_description = gettext_lazy("set inactive")
 
     @atomic
     def set_tutor(self, request, queryset):
@@ -77,7 +83,8 @@ class UserAdmin(UserBaseAdmin):
             user.groups.add(tutor_group)
             user.groups.remove(user_group)
             user.save()
-        self.message_user(request, "Users were successfully made to tutors.")
+        self.message_user(request, _("Users were successfully made to tutors."))
+    set_tutor.short_description = gettext_lazy("set tutor")
 
     @atomic
     def distribute_to_tutorials(self, request, queryset):
@@ -93,7 +100,8 @@ class UserAdmin(UserBaseAdmin):
             tutorial = Tutorial.objects.annotate(Count('user')).order_by('user__count')[0]
             user.tutorial = tutorial
             user.save()
-        self.message_user(request, "All users were successfully distributed.")
+        self.message_user(request, _("All users were successfully distributed."))
+    distribute_to_tutorials.short_description = gettext_lazy("distribute to tutorials")
 
     def export_users(self, request, queryset):
         from django.http import HttpResponse
@@ -101,6 +109,7 @@ class UserAdmin(UserBaseAdmin):
         response = HttpResponse(data, content_type="application/xml")
         response['Content-Disposition'] = 'attachment; filename=user_export.xml'
         return response
+    export_users.short_description = gettext_lazy("export users")
 
     def get_urls(self):
         """ Add URL to user import """
@@ -114,7 +123,7 @@ class UserAdmin(UserBaseAdmin):
     def useful_links(self, instance):
         if instance.pk:
             return format_html (
-                '<a href="{1}">Solutions by {0}</a> • <a href="{2}">Attestations for {0}</a> • <a href="{3}">Attestations by {0}</a>',
+                _('<a href="{1}">Solutions by {0}</a> • <a href="{2}">Attestations for {0}</a> • <a href="{3}">Attestations by {0}</a>'),
                 instance,
                 reverse('admin:solutions_solution_changelist') + ("?author__user_ptr__exact=%d" % instance.pk),
                 reverse('admin:attestation_attestation_changelist') + ("?solution__author__user_ptr__exact=%d" % instance.pk),
@@ -122,17 +131,24 @@ class UserAdmin(UserBaseAdmin):
                 )
         else:
             return ""
+    useful_links.short_description = _('Useful Links')
 
     def save_model(self, request, obj, form, change):
         """ give a user both superuser and staff rights if he obtains the trainer role """
-        was_trainer = get_object_or_404(User, pk=obj.id).is_trainer
-        is_trainer = "Trainer" in [g.name for g in form.cleaned_data['groups']]
-        #import pdb;pdb.set_trace()
-        if is_trainer and not was_trainer and not (obj.is_staff and obj.is_superuser):
-            obj.is_superuser = True
-            obj.is_staff = True
-            messages.warning(request, 'The user "%s" was automatically made staff member and superuser (because he was made a trainer)' % obj)
-        obj.save()
+        if change:
+            was_trainer = get_object_or_404(User, pk=obj.id).is_trainer
+            is_trainer = "Trainer" in [g.name for g in form.cleaned_data['groups']]
+            #import pdb;pdb.set_trace()
+            if is_trainer and not was_trainer and not (obj.is_staff and obj.is_superuser):
+                obj.is_superuser = True
+                obj.is_staff = True
+                messages.warning(request, _('The user "%s" was automatically made staff member and superuser (because he was made a trainer)') % obj)
+            obj.save()
+        else:
+            # need to save object to set many2many relationship
+            obj.save()
+            obj.groups.set(Group.objects.filter(name='User'))
+            obj.save()
 
 # This should work in Django 1.4 :O
 # from django.contrib.admin import SimpleListFilter
@@ -175,7 +191,7 @@ class TutorialAdmin(admin.ModelAdmin):
         }
 
     def view_url(self, tutorial):
-        return mark_safe('<a href="%s">View</a>' % (reverse('tutorial_overview', args=[tutorial.id])))
-    view_url.short_description = 'View (Tutor Site)'
+        return mark_safe(_('<a href="%s">View</a>') % (reverse('tutorial_overview', args=[tutorial.id])))
+    view_url.short_description = _('View (Tutor Site)')
 
 admin.site.register(Tutorial, TutorialAdmin)

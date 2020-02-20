@@ -28,19 +28,22 @@ for (mimetype, extension) in settings.MIMETYPE_ADDITIONAL_EXTENSIONS:
     mimetypes.add_type(mimetype, extension, strict=True)
 
 class Solution(models.Model):
-    """ """
+
+    class Meta:
+        verbose_name = _('Solution')
+        verbose_name_plural = _('Solutions')
 
     number = models.IntegerField(null=False, editable=False, help_text = _("Id unique in task and user. E.g. Solution 1 of user X in task Y in contrast to global solution Z"))
 
-    task = models.ForeignKey('tasks.task', on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="solution author")
-    creation_date = models.DateTimeField(auto_now_add=True)
+    task = models.ForeignKey('tasks.task', on_delete=models.CASCADE, verbose_name=_('Task'))
+    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("solution author"))
+    creation_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
 
-    testupload = models.BooleanField( default = False, help_text = _('Indicates whether this solution is a test upload.'))
-    accepted = models.BooleanField( default = False, help_text = _('Indicates whether the solution has passed all public and required tests.'))
-    warnings = models.BooleanField( default = False, help_text = _('Indicates whether the solution has at least failed one public and not required test.'))
-    plagiarism = models.BooleanField( default = False, help_text = _('Indicates whether the solution is a rip-off of another one.'))
-    final = models.BooleanField( default = False, help_text = _('Indicates whether this solution is the last (accepted) of the author.'))
+    testupload = models.BooleanField( default = False, help_text = _('Indicates whether this solution is a test upload.'),  verbose_name=_('Testupload'))
+    accepted = models.BooleanField( default = False, help_text = _('Indicates whether the solution has passed all public and required tests.'), verbose_name=_('Accepted'))
+    warnings = models.BooleanField( default = False, help_text = _('Indicates whether the solution has at least failed one public and not required test.'), verbose_name=_('Warnings'))
+    plagiarism = models.BooleanField( default = False, help_text = _('Indicates whether the solution is a rip-off of another one.'), verbose_name=_('Plagiarism'))
+    final = models.BooleanField( default = False, help_text = _('Indicates whether this solution is the last (accepted) of the author.'), verbose_name=_('Final'))
 
     def __str__(self):
         return str(self.task) + ":" + str(self.author) + ":" + str(self.number)

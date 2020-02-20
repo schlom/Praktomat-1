@@ -92,7 +92,7 @@ def import_user(request):
         if form.is_valid():
             try:
                 imported_user = User.import_user(form.files['file'])
-                messages.success(request, "The import was successfull. %i users imported." % imported_user.count())
+                messages.success(request, _("The import was successfull. %i users imported.") % imported_user.count())
                 if form.cleaned_data['require_reactivation']:
                     for user in [user for user in imported_user if user.is_active]:
                         user.is_active = False
@@ -116,7 +116,7 @@ def import_user(request):
             except:
                 raise
                 from django.forms.utils import ErrorList
-                msg = "An Error occured. The import file was probably malformed."
+                msg = _("An Error occured. The import file was probably malformed.")
                 form._errors["file"] = ErrorList([msg])
     else:
         form = ImportForm()

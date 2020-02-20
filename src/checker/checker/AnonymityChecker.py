@@ -50,13 +50,13 @@ def line(content, match):
             line_number = line_number + 1
         i = i + 1
 
-    return (repr(line_number) + ": <tt>" +
+    return (repr(line_number) + ": <samp>" +
             escape(content[start_of_line:match.start()]) +
             "<strong>" +
             escape(content[match.start():match.end()]) +
             "</strong>" +
             escape(content[match.end():end_of_line]) +
-            "</tt>")
+            "</samp>")
 
 
 class AnonymityChecker(Checker):

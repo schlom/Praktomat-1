@@ -18,8 +18,10 @@ from accounts.models import User
 from configuration import get_settings
 
 
-
 class Attestation(models.Model):
+    class Meta:
+        verbose_name = _('Attestation')
+        verbose_name_plural = _('Attestations')
     """An attestation for a student's solution."""
 
     created = models.DateTimeField(auto_now_add=True)
@@ -208,12 +210,17 @@ class AnnotatedSolutionFile(models.Model):
 class RatingAspect(models.Model):
     """ describes a review aspect which the reviewer has to evaluate """
     name = models.CharField(max_length=100, help_text = _('The Name of the Aspect to be rated. E.g.: "Readability"'))
-    description = models.TextField(help_text = _('Description of the Aspect and how it should be rated. E.w.: "How well is the code structured?"'))
+    description = models.TextField(verbose_name=_('Description'), help_text = _('Description of the Aspect and how it should be rated. E.w.: "How well is the code structured?"'))
 
     def __str__(self):
         return self.name
 
 class RatingScale(models.Model):
+
+    class Meta:
+        verbose_name = _('Rating Scale')
+        verbose_name_plural = _('Rating Scales')
+
     """ describes a scale upon which the reviewer rates the aspect """
     name = models.CharField(max_length=100, help_text = _('The Name of the rating scale for the aspects. E.g.: "School marks"'))
 
@@ -222,6 +229,11 @@ class RatingScale(models.Model):
 
 
 class RatingScaleItem(models.Model):
+
+    class Meta:
+        verbose_name = _('Rating Scale Item')
+        verbose_name_plural = _('Rating Scale Items')
+
     """ lists all items(marks) of an rating scale"""
     scale = models.ForeignKey(RatingScale, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, help_text = _('The Name of the item(mark) in the rating scale. E.g.: "A" or "very good" '))

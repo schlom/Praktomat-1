@@ -67,7 +67,7 @@ class RChecker(Checker):
             if len(R_files) > 1:
                 output = "<p>Multiple R scripts found in submission.</p>"
                 output += "<p>R scripts found: %s</p>" % ", ".join(map(escape, R_files))
-                output +=" <p>Please submit exactly one file ending in <tt>.R</tt></p>"
+                output +=" <p>Please submit exactly one file ending in <samp>.R</samp></p>"
                 result = self.create_result(env)
                 result.set_log(output)
                 result.set_passed(False)

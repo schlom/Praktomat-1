@@ -45,17 +45,6 @@ def load_defaults(settings):
     # Never deploy a site into production with DEBUG turned on.
     d.DEBUG = True
 
-    # Local time zone for this installation. Choices can be found here:
-    # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-    # although not all choices may be available on all operating systems.
-    # If running in a Windows environment this must be set to the same as your
-    # system time zone.
-    d.TIME_ZONE = 'Europe/Berlin'
-
-    # Language code for this installation. All choices can be found here:
-    # http://www.i18nguy.com/unicode/language-identifiers.html
-    d.LANGUAGE_CODE = 'en-us'
-
     # A tuple that lists people who get code error notifications. When
     # DEBUG=False and a view raises an exception, Django will email these
     # people with the full exception information. Each member of the tuple
@@ -66,28 +55,21 @@ def load_defaults(settings):
     # link notifications when BrokenLinkEmailsMiddleware is enabled.
     d.MANAGERS = ADMINS
 
-    # If you set this to False, Django will make some optimizations so as not
-    # to load the internationalization machinery.
-    d.USE_I18N = True
-
     # Apps and plugins
-
     d.INSTALLED_APPS = (
+        'django.contrib.admin',
         'django.contrib.auth',
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
-        'django.contrib.admin',
-        'django.contrib.admindocs',
         'django.contrib.staticfiles',
-
+        'django.contrib.admindocs',
         # ./manage.py runserver_plus allows for debugging on werkzeug traceback page. invoke error with assert false
         # not needed for production
         'django_extensions',
-
         # contains a widget to render a form field as a TinyMCE editor
         'tinymce',
-
+        #
         'configuration',
         'accounts',
         'tasks',
@@ -96,16 +78,19 @@ def load_defaults(settings):
         'checker',
         'utilities',
         'settings',
-        #'sessionprofile', #phpBB integration
+        # 'sessionprofile', #phpBB integration
     )
 
     d.MIDDLEWARE = [
-        'django.middleware.common.CommonMiddleware',
-        #'sessionprofile.middleware.SessionProfileMiddleware', #phpBB integration
+        # 'sessionprofile.middleware.SessionProfileMiddleware', #phpBB integration
+        'utilities.force_default_language_middleware.ForceDefaultLanguageMiddleware',
+        'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.contrib.messages.middleware.MessageMiddleware',
+        #'django.middleware.locale.LocaleMiddleware',
+        'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'accounts.middleware.AuthenticationMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
         'accounts.middleware.LogoutInactiveUserMiddleware',
     ]
 
@@ -118,13 +103,11 @@ def load_defaults(settings):
 
     # URL and file paths
     # Template file path is set in template section
-
     d.STATICFILES_DIRS = (
         join(PRAKTOMAT_ROOT, "media"),
     )
 
     d.STATIC_ROOT = join(PRAKTOMAT_ROOT, "static")
-
 
     # This directory is used to compiling and running the users code.
     # As such it is temporary, and might be put on a tmpfs mount, to speed
@@ -168,7 +151,6 @@ def load_defaults(settings):
             d.SECRET_KEY = uuid.uuid4().hex
             os.fdopen(os.open(secret_keyfile, os.O_WRONLY | os.O_CREAT, 0o600), 'w').write(SECRET_KEY)
 
-
     # Templates
 
     d.TEMPLATES = [
@@ -180,14 +162,14 @@ def load_defaults(settings):
             'APP_DIRS': True,
             'OPTIONS': {
                 'context_processors': [
-                    'context_processors.settings.from_settings',
-                    'django.contrib.auth.context_processors.auth',
                     'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'django.contrib.auth.context_processors.auth',
+                    'django.contrib.messages.context_processors.messages',
                     'django.template.context_processors.i18n',
                     'django.template.context_processors.media',
-                    'django.template.context_processors.request',
                     'django.template.context_processors.static',
-                    'django.contrib.messages.context_processors.messages',
+                    'context_processors.settings.from_settings',
                 ],
                 # A boolean that turns on/off template debug mode. If this is True, the fancy
                 # error page will display a detailed report for any TemplateSyntaxError.
@@ -206,13 +188,46 @@ def load_defaults(settings):
         }
     }
 
+    # Password validation
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+    d.AUTH_PASSWORD_VALIDATORS = [
+        {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+        {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+        {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+        {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
+    ]
+
+    # Local time zone for this installation. Choices can be found here:
+    # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+    # although not all choices may be available on all operating systems.
+    # If running in a Windows environment this must be set to the same as your
+    # system time zone.
+    d.TIME_ZONE = 'Europe/Berlin'
+
+    # If you set this to False, Django will make some optimizations so as not
+    # to load the internationalization machinery.
+    d.USE_I18N = True
+    d.USE_L10N = True
+
+    # Language code for this installation. All choices can be found here:
+    # http://www.i18nguy.com/unicode/language-identifiers.html
+    # LANGUAGE_CODE = 'en-us'
+    d.LANGUAGE_CODE = 'de'
+
+    # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    d.LOCALE_PATHS = (
+        os.path.join(BASE_DIR, 'locale'),
+    )
+
     # Email
 
     # Default email address to use for various automated correspondence from
     # the site manager(s).
     d.DEFAULT_FROM_EMAIL = ""
     d.EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    d.EMAIL_HOST = "smtp.googlemail.com"
+    d.EMAIL_HOST = "smtp.mail.com"
     d.EMAIL_PORT = 587
     d.EMAIL_HOST_USER = ""
     d.EMAIL_HOST_PASSWORD = ""
@@ -246,13 +261,13 @@ def load_defaults(settings):
     # Praktomat-specific settings                                               #
     #############################################################################
 
-    # Private key used to sign uploded solution files in submission confirmation email
-    #d.PRIVATE_KEY = '/home/praktomat/certificates/privkey.pem'
+    # Private key used to sign uploaded solution files in submission confirmation email
+    # d.PRIVATE_KEY = '/home/praktomat/certificates/privkey.pem'
 
     # Is this a mirror of another instance (different styling)
     d.MIRROR = False
 
-    # The Compiler binarys used to compile a submitted solution
+    # The Compiler binaries used to compile a submitted solution
     d.C_BINARY = 'gcc'
     d.CXX_BINARY = 'c++'
     d.JAVA_BINARY = 'javac'

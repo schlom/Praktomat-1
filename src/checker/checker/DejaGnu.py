@@ -55,7 +55,7 @@ class DejaGnuTester(Checker, DejaGnu):
     """ Run a test case on the program.  Requires a previous `DejaGnuSetup'. """
 
     name = models.CharField(max_length=100, help_text=_("The name of the Test"))
-    test_case = CheckerFileField(help_text=_("In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen aufgerufen, die beim vorherigen Schritt <EM>Tests einrichten</EM> definiert wurden.     Siehe    auch den Abschnitt <EM>How to write a test case</EM> im <A TARGET=\"_blank\" HREF=\"http://www.gnu.org/manual/dejagnu/\">DejaGnu-Handbuch</A>."))
+    test_case = CheckerFileField(help_text=_("In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert wurden.     Siehe    auch den Abschnitt <em>How to write a test case</em> im <a target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/\">DejaGnu-Handbuch</a>."))
 
     def __str__(self):
         return self.name
@@ -90,9 +90,9 @@ class DejaGnuTester(Checker, DejaGnu):
         log = escape(log)
 
         # Every line that contains a passed message is to be enhanced.
-        log = re.sub(RXPASS, r'\1 <B class="passed"> \2 </B> \3', log)
+        log = re.sub(RXPASS, r'\1 <b class="passed"> \2 </b> \3', log)
         # Every line that contains a failure message is to be enhanced.
-        return  "<TT><PRE>" + re.sub(RXFAIL, r'\1 <B class="error"> \2 </B> \3', log) + "</PRE></TT>"
+        return  "<samp><pre>" + re.sub(RXFAIL, r'\1 <b class="error"> \2 </b> \3', log) + "</pre></samp>"
 
 
     # Run tests.  Return a CheckerResult.
@@ -108,7 +108,7 @@ class DejaGnuTester(Checker, DejaGnu):
 
         if " " in program_name:
             result = self.create_result(env)
-            result.set_log("<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains spaces.\n\nFor Java .zip submittions, the directory hierarchy of the .zip file must exactly match the package structure.\nThe default package must correspond to the .zip root directory.</pre>")
+            result.set_log("<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains spaces.\n\nFor Java .zip submissions, the directory hierarchy of the .zip file must exactly match the package structure.\nThe default package must correspond to the .zip root directory.</pre>")
             result.set_passed(False)
             return result
 
@@ -158,7 +158,7 @@ DEFAULT_TEST_CASES = """# `tests.exp' template
 
 class DejaGnuSetup(Checker, DejaGnu):
 
-    test_defs = CheckerFileField(help_text=_("Das Setup benutzt den <A HREF=\"http://www.gnu.org/software/dejagnu/dejagnu.html\">DejaGnu-Testrahmen</A>, um die Programme zu testen. Die in dieser Datei enthaltenen Definitionen gelten für alle Testfälle dieser Aufgabe. Sie werden beim Testen in die DejaGnu-Datei <TT>default.exp</TT> geschrieben. (Vergl. hierzuden Abschnitt <EM>Target dependent procedures</EM> im    <A HREF=\"http://www.gnu.org/manual/dejagnu/\" TARGET=\"_blank\">DejaGnu-Handbuch</A>.) Die Variablen PROGRAM und JAVA werden mit dem Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."))
+    test_defs = CheckerFileField(help_text=_("Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/\">DejaGnu-Testrahmen</a>, um die Programme zu testen. Die in dieser Datei enthaltenen Definitionen gelten für alle Testfälle dieser Aufgabe. Sie werden beim Testen in die DejaGnu-Datei <samp>default.exp</samp> geschrieben. (Vergl. hier zu den Abschnitt <em>Target dependent procedures</em> im    <a href=\"https://www.gnu.org/software/dejagnu/\" target=\"_blank\">DejaGnu-Handbuch</a>.) Die Variablen PROGRAM und JAVA werden mit dem Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."))
 
     def title(self):
         return "Tests einrichten"

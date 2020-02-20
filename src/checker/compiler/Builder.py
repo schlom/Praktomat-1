@@ -104,7 +104,7 @@ class Builder(Checker):
                 pass
         # Module name not found
 
-        raise self.NotFoundError("The main module could not be found.\n")
+        raise self.NotFoundError(_("The main module could not be found.\n"))
 
     def run(self, env):
         """ Build it. """

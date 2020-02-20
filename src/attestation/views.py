@@ -11,6 +11,7 @@ from django.views.decorators.cache import cache_control
 from django.http import HttpResponse
 from django.template import loader
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 import datetime
 
 from tasks.models import Task, HtmlInjector
@@ -78,24 +79,24 @@ def statistics(request, task_id):
     if request.user.is_trainer:
         # Each Tutorials ratings
         for t in Tutorial.objects.all():
-            all_ratings.append({'title'   : "Final Grades for Students in Tutorial %s" % str(t),
-                                'desc'    : "This chart shows the distribution of final grades for students from Tutorial %s. Plagiarism is excluded." % str(t),
+            all_ratings.append({'title'   : _("Final Grades for Students in Tutorial %s") % str(t),
+                                'desc'    : _("This chart shows the distribution of final grades for students from Tutorial %s. Plagiarism is excluded.") % str(t),
                                 'ratings' : RatingScaleItem.objects.filter(attestation__solution__task=task_id, attestation__solution__plagiarism=False, attestation__final=True, attestation__solution__author__tutorial = t)})
         for t in User.objects.filter(groups__name='Tutor'):
-            all_ratings.append({'title'   : "Final Grades for Attestations created by %s" % str(t),
-                                'desc'    : "This chart shows the distribution of final grades for Attestations created by %s. Plagiarism is excluded." % str(t),
+            all_ratings.append({'title'   : _("Final Grades for Attestations created by %s") % str(t),
+                                'desc'    : _("This chart shows the distribution of final grades for Attestations created by %s. Plagiarism is excluded.") % str(t),
                                 'ratings' : RatingScaleItem.objects.filter(attestation__solution__task=task_id, attestation__solution__plagiarism=False, attestation__final=True, attestation__author__id = t.id)})
     else:
         # The Tutorials ratings
-        all_ratings.append(        {'title'   : "Final grades (My Tutorials)",
-                                    'desc'    : "This chart shows the distribution of final grades for students from any of your tutorials. Plagiarism is excluded.",
+        all_ratings.append(        {'title'   : _("Final grades (My Tutorials)"),
+                                    'desc'    : _("This chart shows the distribution of final grades for students from any of your tutorials. Plagiarism is excluded."),
                                     'ratings' : RatingScaleItem.objects.filter(attestation__solution__task=task_id, attestation__solution__plagiarism=False, attestation__final=True, attestation__solution__author__tutorial__in = tutorials)})
-        all_ratings.append(        {'title'   : "Final grades (My Attestations)",
-                                    'desc'    : "This chart shows the distribution of final grades for your attestations. Plagiarism is excluded.",
+        all_ratings.append(        {'title'   : _("Final grades (My Attestations)"),
+                                    'desc'    : _("This chart shows the distribution of final grades for your attestations. Plagiarism is excluded."),
                                     'ratings' : RatingScaleItem.objects.filter(attestation__solution__task=task_id, attestation__solution__plagiarism=False, attestation__final=True, attestation__author__id = request.user.id)})
     # Overall ratings
-    all_ratings.append({'title'   : "Final grades (overall)",
-                        'desc'    : "This chart shows the distribution of final grades for all students. Plagiarism is excluded.",
+    all_ratings.append({'title'   : _("Final grades (overall)"),
+                        'desc'    : _("This chart shows the distribution of final grades for all students. Plagiarism is excluded."),
                         'ratings' : RatingScaleItem.objects.filter(attestation__solution__task=task_id, attestation__solution__plagiarism=False, attestation__final=True)})
 
     for i, r in enumerate(all_ratings):
@@ -652,7 +653,7 @@ def update_attestations(request):
                 return render(request, 'admin/attestation/update.html', {'form': form, 'title':"Update Attestations"  })
             except Exception as e:
                 from django.forms.utils import ErrorList
-                msg = "An Error occured. The import file was propably malformed.: %s" % str(e)
+                msg = _("An Error occurred. The import file was probably malformed.: %s") % str(e)
                 form._errors["file"] = ErrorList([msg])
     else:
         form = ImportForm()
