@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-
+{% load i18n%}
 {% block title %}Forbidden{% endblock %}
 
 {% block content_title %}Forbidden{% endblock %}
 
 {% block content %}
 
-<p>Your IdP is not releasing all the required attributes for this service.</p>
+<p>{% trans "Your IdP is not releasing all the required attributes for this service." %}</p>
 
 <ul>
   {% for name,value in shib_attrs.items %}

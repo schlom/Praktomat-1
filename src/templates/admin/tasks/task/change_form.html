@@ -14,12 +14,12 @@
 
 {% block after_related_objects %}
 <div class="inline-group" id="solution_set-group">
-    <h2>Model Solution</h2>
+    <h2>{% trans 'Model Solution' %}</h2>
 	<div class="add-row">
 		{% if add %}
-			Save this task to add a model solution
+			{% trans 'Save this task to add a model solution' %}
 		{% else %}
-			<a href="{% url "model_solution" object_id %}" onclick="return showAddAnotherPopup(this);">{% if original.model_solution %}Edit{% else %}Add{% endif %} model solution</a>
+			<a href="{% url "model_solution" object_id %}" onclick="return showAddAnotherPopup(this);">{% if original.model_solution %}{% else %}{% trans 'Add' %}{% endif %} {% trans 'model solution' %}{</a>
 		{% endif %}
 	</div>
 </div> {% endblock %}

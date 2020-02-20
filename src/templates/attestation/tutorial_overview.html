@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load highlight %} {% load i18n  %}
 {% block extrahead %}{{ block.super }}{% endblock %}
-{% block breadcrumbs %} {{block.super}} > Rating Overview {% endblock %}
+{% block breadcrumbs %} {{block.super}} > {% trans 'Rating Overview' %} {% endblock %}
 {% block content %}<div id="tutorial">
 
 {% if other_tutorials %}
-	<h2>Other Tutorials</h2>
+	<h2>{% trans 'Other Tutorials' %}</h2>
 	<ul>
 	{% for tutorial in other_tutorials %}
 		<li><a href="{% url "tutorial_overview" tutorial_id=tutorial.id  %}">{{tutorial}}</a></li>
@@ -22,13 +22,13 @@
 <div>
 	<table class="noLinkHighlight">
 		<tr>
-			<th>User</th>
+			<th>{% trans 'User' %}</th>
 			{% for task in tasks %}
 				<th><div class="heading"><a href="{% url "task_detail" task_id=task.id  %}">{{task.title}}</a></div></th>
-				<th><div class="heading">Rating Aspects</div></th>
+				<th><div class="heading">{% trans 'Rating Aspects' %}</div></th>
 			{% endfor %}
-			<th><div class="heading" id="calculated_grade_heading">Calculated grade</div></th>
-			<th><div class="heading">Final grade</div></th>
+			<th><div class="heading" id="calculated_grade_heading">{% trans 'Calculated grade' %}</div></th>
+			<th><div class="heading">{% trans 'Final grade' %}</div></th>
 		</tr>
 		{% for user, attestations, _, calculated_grade in rating_list %}
 			<tr class="{% cycle 'odd' 'even' %} user_row">
@@ -51,7 +51,7 @@
 					{% endif %}
 
 					{% if solution.plagiarism %}
-						<span class="icon ui-icon-alert icon-red" title="Marked as plagiarism"></span>
+						<span class="icon ui-icon-alert icon-red" title={% trans "Marked as plagiarism" %}></span>
 					{% endif %}
 
 
@@ -79,7 +79,7 @@
 			</tr>
 		{% endfor %}
 			<tr>
-				<th>Average:</td>
+				<th>{% trans 'Average:' %}</td>
 				{% for average in averages %}
 				<td>{{average}}</td>
 				<td></td>
@@ -87,7 +87,7 @@
 			</tr>
 	</table>
 	<br/>
-	<a href="mailto:?bcc={% for user, _, _, _ in rating_list %}{{user.email}},{% endfor %}"><span class="icon ui-icon-mail-closed"></span>Email all users</a>
+	<a href="mailto:?bcc={% for user, _, _, _ in rating_list %}{{user.email}},{% endfor %}"><span class="icon ui-icon-mail-closed"></span>{% trans 'Email all users' %}</a>
 
 </div>
 </div>

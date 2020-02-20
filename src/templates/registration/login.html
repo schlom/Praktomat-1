@@ -16,7 +16,7 @@ function resize(id) {
 {% endblock %}
 
 {% block breadcrumbs %}
-	{{ block.super }} &gt; {% trans 'Login' %}
+	{{ block.super }} &gt; {% trans "Login" %}
 {% endblock %}
 
 {% block content %}<div id="login">
@@ -27,14 +27,14 @@ function resize(id) {
 
 <div id="form">
     {% if REGISTRATION_POSSIBLE %}
-	<span class="icon ui-icon-triangle-1-e"></span><a href="{% url "registration_register" %}">Registration</a>
+	<span class="icon ui-icon-triangle-1-e"></span><a href="{% url "registration_register" %}">{% trans "Registration" %}</a>
 	/
 	{% endif %}
-	<span class="icon ui-icon-triangle-1-e"></span><a href="{% url "password_reset" %}">Retrieve password</a>
+	<span class="icon ui-icon-triangle-1-e"></span><a href="{% url "password_reset" %}">{% trans "Retrieve password" %}</a>
 
 	<form method="post" action=".">{% csrf_token %}
 	    {% include "forms/form_as_div.html" %}
-		<input type="submit" value="Login" />
+		<input type="submit" value={% trans "Login" %} />
 		<input type="hidden" name="next" value="{{ next }}" />
 	</form>
 </div>

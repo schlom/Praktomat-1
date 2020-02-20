@@ -9,14 +9,14 @@
 
 <h1>{% trans "Register a new Account" %}</h1>
 {% if form %}
-	<p>The username you choose will also be your public name for the forum and can not be changed after registration.</p>
+	<p>{% trans "The username you choose will also be your public name for the forum and can not be changed after registration." %}</p>
 
 	<form method="post" action="." autocomplete="off"> {% csrf_token %}
 	{%comment%} autocomplete is a not standardized tag! {%endcomment%}
 		{% include "forms/form_as_div.html" %}
-		<input type="submit" value="Register" />
+		<input type="submit" value={% trans "Register" %} />
 	</form>
 {% else %}
-<div class='error'>Registration is closed. Please Contact a Trainer: {% for user in trainers %} <a href='mailto:{{ user.email }}'>{{user.get_full_name}}</a> {% endfor %} or Administrator:{% for user in admins %} <a href='mailto:{{ user.email }}'>{{user.get_full_name}}</a>{% endfor %}.</div>
+<div class='error'>{% trans "Registration is closed. Please Contact a Trainer: " %}{% for user in trainers %} <a href='mailto:{{ user.email }}'>{{user.get_full_name}}</a> {% endfor %}{% trans " or Administrator:" %}{% for user in admins %} <a href='mailto:{{ user.email }}'>{{user.get_full_name}}</a>{% endfor %}.</div>
 {% endif %}
 {% endblock %}

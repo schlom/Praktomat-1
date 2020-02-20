@@ -26,8 +26,8 @@ $(document).ready(function(){
 	});
 	$(".confirm").easyconfirm({
 		locale: {
-			title: 'Are you sure?',
-			text: 'Really publish all final attestations?',
+			title: {% trans "Are you sure?" %},
+			text: {% trans "Really publish all final attestations?" %},
 			button: ['Cancel','Publish'],
 			closeText: 'Cancel',
 			},
@@ -38,36 +38,36 @@ $(document).ready(function(){
 
 </script>
 {% endblock %}
-{% block breadcrumbs %} {{block.super}} > <a href={% url "task_detail" task_id=task.id%}>{{task.title}}</a> > Attestations{% endblock %}
+{% block breadcrumbs %} {{block.super}} > <a href={% url "task_detail" task_id=task.id%}>{{task.title}}</a> > {% trans 'Attestations' %}{% endblock %}
 {% block content %}<div id='attestation_list'>
 
 <h1>{{task.title}}</h1>
 
 <div id='help_icon'><span class="icon icon-orange ui-icon-info"></span></div>
 <div class="tooltip">
-	<span class="icon ui-icon-radio-on icon-orange" title="not finished"></span> <a>not finished</a><br/>
-	<span class="icon ui-icon-check icon-green" title="final unpublished"></span> <a>final but unpublished</a><br/>
-	<span class="icon ui-icon-circle-check icon-green" title="final published"></span> <a>final and published</a><br/>
-	<span class="icon ui-icon-search" title="view only"></span> <a>view only</a><br/>
+	<span class="icon ui-icon-radio-on icon-orange" title="not finished"></span> <a>{% trans 'not finished' %}</a><br/>
+	<span class="icon ui-icon-check icon-green" title="final unpublished"></span> <a>{% trans 'final but unpublished' %}</a><br/>
+	<span class="icon ui-icon-circle-check icon-green" title="final published"></span> <a>{% trans 'final and published' %}</a><br/>
+	<span class="icon ui-icon-search" title="view only"></span> <a>{% trans 'view only' %}</a><br/>
 </div>
 
 {% if user.is_tutor or user.is_trainer %}
 <ul>
-  <li><a href="{% url "upload_test_solution" task_id=task.id %}">Upload a test solution</a></li>
-  <li><a href="{% url "solution_download_for_task" task_id=task.id %}">Download all solutions</a></li>
-  <li><a href="{% url "solution_download_for_task" task_id=task.id full="full" %}">Download all solutions, including checker files</a></li>
+  <li><a href="{% url "upload_test_solution" task_id=task.id %}">{% trans 'Upload a test solution' %}</a></li>
+  <li><a href="{% url "solution_download_for_task" task_id=task.id %}">{% trans 'Download all solutions' %}</a></li>
+  <li><a href="{% url "solution_download_for_task" task_id=task.id full="full" %}">{% trans 'Download all solutions, including checker files' %}</a></li>
 </ul>
 {% endif %}
 
 {% if tutored_users %}
   <p>
-  <h2>Upload solutions in a students name</h2>
+  <h2>{% trans 'Upload solutions in a students name' %}</h2>
 	<select id="user_selector">
 		{% for user in tutored_users %}
 			<option value="{% url "solution_list" task_id=task.id user_id=user.id %}">{{user.last_name}}, {{user.first_name}}</option>
 		{% endfor %}
 	</select>
-	<input id="edit_soluton_button" type="button" value="Edit Solutions"/></br></br>
+	<input id="edit_soluton_button" type="button" value={% trans "Edit Solutions" %}/></br></br>
   </p>
 {% endif %}
 
@@ -85,11 +85,11 @@ $(document).ready(function(){
 				<div class='attestation'>
 					<table class="attestationprogress">
 						<tr>
-                                                      <th>Tutor</th>
-                                                      <th>Unrated</th>
-                                                      <th>Not final</th>
-                                                      <th>Final</th>
-                                                      <th>Total</th>
+                                                      <th>{% trans 'Tutor' %}</th>
+                                                      <th>{% trans 'Unrated' %}</th>
+                                                      <th>{% trans 'Not final' %}</th>
+                                                      <th>{% trans 'Final' %}</th>
+                                                      <th>{% trans 'Total' %}</th>
 						</tr>
 					{% for entry in attestation_stats %}
 						<tr class="{% if entry.unattested != 0 %}          some_unattested
@@ -113,7 +113,7 @@ $(document).ready(function(){
 							              {% else %}                     all_final
 								      {% endif %}
 							   {% endif %}">
-                                                      <td>None</td>
+                                                      <td>{% trans 'None' %}</td>
                                                       <td>{{no_tutorial_stats.unattested}}</td>
                                                       <td>{{no_tutorial_stats.nonfinal}}</td>
                                                       <td>{{no_tutorial_stats.final}}</td>
@@ -128,7 +128,7 @@ $(document).ready(function(){
 					{% for solution in unattested_solutions %}
 						<span class="icon ui-icon-search" title="view only"></span> <a href="{% url "solution_detail" solution_id=solution.id %}">Solution by {{solution.author}}</a></br>
 					{% empty %}
-						<p>All solutions have been attested.</p>
+						<p>{% trans 'All solutions have been attested.' %}</p>
 					{% endfor %}
 				</div>
 			{% endif %}
@@ -147,14 +147,14 @@ $(document).ready(function(){
 				<div style="margin-top:50px">
 					<input id="next_attestation_button" type="button" value="Attest next solution" {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %} onclick="location.href ='{% url "new_attestation_for_task" task_id=task.id %}'"/>
 				</div>
-				{{ unattested_solutions|length }} solutions to attest.</br></br></br>
+				{{ unattested_solutions|length }} {% trans 'solutions to attest.' %}<br><br><br>
 			{% endif %}
 
 			{% if solutions_with_plagiarism %}
 				{% if show_author %}
-			<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>The solutions of{% for solution in solutions_with_plagiarism %} {{solution.author}}{%if not forloop.last%}, {%endif%}{% endfor %} have been marked as plagiarism.</span>
+			<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{% trans 'The solutions of' %}{% for solution in solutions_with_plagiarism %} {{solution.author}}{%if not forloop.last%}, {%endif%}{% endfor %} {% trans 'have been marked as plagiarism.' %}</span>
 				{% else %}
-					<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{{solutions_with_plagiarism|length}} solutions have been marked as plagiarism.</span>
+					<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{{solutions_with_plagiarism|length}} {% trans 'solutions have been marked as plagiarism.' %}</span>
 				{% endif %}
 			{% endif %}
 
@@ -178,7 +178,7 @@ $(document).ready(function(){
 								href="{% url "edit_attestation" attestation_id=attestation.id%}"
 							{% endif %}
 						>
-							Attestation for {% if show_author %}{{attestation.solution.author}}{% else %}Solution {{forloop.counter}}{% endif %}
+							{% trans 'Attestation for ' %}{% if show_author %}{{attestation.solution.author}}{% else %}{% trans 'Solution' %} {{forloop.counter}}{% endif %}
 						</a>
 						{% if attestation.solution.plagiarism %}
 							<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{% trans "Marked as Plagiarism" %}</span>
@@ -202,12 +202,12 @@ $(document).ready(function(){
 						{% else %}
 							<span class="icon ui-icon-radio-on icon-orange" title="not finished"></span>
 						{% endif %}
-						<a href={% url "view_attestation" attestation_id=attestation.id%}>Attestation for {% if show_author %}{{attestation.solution.author}}{% else %}Solution {{forloop.counter}}{% endif %}</a> by {{attestation.author}}
+						<a href={% url "view_attestation" attestation_id=attestation.id%}>{% trans 'Attestation for ' %}{% if show_author %}{{attestation.solution.author}}{% else %}{% trans 'Solution' %} {{forloop.counter}}{% endif %}</a> {% trans 'by' %} {{attestation.author}}
 						{% if attestation.solution.plagiarism %}
 							<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{% trans "Marked as Plagiarism" %}</span>
 						{% endif %}
 						<span class='comment dotdotdot'>{{ attestation.private_comment}}</span>
-						<span style="float:right">Created: {{attestation.created|date:"Y-m-d H:i"}}</span>
+						<span style="float:right">{% trans 'Created:' %} {{attestation.created|date:"Y-m-d H:i"}}</span>
 					</div>
 				{% endfor %}
 			{% endif %}
@@ -217,7 +217,7 @@ $(document).ready(function(){
 				<form enctype="multipart/form-data" class="confirm" method="post" action="">{% csrf_token %}
 					<input type="hidden" name="what" value="tutorial"/>
 					<input type="submit"
-					       value="Publish {{ c }} final attestation{{ c|pluralize }} from my tutorial"
+					       value={% blocktrans %}"Publish {{ c }} final attestation{{ c|pluralize }} from my tutorial"{% endblocktrans %}
 					       {% if not c %} disabled {% endif %}
 					/>
 				</form>
@@ -237,12 +237,12 @@ $(document).ready(function(){
 						{% else %}
 							<span class="icon ui-icon-radio-on icon-orange" title="not finished"></span>
 						{% endif %}
-						<a href={% url "view_attestation" attestation_id=attestation.id%}>Attestation for {% if show_author %}{{attestation.solution.author}}{% else %}Solution {{forloop.counter}}{% endif %}</a> by {{attestation.author}}
+						<a href={% url "view_attestation" attestation_id=attestation.id%}>{% trans 'Attestation for ' %}{% if show_author %}{{attestation.solution.author}}{% else %}{% trans 'Solution' %} {{forloop.counter}}{% endif %}</a> {% trans 'by' %} {{attestation.author}}
 						{% if attestation.solution.plagiarism %}
 							<span class='plagiarism error'><span class="icon ui-icon-alert icon-red"></span>{% trans "Marked as Plagiarism" %}</span>
 						{% endif %}
 						<span class='comment dotdotdot'>{{ attestation.private_comment}}</span>
-						<span style="float:right">Created: {{attestation.created|date:"Y-m-d H:i"}}</span>
+						<span style="float:right">{% trans 'Created:' %} {{attestation.created|date:"Y-m-d H:i"}}</span>
 					</div>
 				{% endfor %}
 			{% endif %}
@@ -252,7 +252,7 @@ $(document).ready(function(){
 				<form enctype="multipart/form-data" class="confirm" method="post" action="">{% csrf_token %}
 					<input type="hidden" name="what" value="all"/>
 					<input type="submit"
-					       value="Publish {{ c }} final attestation{{ c|pluralize }} from this task"
+					       value={% blocktrans %}"Publish {{ c }} final attestation{{ c|pluralize }} from this task"{% endblocktrans %}
 					       {% if not c %} disabled {% endif %}
 					/>
 				</form>

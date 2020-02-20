@@ -83,7 +83,7 @@
 
 	</script>
 {% endblock %}
-{% block breadcrumbs %} {{block.super}} > <a href={% url "task_detail" task_id=solution.task.id%}>{{solution.task.title}}</a> > <a href={% url "attestation_list" solution.task_id %}>My attestations</a> > Attestation {% endblock %}
+{% block breadcrumbs %} {{block.super}} > <a href={% url "task_detail" task_id=solution.task.id%}>{{solution.task.title}}</a> > <a href={% url "attestation_list" solution.task_id %}>My attestations</a> > {% trans 'Attestation' %} {% endblock %}
 {% block content %}<div id='attestation_edit'>
 
 <form enctype="multipart/form-data" method="post" action="">{% csrf_token %}
@@ -94,25 +94,25 @@
 </div>
 
 <h1>{{solution.task.title}}</h1>
-<p id='author'>{% if show_author%} Solution by: {{solution.author}} {% endif %}</p>
+<p id='author'>{% if show_author%} {% trans 'Solution by:' %} {{solution.author}} {% endif %}</p>
 
 
 
 	<div id="tabs">
 		<ul>
-			<li><a href="#task">Task</a></li>
+			<li><a href="#task">{% trans 'Task' %}</a></li>
 			{% if model_solution %}
-			<li><a href="#model_solution">Model solution</a></li>
+			<li><a href="#model_solution">{% trans 'Model solution' %}</a></li>
 			{% endif %}
-			<li><a href="#solution">Solution</a></li>
-			<li><a href="#annotated_solution_files">Annotate solution files</a></li>
-			<li><a href="#attestation">Attest solution</a></li>
-			<li><a href="#download"><span class="ui-icon ui-icon-circle-triangle-s"></span>Download</a></li>
-			<li><a href="#download_full"><span class="ui-icon ui-icon-circle-triangle-s"></span>Download (incl. checker files)</a></li>
+			<li><a href="#solution">{% trans 'Solution' %}</a></li>
+			<li><a href="#annotated_solution_files">{% trans 'Annotate solution files' %}</a></li>
+			<li><a href="#attestation">{% trans 'Attest solution' %}</a></li>
+			<li><a href="#download"><span class="ui-icon ui-icon-circle-triangle-s"></span>{% trans 'Download' %}</a></li>
+			<li><a href="#download_full"><span class="ui-icon ui-icon-circle-triangle-s"></span>{% trans 'Download (incl. checker files)' %}</a></li>
 		</ul>
 
 		<div id="task">
-			<h1 class="heading">Task</h1>
+			<h1 class="heading">{% trans 'Task' %}</h1>
 			{{solution.task.description|safe}}
 		</div>
 
@@ -130,11 +130,11 @@
 
 
 		<div id="solution">
-			<h1 class="heading">Checker results</h1>
+			<h1 class="heading">{% trans 'Checker results' %}</h1>
 			{% if show_run_checkers %}
 			<div style="text-align:right">
 				<span class="ui-icon ui-icon-play"></span>
-				<a href="{% url "attestation_run_checker" attestation_id=attestForm.instance.id %}">re-run all checkers</a>
+				<a href="{% url "attestation_run_checker" attestation_id=attestForm.instance.id %}">{% trans 're-run all checkers' %}</a>
 			</div>
 			{% endif %}
 			{% with solution.allCheckerResults as results %}
@@ -148,17 +148,17 @@
 
 
 		<div id="annotated_solution_files">
-			<h1 class="heading">Checker results</h1>
+			<h1 class="heading">{% trans 'Checker results' %}</h1>
 			{% if show_run_checkers %}
 			<div style="text-align:right">
 				<span class="ui-icon ui-icon-play"></span>
-				<a href="{% url "attestation_run_checker" attestation_id=attestForm.instance.id %}">re-run all checkers</a>
+				<a href="{% url "attestation_run_checker" attestation_id=attestForm.instance.id %}">{% trans 're-run all checkers' %}</a>
 			</div>
 			{% endif %}
 			{% with solution.allCheckerResults as results %}
 			{% include "solutions/checker_results_inline.html" %}
 			{% endwith %}
-			<h1 class="heading">Annotated solution files</h1>
+			<h1 class="heading">{% trans 'Annotated solution files' %}</h1>
 			<div id="file_form_set">
 				{% with attestFileFormSet as formset %}
 					{% include "forms/formset_as_div.html" %}
@@ -175,13 +175,13 @@
 				</div>
 			{% endwith %}
 					<div id="editorOptions" style="margin-bottom:25px">
-						<h2>Editor Options</h2>
-						<input id="wordwrap" type="checkbox" name="wordwrap" style="float: left;" value="check1"/><label for="wordwrap">word wrap</label>
+						<h2>{% trans 'Editor Options' %}</h2>
+						<input id="wordwrap" type="checkbox" name="wordwrap" style="float: left;" value="check1"/><label for="wordwrap">{% trans 'word wrap' %}</label>
 					</div>
 		</div>
 
 		<div id="attestation">
-			<h1 class="heading">Attestation</h1>
+			<h1 class="heading">{% trans 'Attestation' %}</h1>
 
 				{% with attestForm as form %}
 					{% include "forms/form_as_div.html" %}

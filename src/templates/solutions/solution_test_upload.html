@@ -40,10 +40,10 @@ $(document).ready(function(){
 {% block breadcrumbs %}
 {{block.super}}
 &gt; <a href={% url "task_detail" task_id=task.id%}>{{task.title}}</a>
-&gt; Test Solution Upload
+&gt; {% trans "Test Solution Upload" %}
 {% endblock %}
 
-{% block content %}<div id='soluion_upload'>
+{% block content %}<div id='solution_upload'>
 
 <h1>{{task.title}} (Test Upload)</h1>
 
@@ -59,7 +59,7 @@ $(document).ready(function(){
 <div class="simple_overlay" id="progress">
 	<!-- spinner from http://ajaxload.info/ -->
 	<img id="spinner" src="{{STATIC_URL}}images/loading.gif" alt="loading" />
-	<p>Please wait while your solution is examined.</p>
+	<p>{% trans "Please wait while your solution is examined." %}</p>
 </div>
 
 </div>{% endblock %}

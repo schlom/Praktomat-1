@@ -1,3 +1,4 @@
+{% load i18n %}
 {% for field in form.visible_fields %}
 	<div class="form-row {{field.name}} {{field.errors|yesno:'errors,'}}">
 

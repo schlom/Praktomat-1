@@ -7,17 +7,17 @@
 {% block breadcrumbs %}
 {{block.super}}
 &gt; <a href={% url "task_detail" task_id=solution.task.id%}>{{solution.task.title}}</a>
-&gt; {% if user.is_tutor or user.is_trainer %} <a href={% url "attestation_list" solution.task.id %}>My attestations</a>
-&gt; <a href={% url "solution_list" task_id=solution.task.id user_id=solution.author.id %}>{{solution.author}}'s solutions</a>{% else %}<a href={% url "solution_list" task_id=solution.task.id%}>My solutions</a>{% endif %}
-&gt; Solution {{solution.number}}
+&gt; {% if user.is_tutor or user.is_trainer %} <a href={% url "attestation_list" solution.task.id %}>{% trans 'My attestations' %}</a>
+&gt; <a href={% url "solution_list" task_id=solution.task.id user_id=solution.author.id %}>{% blocktrans %}{{solution.author}}'s solutions{% endblocktrans %}</a>{% else %}<a href={% url "solution_list" task_id=solution.task.id%}>{% trans 'My solutions' %}</a>{% endif %}
+&gt; {% trans "Solution " %}{{solution.number}}
 {% endblock %}
 {% block content %}<div id='solution_detail'>
 
 <h1>{{solution.task.title}}</h1>
 {% if user.is_tutor or user.is_trainer %}{% if not full %}
    <p>
-	(as seen by {{solution.author}},
-	<a href="{% url "solution_detail_full" solution_id=solution.id %}">also show non-public checker results</a>)
+	{% blocktrans %}(as seen by {{solution.author}},{% endblocktrans %}
+	<a href="{% url "solution_detail_full" solution_id=solution.id %}">{% trans "also show non-public checker results" %}</a>)
    </p>
 {% endif %}{% endif %}
 
@@ -35,12 +35,12 @@
 
 <p>
 	{% if solution.testupload %}
-		This is a test submission, and otherwise ignored.
+		{% trans "This is a test submission, and otherwise ignored." %}
 	{% endif %}
 	{% if solution.final %}
-		This is your current final solution.
+		{% trans "This is your current final solution." %}
 	{% else %}
-		 This is NOT your current final solution.
+		 {% trans "This is NOT your current final solution." %}
 	{% endif %}
 </p>
 
@@ -51,8 +51,8 @@
 {% if not solution.final and not solution.testupload and not solution.task.expired %}
     {% if accept_all_solutions or solution.accepted %}
         <form method="post">{% csrf_token %}
-            <input type="submit" value="Resubmit" />
-            <p class="help">You can resubmit this solution to make this your final solution.</p>
+            <input type="submit" value={% trans "Resubmit" %} />
+            <p class="help">{% trans "You can resubmit this solution to make this your final solution." %}</p>
         </form>
     {% endif %}
 {% endif %}
@@ -79,7 +79,7 @@
 {% endwith %}
 
 
-<a href={% url "solution_download" solution_id=solution.id %} id='download'><span class="ui-icon ui-icon-disk"></span>Download Solution</a>
+<a href={% url "solution_download" solution_id=solution.id %} id='download'><span class="ui-icon ui-icon-disk"></span>{% trans "Download Solution" %}</a>
 
 {% for snippet in htmlinjector_snippets %}
 		<div class="snippet">

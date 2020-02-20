@@ -3,7 +3,7 @@
 	<script type="text/javascript" src="{{STATIC_URL}}script/solution_inlines.js"></script>
 	<link type="text/css" rel="stylesheet" href="{{STATIC_URL}}frameworks/jquery/jquery-ui-theme.css" />
 {% endcomment %}
-
+{% load i18n%}
 
 {% for result in results %}
 	<div class="result">
@@ -24,12 +24,12 @@
 
 			{% if result.artefacts.count %}
 				<div class="artefacts">
-					<h4>The following artefacts were produced:</h4>
+					<h4>{% trans "The following artefacts were produced:" %}</h4>
 					<ul>
 						{% for artefact in result.artefacts.all %}
 							<li>
-							  <a href="{{ artefact.file.url }}?view" title="View">{{ artefact }}</a>
-							  <a href="{{ artefact.file.url }}" title="Download"><span class="ui-icon icon-red ui-icon-disk" title="Download all solutions, including checker files"></span></a>
+							  <a href="{{ artefact.file.url }}?view" title={% trans "View" %}>{{ artefact }}</a>
+							  <a href="{{ artefact.file.url }}" title="Download"><span class="ui-icon icon-red ui-icon-disk" title={% trans "Download all solutions, including checker files" %}></span></a>
 							</li>
 						{% endfor %}
 					</ul>

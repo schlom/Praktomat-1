@@ -1,5 +1,6 @@
+{% load i18n%}
 {% if filenames %}
-<div>{{ filenames|length }} <tt>Scala</tt> user-submitted files found for compilation: {% for scalafile in filenames%} {{ scalafile }} &nbsp; {% endfor %}</div>
+<div>{{ filenames|length }} <samp>Scala</samp> {% trans "user-submitted files found for compilation: " %}{% for scalafile in filenames%} {{ scalafile }} &nbsp; {% endfor %}</div>
 {% if output %}
 <div>Scala compiler output:</div>
 <pre>{{output|safe}}</pre>

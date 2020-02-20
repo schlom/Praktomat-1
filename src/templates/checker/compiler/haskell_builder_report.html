@@ -1,4 +1,5 @@
-<div>{{ filenames|length }} <tt>Haskell</tt> User-submitted files found for Compilation: {% for haskellfile in filenames%} {{ haskellfile }} &nbsp; {% endfor %}</div>
+{% load i18n%}
+<div>{{ filenames|length }} <samp>Haskell</samp> {% trans "User-submitted files found for Compilation: " %}{% for haskellfile in filenames%} {{ haskellfile }} &nbsp; {% endfor %}</div>
 <div>Haskell Compiler Output:</div>
 <pre>{{output|safe}}</pre>
 <div>Haskell Compiler Call:</div>

@@ -1,15 +1,22 @@
 {% load i18n %}{% autoescape off %}{% trans "Hello " %}{{solution.author}},
 
-{% if uploader %}a{% else %}your{% endif %} solution to the task "{{solution.task}}" has been successfully uploaded{% if uploader %} in your name by trainer {{uploader}}{% endif %}.
+{% if uploader %}
+   {% trans " a" %}
+{% else %}
+   {% trans " your" %}
+{% endif %} {% blocktrans %}solution to the task "{{solution.task}}" has been successfully uploaded{% endblocktrans %}
+    {% if uploader %}
+        {% blocktrans %}in your name by trainer {{uploader}}{% endblocktrans %}
+    {% endif %}.
 
-You can view the uploaded solution here: {{protocol}}://{{ domain }}{% url "solution_detail" solution_id=solution.id %}
+{% blocktrans %}You can view the uploaded solution here: {% endblocktrans %}{{protocol}}://{{ domain }}{% url "solution_detail" solution_id=solution.id %}
 
-The upload included these files:
+{% blocktrans %}The upload included these files:{% endblocktrans %}
 {% for file in solution.solutionfile_set.all %}
 	{{file}} [SHA256:{{file.get_hash}}]
 {% endfor %}
 
-Please keep this email and the files you have uploaded to verify that you've completed the task.
+{% blocktrans %}Please keep this email and the files you have uploaded to verify that you've completed the task.{% endblocktrans %}
 
 {% trans "Thanks for using our site!" %}
 
