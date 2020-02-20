@@ -217,7 +217,7 @@ body {
 /* @group Header */
 
 #header {
-	background: #517ca1;
+	background: #666666;
 	color: white;
 	overflow: hidden;
 	width: 100%;
@@ -229,7 +229,7 @@ body {
 }
 
 #sub_header {
-	background: #313d47;
+	background: #333333;
 	overflow: hidden;
 	width: 100%;
 	color: #eaeaea;
@@ -245,7 +245,7 @@ body {
 
 #title h1 {
 	font-weight: normal;
-	color: white;
+	color: black; /*white;*/
 	float: left;
 	font-size: 32px;
 }
@@ -887,8 +887,8 @@ Saf3.1+, Chrome */
 	/* 
 
 IE6,IE7 */
-         -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', 
-                     M11=0.7071067811865476, M12=0.7071067811865475, M21=-0.7071067811865475, M22=0.7071067811865476)";
+	-ms-filter: progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand',
+                     M11=0.7071067811865476, M12=0.7071067811865475, M21=-0.7071067811865475, M22=0.7071067811865476);
 	/*
 
 IE8 */
@@ -932,8 +932,8 @@ IE8 */
 	-webkit-transform: rotate(-45deg);
 	filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', 
                      M11=0.7071067811865476, M12=0.7071067811865475, M21=-0.7071067811865475, M22=0.7071067811865476);
-	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', 
-                     M11=0.7071067811865476, M12=0.7071067811865475, M21=-0.7071067811865475, M22=0.7071067811865476)";
+	-ms-filter: progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand',
+                     M11=0.7071067811865476, M12=0.7071067811865475, M21=-0.7071067811865475, M22=0.7071067811865476);
 	zoom: 1;
 }
 
