@@ -134,7 +134,7 @@ class CopyForm(AlwaysChangedModelForm):
         if (not filename.strip()):
             if 'shell_script' in self.cleaned_data:
                 file = self.cleaned_data['shell_script']
-                return (os.path.basename(shell_script.name))
+                return (os.path.basename('shell_script'.name))
             else:
                 cleaned = self.cleaned_data
                 return ""

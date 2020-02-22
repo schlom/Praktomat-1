@@ -2,7 +2,7 @@ from django.conf import settings
 from django.urls import reverse
 
 def from_settings(request):
-    ''' A context processor to add the "current site" to the current Context '''
+    """ A context processor to add the "current site" to the current Context """
     return {
             'SITE_NAME': settings.SITE_NAME,
         'LOGIN_URL': reverse(settings.LOGIN_URL),

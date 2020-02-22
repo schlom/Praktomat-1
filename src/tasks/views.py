@@ -23,6 +23,7 @@ from accounts.views import access_denied
 from attestation.models import Attestation
 from attestation.views import user_task_attestation_map
 from configuration import get_settings
+from django.conf import settings
 
 @login_required
 def taskList(request):
@@ -55,6 +56,7 @@ def taskList(request):
                       'threshold': threshold,
                       'calculated_grade': calculated_grade,
                       'user_text': request.user.user_text,
+                      'show_contact_link': settings.SHOW_CONTACT_LINK,
                   })
 
 @login_required
@@ -121,13 +123,13 @@ def model_solution(request, task_id):
         formset = ModelSolutionFormSet(request.POST, request.FILES, instance=solution)
         if formset.is_valid():
             try:
-                solution.save();
+                solution.save()
                 # no deleting the old solution:
                 # delete will cascade on db level deleting checker results and checker
                 # as this isn't easily prevented just keep the old solution around until the task is deleted
                 formset.save()
                 solution.check_solution(request.session)
-                task.model_solution = solution;
+                task.model_solution = solution
                 task.save()
             except:
                 solution.delete()    # delete files

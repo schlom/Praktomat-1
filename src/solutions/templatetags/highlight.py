@@ -87,8 +87,8 @@ def highlight_diff(value):
                 elif lc == ' ' or lc == '?' or lc == '\t':
                     result += plc
                 else:
-                    assert False, ("Unexpected character in diff indicator line: \"%s\"" % lc)
                     result += plc[0]
+                    assert False, ("Unexpected character in diff indicator line: \"%s\"" % lc)
                 line = line[cml.end():]
                 prevline = prevline[cmpl.end():]
             result += prevline

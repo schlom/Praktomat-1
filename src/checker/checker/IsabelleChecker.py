@@ -41,7 +41,7 @@ class IsabelleChecker(Checker):
 
         platform = execute_arglist([settings.ISABELLE_BINARY, "getenv", "ML_PLATFORM"], env.tmpdir(), timeout=10, error_to_output=False)[0]
 
-        args = [setting.ISABELLE_BINARY, "process"]
+        args = [settings.ISABELLE_BINARY, "process"]
         # Depending on the underlying polyml platform (32/64 bit) we use 2 or 1 threads, resp.
         # This is due to the default memory limit (1gb) of safe-docker and the
         # default initial heap sizes of 500m and 1000m for 32 bit and 64 bit, resp.

@@ -57,7 +57,7 @@ def statistics(request, task_id):
     if (user_count > 0):
         acc_submissions = [submissions/user_count for submissions in acc_submissions]
     else:
-        acc_submissions = 0;
+        acc_submissions = 0
 
     creation_times = [[(dict['creation_date'].time().hour*3600+dict['creation_date'].time().minute*60)*1000, dict['creation_date'].weekday()] for dict in unfinal_solutions.values('creation_date')]
     creation_times_final = [[(dict['creation_date'].time().hour*3600+dict['creation_date'].time().minute*60)*1000, dict['creation_date'].weekday()] for dict in final_solutions.values('creation_date')]
@@ -121,13 +121,13 @@ def statistics(request, task_id):
                 buckets[i].append(r['value'])
             medians = []
             for i in range(n):
-                date = first['date'] + ((span//2)*(2*i+1) // n);
+                date = first['date'] + ((span//2)*(2*i+1) // n)
                 if buckets[i]:
                     buckets[i].sort()
                     value = buckets[i][((len(buckets[i])+1)//2)-1]
                 else:
                     value = None
-                medians.append({'date': date, 'value': value});
+                medians.append({'date': date, 'value': value})
 
             runtimes.append({
                              'checker': "%d: %s" % (i, checker.title()),
@@ -585,7 +585,7 @@ def rating_export(request):
     return response
 
 def frange(start, end, inc):
-    "A range function, that does accept float increments..."
+    """A range function, that does accept float increments..."""
     L = []
     while True:
         next = start + len(L) * inc

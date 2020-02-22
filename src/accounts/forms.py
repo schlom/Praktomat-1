@@ -43,7 +43,7 @@ class MyRegistrationForm(UserBaseCreationForm):
         if not data:
             raise forms.ValidationError(_("This field is required"))
         try:
-            a = data.encode('utf-8').decode('ascii')
+            data.encode('utf-8').decode('ascii')
         except Exception:
             raise forms.ValidationError(_("Only ASCII characters are allowed!"))
         return data

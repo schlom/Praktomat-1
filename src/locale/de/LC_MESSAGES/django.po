@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-20 19:21+0100\n"
-"PO-Revision-Date: 2020-02-20 19:20+0100\n"
+"PO-Revision-Date: 2020-02-22 10:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -113,16 +113,15 @@ msgstr ""
 "(weil er zum Trainer gemacht wurde)"
 
 #: accounts/admin.py:194 solutions/admin.py:80
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%s\">View</a>"
-msgstr "<a href=\"%s\"> Ansicht</a>"
+msgstr "<a href=\"%s\">Ansicht</a>"
 
 #: accounts/admin.py:195
 msgid "View (Tutor Site)"
 msgstr "Ansicht (Tutor-Seite)"
 
 #: accounts/forms.py:32 accounts/forms.py:145
-#, fuzzy
 msgid "First name"
 msgstr "Vorname"
 
@@ -166,15 +165,15 @@ msgstr "Kontoaktivierung auf %s "
 
 #: accounts/forms.py:125
 msgid " for "
-msgstr ""
+msgstr " für "
 
 #: accounts/forms.py:127
 msgid "("
-msgstr ""
+msgstr "("
 
 #: accounts/forms.py:129
 msgid ") "
-msgstr ""
+msgstr ") "
 
 #: accounts/forms.py:135 accounts/forms.py:138 accounts/views.py:61
 #: accounts/views.py:114
@@ -324,7 +323,6 @@ msgstr "Benutzerdefinierter Text, der diesem Studenten angezeigt wird."
 #: templates/admin/accounts/user/import_user_texts.html:15
 #: templates/attestation/rating_overview.html:55
 #: templates/attestation/tutorial_overview.html:25
-#, fuzzy
 msgid "User"
 msgstr "Benutzer"
 
@@ -333,17 +331,14 @@ msgid "Users"
 msgstr "Benutzer"
 
 #: accounts/models.py:137 templates/attestation/attestation_list.html:88
-#, fuzzy
 msgid "Tutor"
 msgstr "Tutor"
 
 #: accounts/models.py:141
-#, fuzzy
 msgid "Trainer"
 msgstr "Trainer"
 
 #: accounts/models.py:145
-#, fuzzy
 msgid "Coordinator"
 msgstr "Koordinator"
 
@@ -369,7 +364,6 @@ msgid "The import was successfull. %i users imported."
 msgstr "Der Import war erfolgreich. %i Benutzer importiert."
 
 #: accounts/views.py:119
-#, fuzzy
 msgid "An Error occured. The import file was probably malformed."
 msgstr ""
 "Es ist ein Fehler aufgetreten. Die Importdatei war wahrscheinlich fehlerhaft."
@@ -385,9 +379,8 @@ msgid "Solution"
 msgstr "Lösung"
 
 #: attestation/forms.py:47
-#, fuzzy
 msgid "No Solutionfile exists by id"
-msgstr "Es existiert keine Lösungsdatei mit der ID "
+msgstr "Es existiert keine Lösungsdatei mit der ID"
 
 #: attestation/forms.py:77 attestation/models.py:225
 msgid "The Name of the rating scale for the aspects. E.g.: \"School marks\""
@@ -431,7 +424,6 @@ msgstr "Schrittweite"
 #: templates/attestation/attestation_view.html:46
 #: templates/solutions/solution_list_inline.html:29
 #: templates/tasks/task_list.html:64
-#, fuzzy
 msgid "Attestation"
 msgstr "Bescheinigung"
 
@@ -491,7 +483,6 @@ msgid "Description"
 msgstr "Beschreibung"
 
 #: attestation/models.py:213
-#, fuzzy
 msgid ""
 "Description of the Aspect and how it should be rated. E.w.: \"How well is "
 "the code structured?\""
@@ -767,21 +758,18 @@ msgstr ""
 "ihr Inhalt) beinhaltet in der \"full\" Lösungen Zip-Datei zum herunterladen"
 
 #: checker/checker/CreateFileChecker.py:65
-#, fuzzy
 msgid ""
 "These files already existed. Do NOT include them in your submissions:<br/"
 "><ul>\n"
 msgstr ""
 "Diese Dateien existierten bereits. Fügen Sie diese NICHT in Ihren "
 "Einreichungen mit ein:<br/><ul>\n"
-"\n"
 
 #: checker/checker/DejaGnu.py:57
 msgid "The name of the Test"
 msgstr "Der Name des Tests"
 
 #: checker/checker/DejaGnu.py:58
-#, fuzzy
 msgid ""
 "In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen "
 "aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert "
@@ -792,11 +780,10 @@ msgstr ""
 "In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen "
 "aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert "
 "wurden. Siehe auch den Abschnitt <em>How to write a test case</em> im <a "
-"target=\"_blank\" href=\"http://www.gnu.org/manual/dejagnu/\">DejaGnu-"
-"Handbuch</a>."
+"target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/"
+"\">DejaGnu-Handbuch</a>."
 
 #: checker/checker/DejaGnu.py:161
-#, fuzzy
 msgid ""
 "Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/"
 "\">DejaGnu-Testrahmen</a>, um die Programme zu testen. Die in dieser Datei "
@@ -928,22 +915,16 @@ msgstr ""
 "Kommentarzeilen ({5}%), {6} beide ({7}%)."
 
 #: checker/checker/LineCounter.py:162
-#, fuzzy
 msgid "Line Width Checker (l 197): ZeroDivisionError "
-msgstr ""
-"Zeilenbreiten-Prüfer (l 197): ZeroDivisionError (kein Kommentar / Code / "
-"Coco Zeilen in der Datei!"
+msgstr "Zeilenbreiten-Prüfer (l 197): ZeroDivisionError "
 
 #: checker/checker/LineCounter.py:163
-#, fuzzy
 msgid " (no comment / code / coco lines in file!)"
-msgstr ""
-"Zeilenbreiten-Prüfer (l 178): ZeroDivisionError (kein Kommentar / Code / "
-"Coco Zeilen in der Datei!"
+msgstr " (kein Kommentar / Code / Coco Zeilen in der Datei!"
 
 #: checker/checker/LineWidthChecker.py:16
 msgid "The maximum length of a line of code."
-msgstr ""
+msgstr "Die maximale Länge einer Codezeile."
 
 #: checker/checker/LineWidthChecker.py:17
 msgid "The amount of characters a tab represents."
@@ -1119,7 +1100,6 @@ msgid "Accept all solutions"
 msgstr "Akzeptieren Sie alle Lösungen"
 
 #: configuration/models.py:63
-#, fuzzy
 msgid ""
 "If enabled, solutions can become the final soution even if not all required "
 "checkers are passed."
@@ -1364,7 +1344,7 @@ msgstr ""
 "das nicht unterstützt wird."
 
 #: solutions/forms.py:72
-#, fuzzy, python-format
+#, python-format
 msgid "The file '%(file)s' is bigger than %(size)iKB which is not suported."
 msgstr ""
 "Die Datei '%(file)s' ist größer als %(size)iKB, die nicht unterstützt wird."
@@ -1469,30 +1449,27 @@ msgstr "%s Einreichungsbestätigung"
 #: tasks/admin.py:94
 #, python-brace-format
 msgid "<a href=\"{0}\">Attestations (User site)</a>"
-msgstr ""
+msgstr "<a href=\"{0}\">Bescheinigungen (Benutzerseite)</a>"
 
 #: tasks/admin.py:99
 #, python-brace-format
 msgid "<a href=\"{0}\">Test Submission</a>"
-msgstr ""
+msgstr "<a href=\"{0}\">Testeinreichung</a>"
 
 #: tasks/admin.py:101
 msgid "Test Submission"
 msgstr "Testeinreichung"
 
 #: tasks/admin.py:106
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "<a href=\"{0}\">Attestations (including for-user-submission)</a> • "
 msgstr ""
-"<a href=\"{0}\">Bewertungen (einschließlich Benutzer-Einreichung)</a> - <a "
-"href=\"{1}\">Testupload</a>"
+"<a href=\"{0}\">Bewertungen (einschließlich Benutzer-Einreichung)</a> - "
 
 #: tasks/admin.py:107
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "<a href=\"{1}\">Test upload</a>"
-msgstr ""
-"<a href=\"{0}\">Bewertungen (einschließlich Benutzer-Einreichung)</a> - <a "
-"href=\"{1}\">Testupload</a>"
+msgstr "<a href=\"{1}\">Testupload</a>"
 
 #: tasks/models.py:24
 msgid "The name of the task"
@@ -1660,7 +1637,7 @@ msgid "The import was successful."
 msgstr "Der Import war erfolgreich."
 
 #: tasks/views.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "An Error occured. The import file was probably malformed: %s"
 msgstr ""
 "Es ist ein Fehler aufgetreten. Die Importdatei war wahrscheinlich "
@@ -1766,12 +1743,10 @@ msgid "Generate %(name)s"
 msgstr "%(name)s erzeugen"
 
 #: templates/admin/attestation/ratingscale/generate.html:15
-#, fuzzy
 msgid "Rating scales"
 msgstr "Bewertungsskalen"
 
 #: templates/admin/attestation/ratingscale/generate.html:16
-#, fuzzy
 msgid "Generate ratingScale"
 msgstr "Bewertungsskala generieren"
 
@@ -1842,7 +1817,6 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 #: templates/admin/tasks/task/change_form.html:22
-#, fuzzy
 msgid "model solution"
 msgstr "Musterlösung"
 
@@ -1916,7 +1890,7 @@ msgstr "Lösung "
 
 #: templates/attestation/attestation_already_exists_for_solution.html:27
 msgid " by "
-msgstr ""
+msgstr " von "
 
 #: templates/attestation/attestation_already_exists_for_solution.html:29
 #: templates/attestation/attestation_list.html:184
@@ -1936,7 +1910,6 @@ msgid "Solution by:"
 msgstr "Lösung von:"
 
 #: templates/attestation/attestation_edit.html:105
-#, fuzzy
 msgid "Model solution"
 msgstr "Musterlösung"
 
@@ -2108,7 +2081,7 @@ msgstr "Bescheinigungen von anderen Tutoren"
 #: templates/attestation/attestation_list.html:240
 #: templates/attestation/attestation_view.html:47
 msgid "by"
-msgstr ""
+msgstr "von"
 
 #: templates/attestation/attestation_list.html:210
 #: templates/attestation/attestation_list.html:245
@@ -2206,7 +2179,7 @@ msgstr "Bewertungsübersicht"
 
 #: templates/attestation/rating_overview.html:38
 msgid "The"
-msgstr ""
+msgstr "Das"
 
 #: templates/attestation/rating_overview.html:42
 msgid "of all grades"
@@ -2231,7 +2204,6 @@ msgstr "Berechnete Bewertung"
 
 #: templates/attestation/rating_overview.html:63
 #: templates/attestation/tutorial_overview.html:31
-#, fuzzy
 msgid "Final grade"
 msgstr "Endbewertungen"
 
@@ -2377,7 +2349,7 @@ msgstr "Bewertungsaspekte"
 
 #: templates/attestation/tutorial_overview.html:54
 msgid "Marked as plagiarism"
-msgstr " Als Plagiat markiert"
+msgstr "Als Plagiat markiert"
 
 #: templates/attestation/tutorial_overview.html:82
 msgid "Average:"
@@ -2398,12 +2370,10 @@ msgid "Change Account"
 msgstr "Konto wechseln"
 
 #: templates/base.html:45
-#, fuzzy
 msgid "Log-out"
 msgstr "Abmelden"
 
 #: templates/base.html:46
-#, fuzzy
 msgid "Rating overview"
 msgstr "Bewertungsübersicht"
 
@@ -2686,7 +2656,6 @@ msgstr "Matrikelnummer:"
 
 #: templates/registration/registration_activation_allowed.html:18
 #: templates/registration/registration_email_manual_to_staff.html:6
-#, fuzzy
 msgid "eMail Address:"
 msgstr "E-Mail-Adresse:"
 
@@ -2696,7 +2665,6 @@ msgid "Full Name:"
 msgstr "Vollständiger Name:"
 
 #: templates/registration/registration_change.html:13
-#, fuzzy
 msgid "Change Password"
 msgstr "Passwort ändern"
 
@@ -2843,7 +2811,6 @@ msgid "The submitted attributes are:"
 msgstr "Die eingereichten Attribute sind:"
 
 #: templates/solutions/checker_result_list.html:29
-#, fuzzy
 msgid "Checker Results"
 msgstr "Checker-Ergebnisse"
 
@@ -2985,7 +2952,6 @@ msgid "(The preview requires iframe support)"
 msgstr "(Die Vorschau erfordert Iframe-Unterstützung)"
 
 #: templates/solutions/solution_list.html:44
-#, fuzzy
 msgid "solutions"
 msgstr "Lösungen"
 
@@ -3049,7 +3015,6 @@ msgid "ago"
 msgstr "vor kurzem"
 
 #: templates/solutions/solution_list_inline.html:16
-#, fuzzy
 msgid "test submission"
 msgstr "Testeinreichung"
 
@@ -3059,7 +3024,7 @@ msgstr "Testlösung hochladen"
 
 #: templates/solutions/submission_confirmation_email.html:4
 msgid " a"
-msgstr ""
+msgstr " ein"
 
 #: templates/solutions/submission_confirmation_email.html:6
 msgid " your"
@@ -3102,7 +3067,6 @@ msgid "jPlag"
 msgstr "jPlag"
 
 #: templates/tasks/task_detail.html:25
-#, fuzzy
 msgid "My Solutions"
 msgstr "Meine Lösungen"
 

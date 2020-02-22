@@ -104,7 +104,7 @@ class SolutionAdmin(admin.ModelAdmin):
             return ""
 
     def tests_failed(self,solution):
-        return CheckerResult.objects.filter(solution=solution,passed=False).exists();
+        return CheckerResult.objects.filter(solution=solution,passed=False).exists()
     tests_failed.boolean = True
 
     def latest_of_only_failed(self, solution):
