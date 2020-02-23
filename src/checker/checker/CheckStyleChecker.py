@@ -22,7 +22,7 @@ class CheckStyleChecker(Checker):
     @staticmethod
     def description():
         """ Returns a description for this Checker. """
-        return "Runs checkstyle (https://github.com/checkstyle/checkstyle)."
+        return _("Runs checkstyle (https://github.com/checkstyle/checkstyle).")
 
 
     def run(self, env):
@@ -36,7 +36,7 @@ class CheckStyleChecker(Checker):
         [output, error, exitcode, timed_out, oom_ed] = execute_arglist(args, env.tmpdir())
 
         # Remove Praktomat-Path-Prefixes from result:
-        output = re.sub(r"^"+re.escape(env.tmpdir())+"/+", "", output, flags=re.MULTILINE)
+        output = re.sub(r""+re.escape(env.tmpdir())+"/+", "", output, flags=re.MULTILINE)
 
         result = self.create_result(env)
 

@@ -54,7 +54,7 @@ class JUnitChecker(Checker):
 
     @staticmethod
     def description():
-        return "This Checker runs a JUnit Testcases existing in the sandbox. You may want to use CreateFile Checker to create JUnit .java and possibly input data files in the sandbox before running the JavaBuilder. JUnit tests will only be able to read input data files if they are placed in the data/ subdirectory."
+        return _("This Checker runs a JUnit Testcases existing in the sandbox. You may want to use CreateFile Checker to create JUnit .java and possibly input data files in the sandbox before running the JavaBuilder. JUnit tests will only be able to read input data files if they are placed in the data/ subdirectory.")
 
     def output_ok(self, output):
         return (RXFAIL.search(output) == None)

@@ -63,7 +63,7 @@ class HaskellTestFrameWorkChecker(CheckerWithFile):
 
     @staticmethod
     def description():
-        return "This Checker runs a test-framework testcase existing in the sandbox. You may want to use CreateFile Checker to create test-framework .hs and possibly input data files in the sandbox."
+        return _("This Checker runs a test-framework testcase existing in the sandbox. You may want to use CreateFile Checker to create test-framework .hs and possibly input data files in the sandbox.")
 
     def output_ok(self, output):
         return (RXFAIL.search(output) == None)

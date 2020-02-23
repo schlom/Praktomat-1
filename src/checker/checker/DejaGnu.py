@@ -108,7 +108,7 @@ class DejaGnuTester(Checker, DejaGnu):
 
         if " " in program_name:
             result = self.create_result(env)
-            result.set_log("<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains spaces.\n\nFor Java .zip submissions, the directory hierarchy of the .zip file must exactly match the package structure.\nThe default package must correspond to the .zip root directory.</pre>")
+            result.set_log(_("<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains spaces.\n\nFor Java .zip submissions, the directory hierarchy of the .zip file must exactly match the package structure.\nThe default package must correspond to the .zip root directory.</pre>"))
             result.set_passed(False)
             return result
 
@@ -117,7 +117,7 @@ class DejaGnuTester(Checker, DejaGnu):
         environ = {}
         environ['JAVA'] = settings.JVM
         script_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'scripts')
-        environ['POLICY'] = join(script_dir, "praktomat.policy")
+        environ['POLICY'] = join(script_dir, "java.policy")
         environ['USER'] = env.user().get_full_name()
         environ['HOME'] = testsuite
         environ['UPLOAD_ROOT'] = settings.UPLOAD_ROOT

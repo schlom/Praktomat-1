@@ -147,7 +147,10 @@ SYSADMIN_MOTD_URL = "https://praktomat.cs.kit.edu/sysadmin_motd.html"
 # Use a dedicated user to test submissions
 USEPRAKTOMATTESTER = False
 
+# for using Docker from https://github.com/nomeata/safe-docker
 # Use docker to test submission
+# To allow Praktomat the execution of scriptfile  safe-docker  without requiring a password:
+# "praktomat	ALL= NOPASSWD: /usr/local/bin/safe-docker"
 USESAFEDOCKER = True
 
 # Various extra files and versions

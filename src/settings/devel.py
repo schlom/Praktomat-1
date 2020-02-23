@@ -1,6 +1,8 @@
 # Settings for development in the source tree
 import os
-from os.path import join, dirname
+from os.path import join, dirname, basename
+import re
+
 
 # The name that will be displayed on top of the page and in emails.
 SITE_NAME = 'Praktomat'
@@ -38,7 +40,7 @@ JPLAGJAR = join(dirname(dirname(dirname(__file__))), 'jplag.jar')
 PRIVATE_KEY = join(dirname(dirname(dirname(__file__))), 'examples', 'certificates', 'privkey.pem')
 CERTIFICATE = join(dirname(dirname(dirname(__file__))), 'examples', 'certificates', 'signer.pem')
 
-# Finally load defaults for missing setttings.
+# Finally load defaults for missing settings.
 from . import defaults
 defaults.load_defaults(globals())
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-20 19:21+0100\n"
-"PO-Revision-Date: 2020-02-22 10:35+0100\n"
+"POT-Creation-Date: 2020-02-23 11:38+0100\n"
+"PO-Revision-Date: 2020-02-23 11:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -330,7 +330,7 @@ msgstr "Benutzer"
 msgid "Users"
 msgstr "Benutzer"
 
-#: accounts/models.py:137 templates/attestation/attestation_list.html:88
+#: accounts/models.py:137 templates/attestation/attestation_list.html:96
 msgid "Tutor"
 msgstr "Tutor"
 
@@ -370,9 +370,9 @@ msgstr ""
 
 #: attestation/admin.py:78 solutions/models.py:33
 #: templates/attestation/attestation_edit.html:107
-#: templates/attestation/attestation_list.html:181
-#: templates/attestation/attestation_list.html:205
-#: templates/attestation/attestation_list.html:240
+#: templates/attestation/attestation_list.html:189
+#: templates/attestation/attestation_list.html:213
+#: templates/attestation/attestation_list.html:248
 #: templates/attestation/attestation_view.html:40
 #: templates/solutions/solution_list_inline.html:14
 msgid "Solution"
@@ -714,6 +714,10 @@ msgstr ""
 "XML-Konfiguration von CheckStyle. Siehe https://github.com/checkstyle/"
 "checkstyle"
 
+#: checker/checker/CheckStyleChecker.py:25
+msgid "Runs checkstyle (https://github.com/checkstyle/checkstyle)."
+msgstr "Führt CheckStyle aus (https://github.com/checkstyle/checkstyle)."
+
 #: checker/checker/CheckStyleChecker.py:47
 msgid "<div class=\"error\">Out of memory!</div>"
 msgstr "<div class=\"error\">Out of Memory!</div>"
@@ -783,6 +787,21 @@ msgstr ""
 "target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/"
 "\">DejaGnu-Handbuch</a>."
 
+#: checker/checker/DejaGnu.py:111
+msgid ""
+"<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains "
+"spaces.\n"
+"\n"
+"For Java .zip submissions, the directory hierarchy of the .zip file must "
+"exactly match the package structure.\n"
+"The default package must correspond to the .zip root directory.</pre>"
+msgstr ""
+"<pre><b class=\"fail\">Fehler</b>: Pfad zur main() - Quelldatei enthält "
+"Leerzeichen.\n"
+"Bei Java .zip-Einreichungen muss die Verzeichnishierarchie der .zip-Datei "
+"genau mit der Paketstruktur übereinstimmen.\n"
+"Das default Package muss dem .zip-Stammverzeichnis entsprechen.</pre>"
+
 #: checker/checker/DejaGnu.py:161
 msgid ""
 "Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/"
@@ -803,7 +822,34 @@ msgstr ""
 "\">DejaGnu-Handbuch</a>.) Die Variablen PROGRAM und JAVA werden mit dem "
 "Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."
 
+#: checker/checker/DiffChecker.py:23
+msgid ""
+"The shell script whose output for the given input file is compared to the "
+"given output file: The substrings JAVA and PROGRAM got replaced by Praktomat "
+"determined values."
+msgstr ""
+"Das Shell-Skript, dessen Ausgabe für die angegebene Eingabedatei mit der "
+"angegebenen Ausgabedatei verglichen wird: Die Teilzeichenfolgen JAVA und "
+"PROGRAM wurden durch Praktomat ermittelte Werte ersetzt."
+
+#: checker/checker/DiffChecker.py:24
+msgid "The file containing the input for the program."
+msgstr "Die Datei enthält die Eingabe für das Programm."
+
+#: checker/checker/DiffChecker.py:25
+msgid "The file containing the output for the program."
+msgstr "Die Datei enthält die Ausgabe für das Programm."
+
+#: checker/checker/DiffChecker.py:30
+msgid ""
+"Robert says: DiffChecker have to have an Shell script, an Inputfile and an "
+"Outputfile"
+msgstr ""
+"Robert sagt: DiffChecker müssen ein Shell-Skript, eine Inputfile und eine "
+"Outputfile haben"
+
 #: checker/checker/HaskellTestFrameWorkChecker.py:51
+#: checker/checker/JavaChecker.py:25
 msgid ""
 "Description of the Testcase. To be displayed on Checker Results page when "
 "checker is unfolded."
@@ -812,7 +858,7 @@ msgstr ""
 "angezeigt, wenn der Checker ausgeklappt wird."
 
 #: checker/checker/HaskellTestFrameWorkChecker.py:52
-#: checker/checker/JUnitChecker.py:40
+#: checker/checker/JUnitChecker.py:40 checker/checker/JavaChecker.py:27
 msgid "Name of the Testcase. To be displayed as title on Checker Results page"
 msgstr ""
 "Name des Testfalls. Wird als Titel auf der Seite mit den Checker-Ergebnissen "
@@ -833,6 +879,16 @@ msgstr ""
 msgid "Make the testcases source available via the checkers result report?"
 msgstr ""
 "Die Testfälle über den Ergebnisbericht des Checkers zur Verfügung stellen?"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:66
+msgid ""
+"This Checker runs a test-framework testcase existing in the sandbox. You may "
+"want to use CreateFile Checker to create test-framework .hs and possibly "
+"input data files in the sandbox."
+msgstr ""
+"Dieser Checker führt einen Testframework-Testfall aus, der in der Sandbox "
+"vorhanden ist. Sie können CreateFile Checker verwenden, um test-framework ."
+"hs zu erstellen und möglicherweise Datendateien in die Sandbox einzugeben."
 
 #: checker/checker/InterfaceChecker.py:17
 #: checker/checker/InterfaceChecker.py:18
@@ -859,7 +915,7 @@ msgstr ""
 "mit dem Create File Checker hochgeladen wurden). Schließen Sie die "
 "Dateierweiterungen nicht ein. Trennen Sie mehrere Theorien durch Leerzeichen"
 
-#: checker/checker/JUnitChecker.py:37
+#: checker/checker/JUnitChecker.py:37 checker/checker/JavaChecker.py:22
 msgid "The fully qualified name of the test case class (without .class)"
 msgstr "Der vollqualifizierte Name der Testfallklasse (ohne .class)"
 
@@ -878,6 +934,57 @@ msgid ""
 msgstr ""
 "eine durch Leerzeichen getrennte Liste von Dateien, die beim Kompilieren "
 "ignoriert werden sollen, d.h.: diese Dateien werden nicht kompiliert."
+
+#: checker/checker/JUnitChecker.py:57
+msgid ""
+"This Checker runs a JUnit Testcases existing in the sandbox. You may want to "
+"use CreateFile Checker to create JUnit .java and possibly input data files "
+"in the sandbox before running the JavaBuilder. JUnit tests will only be able "
+"to read input data files if they are placed in the data/ subdirectory."
+msgstr ""
+"Dieser Checker führt einen JUnit-Testfall aus, der in der Sandbox vorhanden "
+"ist. Sie können CreateFile Checker verwenden, um JUnit .java zu erstellen "
+"und möglicherweise Datendateien in die Sandbox einzugeben, bevor Sie "
+"JavaBuilder ausführen. JUnit-Tests können Eingabedatendateien nur lesen, "
+"wenn sie im Daten-/Unterverzeichnis abgelegt werden."
+
+#: checker/checker/JavaChecker.py:30
+msgid "Java based test: "
+msgstr "Java-basierter Test:"
+
+#: checker/checker/JavaChecker.py:34
+#, python-format
+msgid ""
+"This Checker runs a java class. The java class must be existing in the "
+"sandbox, or in the folder '%s'. You may want to use CreateFile Checker to "
+"upload the .jar or java file and possibly input data files in the sandbox "
+"before running this check. JUnit tests will only be able to read input data "
+"files if they are placed in the data/ subdirectory. The following arguments "
+"will be passed to the main routine in the specified class: sandbox "
+"directory, user id, mat_number, solution id"
+msgstr ""
+"Dieser Checker führt eine Java-Klasse aus. Die java-Klasse muss in der "
+"Sandbox oder im Ordner '%s' vorhanden sein. Sie können CreateFile Checker "
+"verwenden, um die .jar- oder java-Datei hochzuladen und möglicherweise "
+"Datendateien in die Sandbox einzugeben, bevor Sie diese Prüfung ausführen. "
+"JUnit-Tests können Eingabedatendateien nur lesen, wenn sie im Daten-/"
+"Unterverzeichnis abgelegt werden. Die folgenden Argumente werden an die "
+"Hauptroutine in der angegebenen Klasse übergeben: Sandbox-Verzeichnis, "
+"Benutzer-ID, mat_number, Lösungs-ID"
+
+#: checker/checker/JavaChecker.py:52
+msgid ""
+"\n"
+"\n"
+"======== Test Results ======\n"
+"\n"
+"</pre><br/><pre>"
+msgstr ""
+"\n"
+"\n"
+"======== Testergebnisse ======\n"
+"\n"
+"<pre><br></pre>"
 
 #: checker/checker/KeepFileChecker.py:17
 msgid "The name of the file to preserve (e.g. out.txt)"
@@ -1425,7 +1532,7 @@ msgstr "Plagiat"
 msgid "Indicates whether this solution is the last (accepted) of the author."
 msgstr "Zeigt an, ob diese Lösung die letzte (akzeptierte) des Autors ist."
 
-#: solutions/models.py:46 templates/attestation/attestation_list.html:91
+#: solutions/models.py:46 templates/attestation/attestation_list.html:99
 msgid "Final"
 msgstr "Final"
 
@@ -1524,7 +1631,7 @@ msgstr "Die maximale Größe einer hochgeladenen Lösungsdatei in Kilobyte."
 msgid "Max file size"
 msgstr "Max. Dateigröße"
 
-#: tasks/models.py:30 tasks/views.py:137
+#: tasks/models.py:30 tasks/views.py:139
 #: templates/admin/tasks/task/change_form.html:17
 msgid "Model Solution"
 msgstr "Musterlösung"
@@ -1586,7 +1693,7 @@ msgstr "JPlag ist aktuell"
 msgid "Tasks"
 msgstr "Aufgaben"
 
-#: tasks/models.py:264 tasks/views.py:97
+#: tasks/models.py:264 tasks/views.py:99
 #: templates/admin/tasks/task/import.html:16
 msgid "Import Task"
 msgstr "Aufgabe importieren"
@@ -1624,19 +1731,19 @@ msgstr ""
 "Gibt an, ob HTML-Code in Beglaubigungsansichten eingefügt werden soll, z.B.: "
 "in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"
 
-#: tasks/views.py:76
+#: tasks/views.py:78
 msgid "File"
 msgstr "Datei"
 
-#: tasks/views.py:79
+#: tasks/views.py:81
 msgid "Is template"
 msgstr "Vorlage"
 
-#: tasks/views.py:89
+#: tasks/views.py:91
 msgid "The import was successful."
 msgstr "Der Import war erfolgreich."
 
-#: tasks/views.py:93
+#: tasks/views.py:95
 #, python-format
 msgid "An Error occured. The import file was probably malformed: %s"
 msgstr ""
@@ -1877,9 +1984,9 @@ msgid "Existing Attestationss"
 msgstr "Vorhandene Bescheinigungen"
 
 #: templates/attestation/attestation_already_exists_for_solution.html:27
-#: templates/attestation/attestation_list.html:181
-#: templates/attestation/attestation_list.html:205
-#: templates/attestation/attestation_list.html:240
+#: templates/attestation/attestation_list.html:189
+#: templates/attestation/attestation_list.html:213
+#: templates/attestation/attestation_list.html:248
 msgid "Attestation for "
 msgstr "Bescheinigung für "
 
@@ -1893,9 +2000,9 @@ msgid " by "
 msgstr " von "
 
 #: templates/attestation/attestation_already_exists_for_solution.html:29
-#: templates/attestation/attestation_list.html:184
-#: templates/attestation/attestation_list.html:207
-#: templates/attestation/attestation_list.html:242
+#: templates/attestation/attestation_list.html:192
+#: templates/attestation/attestation_list.html:215
+#: templates/attestation/attestation_list.html:250
 #: templates/solutions/solution_detail.html:48
 #: templates/solutions/solution_list_inline.html:23
 msgid "Marked as Plagiarism"
@@ -2023,83 +2130,87 @@ msgid "Not all checker have yet been run."
 msgstr "Es wurden noch nicht alle Prüfungen durchgeführt."
 
 #: templates/attestation/attestation_list.html:84
+msgid "Attestation Progress"
+msgstr "Bescheinigungsfortschritt"
+
+#: templates/attestation/attestation_list.html:92
 msgid "Attestation Progress by Tutor"
 msgstr "Bescheinigung des Fortschritts durch den Tutor"
 
-#: templates/attestation/attestation_list.html:89
+#: templates/attestation/attestation_list.html:97
 msgid "Unrated"
 msgstr "Nicht bewertet"
 
-#: templates/attestation/attestation_list.html:90
+#: templates/attestation/attestation_list.html:98
 msgid "Not final"
 msgstr "Nicht endgültig"
 
-#: templates/attestation/attestation_list.html:92
+#: templates/attestation/attestation_list.html:100
 msgid "Total"
 msgstr "Insgesamt"
 
-#: templates/attestation/attestation_list.html:116
+#: templates/attestation/attestation_list.html:124
 msgid "None"
 msgstr "-"
 
-#: templates/attestation/attestation_list.html:126
+#: templates/attestation/attestation_list.html:134
 msgid "Unattested solutions"
 msgstr "Unbescheinigte Lösungen"
 
-#: templates/attestation/attestation_list.html:131
+#: templates/attestation/attestation_list.html:139
 msgid "All solutions have been attested."
 msgstr "Alle Lösungen wurden bescheinigt."
 
-#: templates/attestation/attestation_list.html:150
+#: templates/attestation/attestation_list.html:158
 msgid "solutions to attest."
 msgstr "Lösungen zum bescheinigen."
 
-#: templates/attestation/attestation_list.html:155
+#: templates/attestation/attestation_list.html:163
 msgid "The solutions of"
 msgstr "Die Lösungen von"
 
-#: templates/attestation/attestation_list.html:155
+#: templates/attestation/attestation_list.html:163
 msgid "have been marked as plagiarism."
 msgstr "wurde als Plagiat markiert."
 
-#: templates/attestation/attestation_list.html:157
+#: templates/attestation/attestation_list.html:165
 msgid "solutions have been marked as plagiarism."
 msgstr "Lösungen wurden als Plagiat gekennzeichnet."
 
-#: templates/attestation/attestation_list.html:162
+#: templates/attestation/attestation_list.html:170
 #: templates/attestation/attestation_view.html:35
 #: templates/solutions/solution_detail.html:10
 #: templates/solutions/solution_list.html:43
 msgid "My attestations"
 msgstr "Meine Bescheinigungen"
 
-#: templates/attestation/attestation_list.html:193
+#: templates/attestation/attestation_list.html:201
 msgid "Attestations by other tutors"
 msgstr "Bescheinigungen von anderen Tutoren"
 
-#: templates/attestation/attestation_list.html:205
-#: templates/attestation/attestation_list.html:240
+#: templates/attestation/attestation_list.html:213
+#: templates/attestation/attestation_list.html:248
 #: templates/attestation/attestation_view.html:47
 msgid "by"
 msgstr "von"
 
-#: templates/attestation/attestation_list.html:210
-#: templates/attestation/attestation_list.html:245
+#: templates/attestation/attestation_list.html:218
+#: templates/attestation/attestation_list.html:253
 msgid "Created:"
 msgstr "Erstellt:"
 
-#: templates/attestation/attestation_list.html:220
+#: templates/attestation/attestation_list.html:228
 #, python-format
 msgid "\"Publish %(c)s final attestation%(c|pluralize)s from my tutorial\""
 msgstr ""
 "\"Veröffentlichen Sie %(c)s Abschlussbescheinigung%(c|pluralize)s aus meinem "
 "Lehrgang\""
 
-#: templates/attestation/attestation_list.html:228
+#: templates/attestation/attestation_list.html:236
 msgid "All attestations"
 msgstr "Alle Bescheinigungen"
 
-#: templates/attestation/attestation_list.html:255
+#: templates/attestation/attestation_list.html:263
 #, python-format
 msgid "\"Publish %(c)s final attestation%(c|pluralize)s from this task\""
 msgstr ""
