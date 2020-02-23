@@ -17,5 +17,5 @@ build
 .pydevproject
 .DS_Store
 .idea
-email_settings.py
+src/email_settings.py
 data
