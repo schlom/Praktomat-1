@@ -1,0 +1,41 @@
+<!DOCTYPE html >
+<html lang="de">
+<head>
+	<script src="/index-static/jquery.js"></script>
+	<script src="/index-static/jquery-ui.js"></script>
+	<script >
+		maxWidth = false;
+		function toggleMaxWidth() {
+			if (maxWidth) { $("#container").css("max-width","1000px"); }
+			else          { $("#container").css("max-width","none"); }
+			maxWidth = !maxWidth;
+			if (env.editor) { env.editor.resize(); }
+        }
+    </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="/index-static/jquery-ui.css" />
+	<link type="text/css" rel="stylesheet" href="/index-static/style.css" />
+	<title>Programmierpraktika der Frankfurt University of Applied Sciences</title>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<div class="inner">
+				<div id="title">
+					<h1>Programmierpraktika der Frankfurt University of Applied Sciences</h1>
+				</div>
+			</div>
+		</div>
+		<div id="sub_header">
+			<div class="inner">
+				<a href="#" onClick="toggleMaxWidth()"><span style="float:right" class="icon icon-white ui-icon-arrow-2-e-w"></span></a>
+			</div>
+		</div>
+		<div id="content">
+			<h2>Wartungsarbeiten</h2>
+				Der Zugriff auf das System ist zur Zeit nicht möglich.
+		</div>
+	</div>
+</body>
+</html>

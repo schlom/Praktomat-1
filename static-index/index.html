@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<script src="index-static/jquery.js"></script>
+	<script src="index-static/jquery-ui.js"></script>
+	<script>
+		maxWidth = false;
+		function toggleMaxWidth() {
+			if (maxWidth) { $("#container").css("max-width","1000px"); }
+			else          { $("#container").css("max-width","none"); }
+			maxWidth = !maxWidth;
+			if (env.editor) { env.editor.resize(); }
+        }
+	    $(function() {
+			$("#all-old").toggle();
+			$("#collapse").click(function() {
+				$("#all-old").toggle();
+				$(this).toggleClass("ui-icon-triangle-1-e");
+				$(this).toggleClass("ui-icon-triangle-1-s");
+			});
+	    });
+    </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="index-static/jquery-ui.css" />
+	<link type="text/css" rel="stylesheet" href="index-static/style.css" />
+	<style>
+		.all-current {
+			text-align:center;
+		}
+		
+		.current {
+			text-decoration:none;
+			width:40%;
+			background-color:rgb(81, 124, 161);
+			border-radius: 5px;
+			margin:1ex;
+			padding:5px;
+			text-align:center;
+			color:white;
+			display:inline-block;
+			vertical-align:top;
+			line-height: 1.3;
+		}
+		
+		.current:hover {
+			background-color:rgb(128, 196, 255);
+		}
+
+		.lecture {
+			font-size:300%;
+			line-height:1.1;
+		}
+		
+		.year {
+			font-size:150%;
+		}
+		
+		div.important {
+		    border: 1px solid #f44;
+		    background-color: #fdd;
+		    padding: 0.5em 1em;
+		    margin: 1em 0;
+		    font-size: 1.4em;
+		    line-height: 1.4em;
+		}
+	</style>
+	<title>Programmierpraktika der Frankfurt University of Applied Sciences</title>
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<div class="inner">
+				<div id="title">
+					<h1>Programmierpraktika der<br>Frankfurt University of Applied Sciences</h1>
+				</div>
+			</div>
+		</div>
+		<div id="sub_header">
+			<div class="inner">
+				<a href="#" onClick="toggleMaxWidth()"><span style="float:right" class="icon icon-white ui-icon-arrow-2-e-w"></span></a>
+			</div>
+		</div>
+		<div id="content">
+<!--
+<div class="important">Am 22.04.2016 wird das Testsystem aufgrund von Wartungsarbeiten für einige Zeit nicht erreichbar sein.</div>
+-->
+			<h2>Aktuelle Programmierpraktika</h2>
+			<div class="all-current">
+				<!--<a href="https://10.0.2.15/2017_WS/" class="current">-->
+                                <a href="https://127.0.0.1/2017_WS/" class="current">
+				<span class="lecture">Softwareprojekt</span><br/>
+				<span class="year">Wintersemester 2017/18</span>
+				</a>
+			</div>
+			<div class="all-current">
+				<!--<a href="https://10.0.2.15/2017_WS/" class="current">-->
+                                <a href="https://127.0.0.1/OOP_2017_WS/" class="current">
+				<span class="lecture">OOP Java</span><br/>
+				<span class="year">Wintersemester 2017/18</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
