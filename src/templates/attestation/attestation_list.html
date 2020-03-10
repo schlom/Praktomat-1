@@ -67,7 +67,7 @@ $(document).ready(function(){
 			<option value="{% url "solution_list" task_id=task.id user_id=user.id %}">{{user.last_name}}, {{user.first_name}}</option>
 		{% endfor %}
 	</select>
-	<input id="edit_soluton_button" type="button" value={% trans "Edit Solutions" %}/></br></br>
+	<input id="edit_soluton_button" type="button" value={% trans "Edit Solutions" %}/><br><br>
   </p>
 {% endif %}
 
@@ -82,9 +82,9 @@ $(document).ready(function(){
 
 			{% if user.is_tutor %}
 				<h2>{% trans "Attestation Progress" %}</h2>
-				<p>{{ unattested_solutions|length }} solutions to attest.</p>
+				<p>{{ unattested_solutions|length }} {% trans  'solutions to attest.'%}</p>
 				<div>
-					<input id="next_attestation_button" type="button" value="Attest next solution" {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %} onclick="location.href ='{% url "new_attestation_for_task" task_id=task.id %}'"/>
+					<input id="next_attestation_button" type="button" value={% trans 'Attest next solution' %} {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %} onclick="location.href ='{% url "new_attestation_for_task" task_id=task.id %}'"/>
 				</div>
 			{% endif %}
 
@@ -149,11 +149,11 @@ $(document).ready(function(){
 						<option value="{% url "new_attestation_for_solution" solution_id=solution.id %}">{{solution.author.last_name}}, {{solution.author.first_name}}</option>
 						{% endfor %}
 					</select>
-					<input id="attest_selected_user_button" type="button" value="Attest selected user" {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %}/>
+					<input id="attest_selected_user_button" type="button" value={% trans 'Attest selected user' %} {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %}/>
 				</div>
 				{% endif %}
 				<div style="margin-top:50px">
-					<input id="next_attestation_button" type="button" value="Attest next solution" {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %} onclick="location.href ='{% url "new_attestation_for_task" task_id=task.id %}'"/>
+					<input id="next_attestation_button" type="button" value={% trans 'Attest next solution' %} {% if unattested_solutions|length == 0 %}disabled="disabled"{% endif %} onclick="location.href ='{% url "new_attestation_for_task" task_id=task.id %}'"/>
 				</div>
 				{{ unattested_solutions|length }} {% trans 'solutions to attest.' %}<br><br><br>
 			{% endif %}

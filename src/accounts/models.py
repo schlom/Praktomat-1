@@ -24,12 +24,12 @@ def validate_mat_number(value):
 
 class User(BasicUser):
     # all fields need to be null-able in order to create user
-    tutorial = models.ForeignKey('Tutorial', verbose_name=_("Tutorial"), on_delete=models.SET_NULL, null=True, blank=True, help_text = _("The tutorial the student belongs to."))
-    mat_number = models.IntegerField(verbose_name=_("Mat number"), null=True, blank=True, validators=[validate_mat_number]) # special blank and unique validation in forms
-    final_grade = models.CharField(verbose_name=_("Final Grade"), null=True, blank=True, max_length=100,  help_text = _('The final grade for the whole class.'))
-    programme = models.CharField(verbose_name=_("Programme"), null=True, blank=True, max_length=100, help_text = _('The programme the student is enlisted in.'))
+    tutorial = models.ForeignKey('Tutorial', on_delete=models.SET_NULL, null=True, blank=True, help_text = _("The tutorial the student belongs to."), verbose_name=_("Tutorial"))
+    mat_number = models.IntegerField(null=True, blank=True, validators=[validate_mat_number], verbose_name=_("Mat number")) # special blank and unique validation in forms
+    final_grade = models.CharField(null=True, blank=True, max_length=100,  help_text = _('The final grade for the whole class.') , verbose_name=_("Final Grade"))
+    programme = models.CharField(null=True, blank=True, max_length=100, help_text = _('The programme the student is enlisted in.'), verbose_name=_("Programme"))
     activation_key=models.CharField(_('activation key'), max_length=40, editable=False)
-    user_text=models.CharField(verbose_name=_("User text"), null=True, blank=True, max_length=500, help_text = _("Custom text which will be shown to this student."))
+    user_text=models.CharField(null=True, blank=True, max_length=500, help_text = _("Custom text which will be shown to this student."), verbose_name=_("User text"))
 
     # Use UserManager to get the create_user method, etc.
     objects = UserManager()
@@ -130,19 +130,19 @@ class User(BasicUser):
 
     @property
     def is_user(self):
-        return _('User') in self.cached_groups()
+        return 'User' in self.cached_groups()
 
     @property
     def is_tutor(self):
-        return _('Tutor') in self.cached_groups()
+        return 'Tutor' in self.cached_groups()
 
     @property
     def is_trainer(self):
-        return _('Trainer') in self.cached_groups()
+        return 'Trainer' in self.cached_groups()
 
     @property
     def is_coordinator(self):
-        return _('Coordinator') in self.cached_groups()
+        return 'Coordinator' in self.cached_groups()
 
     @classmethod
     def export_user(cls, queryset):
@@ -177,7 +177,6 @@ class User(BasicUser):
                 except utils.IntegrityError:
                     pass # unique username validation - user already existed
         return User.objects.filter(id__in = imported_user_ids)     # get them fresh from the db, otherwise the user object won't have basicUser attributes set
-
 
 
 

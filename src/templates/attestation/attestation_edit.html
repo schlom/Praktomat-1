@@ -89,8 +89,8 @@
 <form enctype="multipart/form-data" method="post" action="">{% csrf_token %}
 
 <div id="form_actions">
-	<input type="submit" value="Save/Preview"/ id="id_save">
-	<input type="button" value="Discard/Back" onClick="parent.location='{% url "attestation_list" solution.task_id %}'">
+	<input type="submit" value={% trans "Save/Preview" %} id="id_save">
+	<input type="button" value={% trans "Discard/Back" %} onClick="parent.location='{% url "attestation_list" solution.task_id %}'">
 </div>
 
 <h1>{{solution.task.title}}</h1>

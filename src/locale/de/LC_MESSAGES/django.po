@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-23 11:38+0100\n"
-"PO-Revision-Date: 2020-02-23 11:44+0100\n"
+"POT-Creation-Date: 2020-03-10 13:29+0100\n"
+"PO-Revision-Date: 2020-03-10 13:31+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -99,7 +99,7 @@ msgstr ""
 "<a href=\"{1}\">Lösungen von {0}</a> • <a href=\"{2}\">Bescheinigungen für "
 "{0}</a> • <a href=\"{3}\">Bescheinigungen von {0}</a>"
 
-#: accounts/admin.py:134 tasks/admin.py:113
+#: accounts/admin.py:134 tasks/admin.py:114
 msgid "Useful Links"
 msgstr "Nützliche Links"
 
@@ -112,7 +112,7 @@ msgstr ""
 "Der Benutzer \"%s\" wurde automatisch zum Mitarbeiter und Superuser gemacht "
 "(weil er zum Trainer gemacht wurde)"
 
-#: accounts/admin.py:194 solutions/admin.py:80
+#: accounts/admin.py:194 solutions/admin.py:78
 #, python-format
 msgid "<a href=\"%s\">View</a>"
 msgstr "<a href=\"%s\">Ansicht</a>"
@@ -144,8 +144,8 @@ msgstr "Nur ASCII-Zeichen sind erlaubt!"
 #: accounts/forms.py:76
 msgid "The email you have provided is not valid. It has to be in: "
 msgstr ""
-"Die von Ihnen angegebene E-Mail ist nicht gültig. Sie muss eingegeben "
-"werden: "
+"Die von Ihnen angegebene E-Mail ist nicht gültig. Sie muss dem folgenden "
+"Muster entsprechen: "
 
 #: accounts/forms.py:83
 msgid "This field is required."
@@ -181,6 +181,43 @@ msgstr ") "
 msgid "Account activation on %s"
 msgstr "Kontoaktivierung auf %s"
 
+#: accounts/forms.py:181
+msgid ""
+" {% autoescape off %}\n"
+"You're receiving this e-mail because you have been registered at "
+"{{ site_name }}.\n"
+"\n"
+"Please go to the following page to activate your account within "
+"{{ expiration_days }} days.\n"
+"\n"
+"{{ protocol }}://{{ domain }}{% url registration_activate "
+"activation_key=activation_key %}\n"
+"\n"
+"Your username, in case you've forgotten: {{ user.username }}\n"
+"\n"
+"Thanks for using our site!\n"
+"\n"
+"The {{ site_name }} team\n"
+"\n"
+"{% endautoescape %} "
+msgstr ""
+" {% autoescape off %}\n"
+"Sie erhalten diese E-Mail, weil Sie unter {{ site_name }} registriert sind.\n"
+"\n"
+"Bitte gehen Sie auf die folgende Seite, um Ihr Konto innerhalb von "
+"{{ expiration_days }} Tagen zu aktivieren.\n"
+"\n"
+"{{ protocol }}://{{ domain }}{% url registration_activate "
+"activation_key=activation_key %}\n"
+"\n"
+"Ihr Benutzername, falls Sie ihn vergessen haben: {{ user.username }}\n"
+"\n"
+"Vielen Dank für die Nutzung unserer Website!\n"
+"\n"
+"Das Team {{ site_name }}\n"
+"\n"
+"{% endautoescape %} "
+
 #: accounts/forms.py:197
 msgid ""
 "The file exported from the list view. Already existing users will be ignored."
@@ -188,9 +225,18 @@ msgstr ""
 "Die aus der Listenansicht exportierte Datei. Bereits vorhandene Benutzer "
 "werden ignoriert."
 
+#: accounts/forms.py:197 checker/basemodels.py:265
+#: checker/checker/CreateFileChecker.py:19
+msgid "File"
+msgstr "Datei"
+
 #: accounts/forms.py:198
 msgid "Deactivate all imported users"
 msgstr "Deaktivieren Sie alle importierten Benutzer"
+
+#: accounts/forms.py:198
+msgid "Require Reactivation"
+msgstr "Benötigt Reaktivierung"
 
 #: accounts/forms.py:199
 msgid "Send activation email to imported users (if deactivated during import)"
@@ -198,12 +244,20 @@ msgstr ""
 "Aktivierungs-E-Mail an importierte Benutzer senden (falls beim Import "
 "deaktiviert)"
 
+#: accounts/forms.py:199
+msgid "Send reactivation mail"
+msgstr "Sende Reaktivierungs-Mail"
+
 #: accounts/forms.py:200
 msgid ""
 "Message to be embedded into activation mail if reactivation is required."
 msgstr ""
 "Nachricht, die in die Aktivierungs-E-Mail eingebettet wird, wenn eine "
 "Reaktivierung erforderlich ist."
+
+#: accounts/forms.py:200
+msgid "Messagetext"
+msgstr "Nachrichtentext"
 
 #: accounts/forms.py:203 accounts/forms.py:210
 msgid "The csv file containing the tutorial name and the students' mat number."
@@ -245,6 +299,10 @@ msgstr "Namensspalte"
 msgid "The index of the field containing the mat number of the user."
 msgstr "Der Index des Feldes, das die Matrikelnummer des Benutzers enthält."
 
+#: accounts/forms.py:207
+msgid "Mat column"
+msgstr "Matrikelnummernspalte"
+
 #: accounts/forms.py:215
 msgid "A text file consisting of one matriculation number per line."
 msgstr "Eine Textdatei, die aus einer Matrikelnummer pro Zeile besteht."
@@ -277,48 +335,47 @@ msgstr "Benutzer erstellen"
 msgid "This is not a valid student number."
 msgstr "Dies ist keine gültige Studentennummer."
 
-#: accounts/models.py:27 accounts/models.py:208
-msgid "Tutorial"
-msgstr "Lehrgang"
-
 #: accounts/models.py:27
 msgid "The tutorial the student belongs to."
 msgstr "Lehrgang, zu dem der Student gehört."
+
+#: accounts/models.py:27 accounts/models.py:207
+msgid "Tutorial"
+msgstr "Lehrgang"
 
 #: accounts/models.py:28
 msgid "Mat number"
 msgstr "Matrikelnummer"
 
 #: accounts/models.py:29
-msgid "Final Grade"
-msgstr "Endbewertungen"
-
-#: accounts/models.py:29
 msgid "The final grade for the whole class."
 msgstr "Die Endnote für den gesamten Kurs."
 
-#: accounts/models.py:30 templates/attestation/rating_overview.html:57
-msgid "Programme"
-msgstr "Programm"
+#: accounts/models.py:29
+msgid "Final Grade"
+msgstr "Endbewertung"
 
 #: accounts/models.py:30
 msgid "The programme the student is enlisted in."
 msgstr "Das Programm, in das der Studierende eingeschrieben ist."
+
+#: accounts/models.py:30 templates/attestation/rating_overview.html:57
+msgid "Programme"
+msgstr "Programm"
 
 #: accounts/models.py:31
 msgid "activation key"
 msgstr "Aktivierungsschlüssel"
 
 #: accounts/models.py:32
-msgid "User text"
-msgstr "Benutzertext"
-
-#: accounts/models.py:32
 msgid "Custom text which will be shown to this student."
 msgstr "Benutzerdefinierter Text, der diesem Studenten angezeigt wird."
 
-#: accounts/models.py:38 accounts/models.py:133
-#: templates/admin/accounts/user/import.html:15
+#: accounts/models.py:32
+msgid "User text"
+msgstr "Benutzertext"
+
+#: accounts/models.py:38 templates/admin/accounts/user/import.html:15
 #: templates/admin/accounts/user/import_tutorial_assignment.html:15
 #: templates/admin/accounts/user/import_user_texts.html:15
 #: templates/attestation/rating_overview.html:55
@@ -330,31 +387,19 @@ msgstr "Benutzer"
 msgid "Users"
 msgstr "Benutzer"
 
-#: accounts/models.py:137 templates/attestation/attestation_list.html:96
-msgid "Tutor"
-msgstr "Tutor"
-
-#: accounts/models.py:141
-msgid "Trainer"
-msgstr "Trainer"
-
-#: accounts/models.py:145
-msgid "Coordinator"
-msgstr "Koordinator"
-
-#: accounts/models.py:203
+#: accounts/models.py:202
 msgid "The name of the tutorial"
 msgstr "Der Name des Lehrgangs"
 
-#: accounts/models.py:205
+#: accounts/models.py:204
 msgid "The tutors in charge of the tutorial."
 msgstr "Die für den Lehrgang verantwortlichen Tutoren."
 
-#: accounts/models.py:209
+#: accounts/models.py:208
 msgid "Tutorials"
 msgstr "Lehrgang"
 
-#: accounts/models.py:213
+#: accounts/models.py:212
 msgid "Tutors"
 msgstr "Tutoren"
 
@@ -368,7 +413,11 @@ msgid "An Error occured. The import file was probably malformed."
 msgstr ""
 "Es ist ein Fehler aufgetreten. Die Importdatei war wahrscheinlich fehlerhaft."
 
-#: attestation/admin.py:78 solutions/models.py:33
+#: accounts/views.py:123 templates/admin/accounts/user/import.html:16
+msgid "Import User"
+msgstr "Benutzer importieren"
+
+#: attestation/admin.py:78 checker/basemodels.py:194 solutions/models.py:33
 #: templates/attestation/attestation_edit.html:107
 #: templates/attestation/attestation_list.html:189
 #: templates/attestation/attestation_list.html:213
@@ -382,7 +431,7 @@ msgstr "Lösung"
 msgid "No Solutionfile exists by id"
 msgstr "Es existiert keine Lösungsdatei mit der ID"
 
-#: attestation/forms.py:77 attestation/models.py:225
+#: attestation/forms.py:77 attestation/models.py:234
 msgid "The Name of the rating scale for the aspects. E.g.: \"School marks\""
 msgstr "Der Name der Bewertungsskala für die Aspekte. Z.B: \"Schulnoten\""
 
@@ -414,7 +463,7 @@ msgstr "Die Schrittgröße zwischen den Elementen der Ratingskala."
 msgid "Step"
 msgstr "Schrittweite"
 
-#: attestation/models.py:23
+#: attestation/models.py:23 attestation/models.py:278
 #: templates/admin/attestation/ratingscale/generate.html:14
 #: templates/admin/attestation/update.html:14
 #: templates/attestation/attestation_edit.html:86
@@ -427,38 +476,73 @@ msgstr "Schrittweite"
 msgid "Attestation"
 msgstr "Bescheinigung"
 
-#: attestation/models.py:24 tasks/admin.py:96
+#: attestation/models.py:24 tasks/admin.py:98
 #: templates/admin/attestation/update.html:15
 #: templates/attestation/attestation_already_exists_for_solution.html:6
 #: templates/attestation/attestation_list.html:41
-#: templates/attestation/statistics.html:273
 #: templates/tasks/task_detail.html:18
 msgid "Attestations"
 msgstr "Bescheinigungen"
+
+#: attestation/models.py:27
+msgid "created"
+msgstr "Erstellt"
+
+#: attestation/models.py:28
+msgid "solution"
+msgstr "Lösungen"
+
+#: attestation/models.py:29
+msgid "attestation author"
+msgstr "Bescheinigungsautor"
 
 #: attestation/models.py:31
 msgid "Comment which is shown to the user."
 msgstr "Kommentar, der dem Benutzer angezeigt wird."
 
+#: attestation/models.py:31
+msgid "Public Comment"
+msgstr "Öffentliches Kommentar"
+
 #: attestation/models.py:32
 msgid "Comment which is only visible to tutors"
 msgstr "Kommentar, der nur für die Tutoren sichtbar ist"
+
+#: attestation/models.py:32 templates/attestation/attestation_view.html:52
+msgid "Private Comment"
+msgstr "Privates Kommentar"
 
 #: attestation/models.py:33
 msgid "The mark for the whole solution."
 msgstr "Die Note für die gesamte Lösung."
 
+#: attestation/models.py:33
+msgid "Finale Grade"
+msgstr "Endbewertung"
+
 #: attestation/models.py:35
 msgid "Indicates whether the attestation is ready to be published"
 msgstr "Zeigt an, ob die Bescheinigung zur Veröffentlichung bereit ist"
+
+#: attestation/models.py:35
+msgid "final"
+msgstr "Final"
 
 #: attestation/models.py:36
 msgid "Indicates whether the user can see the attestation."
 msgstr "Gibt an, ob der Benutzer die Bescheinigung sehen kann."
 
+#: attestation/models.py:36
+msgid "published"
+msgstr "veröffentlicht"
+
 #: attestation/models.py:37
 msgid "The Date/Time the attestation was published."
 msgstr "Datum/Uhrzeit, zu der die Bescheinigung veröffentlicht wurde."
+
+#: attestation/models.py:37
+msgid "published on"
+msgstr "veröffentlicht am"
 
 #: attestation/models.py:59
 #, python-format
@@ -470,19 +554,31 @@ msgstr "Neue Bescheinigung für Ihre Lösung der Aufgabe '%s'"
 msgid "Attestation for your solution of the task '%s' withdrawn"
 msgstr "Bescheinigung für Ihre Lösung der Aufgabe '%s' zurückgezogen"
 
-#: attestation/models.py:193
+#: attestation/models.py:192
+msgid "Annotated solution file"
+msgstr "Kommentierte Lösungsdateien"
+
+#: attestation/models.py:193 templates/attestation/attestation_edit.html:161
+msgid "Annotated solution files"
+msgstr "Kommentierte Lösungsdateien"
+
+#: attestation/models.py:197
 msgid "The content of the solution file annotated by the tutor."
 msgstr "Der Inhalt der Lösungsdatei wird vom Tutor kommentiert."
 
-#: attestation/models.py:212
+#: attestation/models.py:217 attestation/models.py:265
+msgid "Rating Aspect"
+msgstr "Bewertungsaspekte"
+
+#: attestation/models.py:218 templates/attestation/tutorial_overview.html:28
+msgid "Rating Aspects"
+msgstr "Bewertungsaspekte"
+
+#: attestation/models.py:221
 msgid "The Name of the Aspect to be rated. E.g.: \"Readability\""
 msgstr "Der Name des zu bewertenden Aspekts. Z.B: \"Lesbarkeit\"."
 
-#: attestation/models.py:213 tasks/models.py:25
-msgid "Description"
-msgstr "Beschreibung"
-
-#: attestation/models.py:213
+#: attestation/models.py:222
 msgid ""
 "Description of the Aspect and how it should be rated. E.w.: \"How well is "
 "the code structured?\""
@@ -490,36 +586,72 @@ msgstr ""
 "Beschreibung des Aspekts und wie er bewertet werden sollte. Z.B.: \"Wie gut "
 "ist der Code strukturiert?\""
 
-#: attestation/models.py:221
+#: attestation/models.py:222 tasks/models.py:25
+msgid "Description"
+msgstr "Beschreibung"
+
+#: attestation/models.py:230 attestation/models.py:247
+#: attestation/models.py:266
 msgid "Rating Scale"
 msgstr "Bewertungsskalen"
 
-#: attestation/models.py:222
+#: attestation/models.py:231
 msgid "Rating Scales"
 msgstr "Bewertungsskalen"
 
-#: attestation/models.py:234
+#: attestation/models.py:243 attestation/models.py:280
 msgid "Rating Scale Item"
 msgstr "Gegenstand der Bewertungsskala"
 
-#: attestation/models.py:235
+#: attestation/models.py:244
 msgid "Rating Scale Items"
 msgstr "Gegenstände der Bewertungsskala"
 
-#: attestation/models.py:239
+#: attestation/models.py:248
 msgid ""
 "The Name of the item(mark) in the rating scale. E.g.: \"A\" or \"very good\" "
 msgstr ""
 "Der Name des Items (der Note) in der Bewertungsskala. Z.B: \"A\" oder \"sehr "
 "gut\" "
 
-#: attestation/models.py:240
+#: attestation/models.py:249
 msgid "Defines the order in which the items are sorted. Lowest is best."
 msgstr ""
 "Legt die Reihenfolge fest, in der die Artikel sortiert werden. Die "
 "niedrigste ist die beste."
 
-#: attestation/models.py:268
+#: attestation/models.py:260 attestation/models.py:279
+msgid "Rating"
+msgstr "Bewertungen"
+
+#: attestation/models.py:261 templates/attestation/attestation_view.html:67
+msgid "Ratings"
+msgstr "Bewertungen"
+
+#: attestation/models.py:264 checker/basemodels.py:57 solutions/models.py:38
+#: tasks/models.py:39 templates/admin/tasks/task/import.html:15
+#: templates/attestation/attestation_edit.html:103
+#: templates/attestation/attestation_edit.html:115
+msgid "Task"
+msgstr "Aufgabe"
+
+#: attestation/models.py:274
+msgid "Rating result"
+msgstr "Bewertungs Ergebniss"
+
+#: attestation/models.py:275
+msgid "Rating results"
+msgstr "Bewertungs Ergebnisse"
+
+#: attestation/models.py:288
+msgid "Script"
+msgstr "Script"
+
+#: attestation/models.py:289
+msgid "Scripts"
+msgstr "Scripte"
+
+#: attestation/models.py:292
 msgid ""
 "This JavaScript will calculate a recommend end note for every user based on "
 "final grade of every task."
@@ -591,6 +723,10 @@ msgstr ""
 "Dieses Diagramm zeigt die Verteilung der Abschlussbewertungen für alle "
 "Studierenden Plagiate ausgeschlossen."
 
+#: attestation/views.py:618
+msgid "Generate RatingScale"
+msgstr "Bewertungsskala generieren"
+
 #: attestation/views.py:656
 #, python-format
 msgid "An Error occurred. The import file was probably malformed.: %s"
@@ -598,13 +734,25 @@ msgstr ""
 "Es ist ein Fehler aufgetreten. Die Importdatei war wahrscheinlich "
 "fehlerhaft.: %s"
 
-#: checker/admin.py:48 solutions/admin.py:77
+#: checker/admin.py:47 solutions/admin.py:74
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: checker/admin.py:48 solutions/admin.py:75
 msgid "Edit (Admin Site)"
 msgstr "Bearbeiten (Admin-Site)"
 
 #: checker/admin.py:52
 msgid "View Solution (User Site)"
 msgstr "Ansicht Lösung (Benutzerseite)"
+
+#: checker/admin.py:57
+msgid "Solution Final"
+msgstr "Lösung Final"
+
+#: checker/basemodels.py:54
+msgid "Created"
+msgstr "Erstellt"
 
 #: checker/basemodels.py:55
 msgid ""
@@ -614,21 +762,41 @@ msgstr ""
 "Bestimmt die Reihenfolge, in der der Checker startet. Nicht ständig "
 "notwendig!"
 
+#: checker/basemodels.py:55
+msgid "Order"
+msgstr "Reihenfolge"
+
 #: checker/basemodels.py:59
 msgid "Test results are displayed to the submitter."
 msgstr "Die Testergebnisse werden dem Einreicher angezeigt."
+
+#: checker/basemodels.py:59
+msgid "Public"
+msgstr "Öffentlich"
 
 #: checker/basemodels.py:60
 msgid "The test must be passed to submit the solution."
 msgstr "Der Test muss bestanden werden, um die Lösung einzureichen."
 
+#: checker/basemodels.py:60
+msgid "Required"
+msgstr "Notwendig"
+
 #: checker/basemodels.py:61
 msgid "The test will run on submission time."
 msgstr "Der Test muss bestanden werden, um die Lösung einzureichen."
 
+#: checker/basemodels.py:61
+msgid "Always"
+msgstr "Immer"
+
 #: checker/basemodels.py:62
 msgid "If this test fails, do not display further test results."
 msgstr "Wenn dieser Test fehlschlägt, zeige keine weiteren Testergebnisse an."
+
+#: checker/basemodels.py:62
+msgid "Critical"
+msgstr "Entscheidend"
 
 #: checker/basemodels.py:111
 msgid ""
@@ -638,37 +806,69 @@ msgstr ""
 "Checker benötigt, aber das Versagen wird den Studenten bei der Einreichung "
 "nicht öffentlich mitgeteilt"
 
+#: checker/basemodels.py:190
+msgid "Checker Result"
+msgstr "Checker-Ergebniss"
+
+#: checker/basemodels.py:191 templates/solutions/checker_result_list.html:29
+msgid "Checker Results"
+msgstr "Checker-Ergebnisse"
+
 #: checker/basemodels.py:195
+msgid "Content type"
+msgstr "Inhaltstyp"
+
+#: checker/basemodels.py:196
+msgid "Object Id"
+msgstr "Objekt Id"
+
+#: checker/basemodels.py:199
 msgid "Indicates whether the test has been passed"
 msgstr "Zeigt an, ob die Prüfung bestanden wurde"
 
-#: checker/basemodels.py:196
+#: checker/basemodels.py:199
+msgid "Passed"
+msgstr "Bestanden"
+
+#: checker/basemodels.py:200
 msgid "Text result of the checker"
 msgstr "Textergebnis des Checker"
 
-#: checker/basemodels.py:198
+#: checker/basemodels.py:200
+msgid "Log"
+msgstr "Ausgabe"
+
+#: checker/basemodels.py:201 solutions/models.py:40
+msgid "Creation Date"
+msgstr "Erstellungsdatum"
+
+#: checker/basemodels.py:202
 msgid "Runtime in milliseconds"
 msgstr "Laufzeit in Millisekunden"
 
-#: checker/basemodels.py:223 checker/checker/CheckStyleChecker.py:45
+#: checker/basemodels.py:202
+msgid "Runtime"
+msgstr "Laufzeit"
+
+#: checker/basemodels.py:227 checker/checker/CheckStyleChecker.py:45
 msgid "<div class=\"error\">Timeout occured!</div>"
 msgstr "<div class=\"error\">Zeitüberschreitung ist aufgetreten!</div>"
 
-#: checker/basemodels.py:225
+#: checker/basemodels.py:229
 msgid "<div class=\"error\">Output too long, truncated</div>"
 msgstr "<div class=\"error\">Ausgabe zu lang, abgeschnitten</div>"
 
-#: checker/basemodels.py:227
+#: checker/basemodels.py:231
 msgid "<div class=\"error\">Memory limit exceeded, execution cancelled.</div>"
 msgstr ""
 "<div class=\"error\">Speichergrenze überschritten, Ausführung abgebrochen.</"
 "div>"
 
-#: checker/basemodels.py:260
+#: checker/basemodels.py:264
 msgid "Artefact produced by a checker"
 msgstr "Von einem Checker erstelltes Artefakt"
 
-#: checker/basemodels.py:360
+#: checker/basemodels.py:366
 msgid "The Checker caused an unexpected internal error."
 msgstr "Der Checker verursachte einen unerwarteten internen Fehler."
 
@@ -714,6 +914,10 @@ msgstr ""
 "XML-Konfiguration von CheckStyle. Siehe https://github.com/checkstyle/"
 "checkstyle"
 
+#: checker/checker/CheckStyleChecker.py:16
+msgid "Configuration"
+msgstr "Konfiguration"
+
 #: checker/checker/CheckStyleChecker.py:25
 msgid "Runs checkstyle (https://github.com/checkstyle/checkstyle)."
 msgstr "Führt CheckStyle aus (https://github.com/checkstyle/checkstyle)."
@@ -734,9 +938,18 @@ msgstr ""
 "Wie die Datei in der Sandbox benannt wird. Wenn sie leer ist, versuchen wir, "
 "den richtigen Dateiname zu erraten!"
 
+#: checker/checker/CreateFileChecker.py:20
+#: checker/checker/KeepFileChecker.py:17
+msgid "Filename"
+msgstr "Dateiname"
+
 #: checker/checker/CreateFileChecker.py:21
 msgid "Subfolder in the sandbox which shall contain the file."
 msgstr "Unterordner in der Sandbox, der die Datei enthalten soll."
+
+#: checker/checker/CreateFileChecker.py:21
+msgid "Path"
+msgstr "Pfad"
 
 #: checker/checker/CreateFileChecker.py:22
 msgid ""
@@ -746,12 +959,20 @@ msgstr ""
 "Entpacken Sie die Zip-Datei in den angegebenen Unterordner. (Es ist ein "
 "Fehler, wenn die Datei keine Zip-Datei ist; der Dateiname wird ignoriert)"
 
+#: checker/checker/CreateFileChecker.py:22
+msgid "Unpack Zip File"
+msgstr "Entpacke Zip-Datei"
+
 #: checker/checker/CreateFileChecker.py:23
 msgid ""
 "The file is (or, if it is a zipfile to be unpacked: contains) source code"
 msgstr ""
 "Die Datei ist (oder, wenn es sich um eine zu entpackende Zip-Datei handelt: "
 "enthält) Quellcode"
+
+#: checker/checker/CreateFileChecker.py:23
+msgid "is Sourcecode"
+msgstr "Ist Quellcode"
 
 #: checker/checker/CreateFileChecker.py:24
 msgid ""
@@ -761,6 +982,10 @@ msgstr ""
 "Die Datei ist (oder, wenn es sich um eine zu entpackende Zip-Datei handelt: "
 "ihr Inhalt) beinhaltet in der \"full\" Lösungen Zip-Datei zum herunterladen"
 
+#: checker/checker/CreateFileChecker.py:24
+msgid "Include in solution download"
+msgstr "Einfügen in Lösungs-Download"
+
 #: checker/checker/CreateFileChecker.py:65
 msgid ""
 "These files already existed. Do NOT include them in your submissions:<br/"
@@ -769,11 +994,15 @@ msgstr ""
 "Diese Dateien existierten bereits. Fügen Sie diese NICHT in Ihren "
 "Einreichungen mit ein:<br/><ul>\n"
 
-#: checker/checker/DejaGnu.py:57
+#: checker/checker/CreateFileChecker.py:74
+msgid "Copy File"
+msgstr "Kopiere Datei"
+
+#: checker/checker/DejaGnu.py:59
 msgid "The name of the Test"
 msgstr "Der Name des Tests"
 
-#: checker/checker/DejaGnu.py:58
+#: checker/checker/DejaGnu.py:60
 msgid ""
 "In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen "
 "aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert "
@@ -787,7 +1016,11 @@ msgstr ""
 "target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/"
 "\">DejaGnu-Handbuch</a>."
 
-#: checker/checker/DejaGnu.py:111
+#: checker/checker/DejaGnu.py:60
+msgid "Test Case"
+msgstr "Test-Case"
+
+#: checker/checker/DejaGnu.py:115
 msgid ""
 "<pre><b class=\"fail\">Error</b>: Path to the main() - source file contains "
 "spaces.\n"
@@ -802,7 +1035,7 @@ msgstr ""
 "genau mit der Paketstruktur übereinstimmen.\n"
 "Das default Package muss dem .zip-Stammverzeichnis entsprechen.</pre>"
 
-#: checker/checker/DejaGnu.py:161
+#: checker/checker/DejaGnu.py:165
 msgid ""
 "Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/"
 "\">DejaGnu-Testrahmen</a>, um die Programme zu testen. Die in dieser Datei "
@@ -822,6 +1055,10 @@ msgstr ""
 "\">DejaGnu-Handbuch</a>.) Die Variablen PROGRAM und JAVA werden mit dem "
 "Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."
 
+#: checker/checker/DejaGnu.py:165
+msgid "Test Defs"
+msgstr "Testdefinitionen"
+
 #: checker/checker/DiffChecker.py:23
 msgid ""
 "The shell script whose output for the given input file is compared to the "
@@ -832,13 +1069,25 @@ msgstr ""
 "angegebenen Ausgabedatei verglichen wird: Die Teilzeichenfolgen JAVA und "
 "PROGRAM wurden durch Praktomat ermittelte Werte ersetzt."
 
+#: checker/checker/DiffChecker.py:23 checker/checker/ScriptChecker.py:18
+msgid "Shell Script"
+msgstr "Shell-Script"
+
 #: checker/checker/DiffChecker.py:24
 msgid "The file containing the input for the program."
 msgstr "Die Datei enthält die Eingabe für das Programm."
 
+#: checker/checker/DiffChecker.py:24
+msgid "Input File"
+msgstr "Eingabedatei"
+
 #: checker/checker/DiffChecker.py:25
 msgid "The file containing the output for the program."
 msgstr "Die Datei enthält die Ausgabe für das Programm."
+
+#: checker/checker/DiffChecker.py:25
+msgid "Output File"
+msgstr "Ausgabedatei"
 
 #: checker/checker/DiffChecker.py:30
 msgid ""
@@ -849,7 +1098,7 @@ msgstr ""
 "Outputfile haben"
 
 #: checker/checker/HaskellTestFrameWorkChecker.py:51
-#: checker/checker/JavaChecker.py:25
+#: checker/checker/JavaChecker.py:26
 msgid ""
 "Description of the Testcase. To be displayed on Checker Results page when "
 "checker is unfolded."
@@ -857,8 +1106,13 @@ msgstr ""
 "Beschreibung des Testfalls. Wird auf der Seite mit den Checker-Ergebnissen "
 "angezeigt, wenn der Checker ausgeklappt wird."
 
+#: checker/checker/HaskellTestFrameWorkChecker.py:51
+#: checker/checker/JUnitChecker.py:40 checker/checker/JavaChecker.py:26
+msgid "Test Description"
+msgstr "Testbeschreibung"
+
 #: checker/checker/HaskellTestFrameWorkChecker.py:52
-#: checker/checker/JUnitChecker.py:40 checker/checker/JavaChecker.py:27
+#: checker/checker/JUnitChecker.py:41 checker/checker/JavaChecker.py:28
 msgid "Name of the Testcase. To be displayed as title on Checker Results page"
 msgstr ""
 "Name des Testfalls. Wird als Titel auf der Seite mit den Checker-Ergebnissen "
@@ -870,15 +1124,43 @@ msgstr ""
 "durch Leerzeichen getrennte Liste von Dateien, die bei der Kompilierung "
 "ignoriert werden"
 
+#: checker/checker/HaskellTestFrameWorkChecker.py:53
+msgid "Ignore"
+msgstr "Ignorieren"
+
 #: checker/checker/HaskellTestFrameWorkChecker.py:54
 msgid "Is a submission required to be Safe (according to GHCs Safe-Mode)?"
 msgstr ""
 "Ist eine Einreichung erforderlich, um sicher zu sein (gemäß GHCs Safe-Mode)?"
 
+#: checker/checker/HaskellTestFrameWorkChecker.py:54
+msgid "Require Safe"
+msgstr "Erfordert Sicherheit"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:56
+msgid "Download-Link only"
+msgstr "Nur Download-Link"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:56
+msgid "Do not make the testcases source available"
+msgstr "Quelle der Testfälle nicht zur Verfügung stellen"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:56
+msgid "Also copy the source into the report"
+msgstr "Kopiere auch die Quelle in den Bericht"
+
 #: checker/checker/HaskellTestFrameWorkChecker.py:57
 msgid "Make the testcases source available via the checkers result report?"
 msgstr ""
 "Die Testfälle über den Ergebnisbericht des Checkers zur Verfügung stellen?"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:57
+msgid "Include in Report"
+msgstr "In den Bericht integrieren"
+
+#: checker/checker/HaskellTestFrameWorkChecker.py:62
+msgid "Haskell test-framework test: "
+msgstr "Haskell Testframework-Test: "
 
 #: checker/checker/HaskellTestFrameWorkChecker.py:66
 msgid ""
@@ -904,6 +1186,10 @@ msgstr "Der Name des Interfaces, das implementiert werden muss."
 msgid "Default heap to use"
 msgstr "Standardmäßig zu verwendender Heap"
 
+#: checker/checker/IsabelleChecker.py:19
+msgid "Logic"
+msgstr "Logik"
+
 #: checker/checker/IsabelleChecker.py:20
 msgid ""
 "Isabelle theories to be run in addition to those provided by the user "
@@ -915,11 +1201,26 @@ msgstr ""
 "mit dem Create File Checker hochgeladen wurden). Schließen Sie die "
 "Dateierweiterungen nicht ein. Trennen Sie mehrere Theorien durch Leerzeichen"
 
+#: checker/checker/IsabelleChecker.py:20
+msgid "Additional Theories"
+msgstr "Zusätzliche Theorien"
+
+#: checker/checker/IsabelleChecker.py:33
+msgid ""
+"Verifies that every submitted Isabelle theory can be processed without error"
+msgstr ""
+"Verifiziert, dass jede eingereichte Isabelle-Theorie fehlerfrei verarbeitet "
+"werden kann"
+
 #: checker/checker/JUnitChecker.py:37 checker/checker/JavaChecker.py:22
 msgid "The fully qualified name of the test case class (without .class)"
 msgstr "Der vollqualifizierte Name der Testfallklasse (ohne .class)"
 
-#: checker/checker/JUnitChecker.py:39
+#: checker/checker/JUnitChecker.py:38 checker/checker/JavaChecker.py:23
+msgid "Class name"
+msgstr "Klassenname"
+
+#: checker/checker/JUnitChecker.py:40
 msgid ""
 "Description of the Testcase. To be displayed on Checker Results page when "
 "checker is  unfolded."
@@ -927,7 +1228,7 @@ msgstr ""
 "Beschreibung des Testfalls. Wird auf der Checker-Ergebnisseite angezeigt, "
 "wenn der Checker ausgeklappt wird."
 
-#: checker/checker/JUnitChecker.py:41
+#: checker/checker/JUnitChecker.py:42
 msgid ""
 "space-separated list of files to be ignored during compilation, i.e.: these "
 "files will not be compiled."
@@ -935,7 +1236,15 @@ msgstr ""
 "eine durch Leerzeichen getrennte Liste von Dateien, die beim Kompilieren "
 "ignoriert werden sollen, d.h.: diese Dateien werden nicht kompiliert."
 
-#: checker/checker/JUnitChecker.py:57
+#: checker/checker/JUnitChecker.py:42
+msgid "ignore"
+msgstr "Ignorieren"
+
+#: checker/checker/JUnitChecker.py:48
+msgid "JUnit Version"
+msgstr "JUnit-Version"
+
+#: checker/checker/JUnitChecker.py:58
 msgid ""
 "This Checker runs a JUnit Testcases existing in the sandbox. You may want to "
 "use CreateFile Checker to create JUnit .java and possibly input data files "
@@ -948,11 +1257,11 @@ msgstr ""
 "JavaBuilder ausführen. JUnit-Tests können Eingabedatendateien nur lesen, "
 "wenn sie im Daten-/Unterverzeichnis abgelegt werden."
 
-#: checker/checker/JavaChecker.py:30
+#: checker/checker/JavaChecker.py:31
 msgid "Java based test: "
-msgstr "Java-basierter Test:"
+msgstr "Java-basierter Test: "
 
-#: checker/checker/JavaChecker.py:34
+#: checker/checker/JavaChecker.py:35
 #, python-format
 msgid ""
 "This Checker runs a java class. The java class must be existing in the "
@@ -972,7 +1281,7 @@ msgstr ""
 "Hauptroutine in der angegebenen Klasse übergeben: Sandbox-Verzeichnis, "
 "Benutzer-ID, mat_number, Lösungs-ID"
 
-#: checker/checker/JavaChecker.py:52
+#: checker/checker/JavaChecker.py:53
 msgid ""
 "\n"
 "\n"
@@ -989,6 +1298,11 @@ msgstr ""
 #: checker/checker/KeepFileChecker.py:17
 msgid "The name of the file to preserve (e.g. out.txt)"
 msgstr "Der Name der zu erhaltenden Datei (z.B. out.txt)"
+
+#: checker/checker/KeepFileChecker.py:20
+#, python-format
+msgid "Keep file %s"
+msgstr "Datei %s aufbewahren"
 
 #: checker/checker/KeepFileChecker.py:30
 #, python-format
@@ -1033,9 +1347,17 @@ msgstr " (kein Kommentar / Code / Coco Zeilen in der Datei!"
 msgid "The maximum length of a line of code."
 msgstr "Die maximale Länge einer Codezeile."
 
+#: checker/checker/LineWidthChecker.py:16
+msgid "Max line length"
+msgstr "Maximale Zeilenbreite"
+
 #: checker/checker/LineWidthChecker.py:17
 msgid "The amount of characters a tab represents."
 msgstr "Die Anzahl der Zeichen, die ein Tabulator repräsentiert."
+
+#: checker/checker/LineWidthChecker.py:17
+msgid "tab width"
+msgstr "Tabulatorbreite"
 
 #: checker/checker/LineWidthChecker.py:18
 msgid ""
@@ -1044,6 +1366,10 @@ msgid ""
 msgstr ""
 "Regulärer Ausdruck, der die zu überprüfenden Dateinamen beschreibt. Groß- "
 "und Kleinschreibung wird nicht berücksichtigt. Leer: alle Dateien verwenden."
+
+#: checker/checker/LineWidthChecker.py:18
+msgid "include"
+msgstr "Einschließen"
 
 #: checker/checker/LineWidthChecker.py:19
 msgid ""
@@ -1054,6 +1380,10 @@ msgstr ""
 "ausgeschlossen werden sollen. Groß- und Kleinschreibung wird nicht beachtet. "
 "Leer: alle Dateien verwenden."
 
+#: checker/checker/LineWidthChecker.py:19
+msgid "exclude"
+msgstr "Ausschließen"
+
 #: checker/checker/RChecker.py:16
 msgid ""
 "R script to execute. If left blank, it will run any *.R file, as long as "
@@ -1062,13 +1392,33 @@ msgstr ""
 "R-Skript zum ausführen. Wenn es leer gelassen wird, führt es jede *.R-Datei "
 "aus, solange es eine gibt."
 
+#: checker/checker/RChecker.py:16
+msgid "R Script"
+msgstr "R-Script"
+
 #: checker/checker/RChecker.py:19
 msgid "Require the script to create an Rplots.pdf file."
 msgstr "Zum Erstellen einer Rplots.pdf-Datei ist das Skript erforderlich."
 
-#: checker/checker/RChecker.py:23
+#: checker/checker/RChecker.py:20
+msgid "Require Plots"
+msgstr "Benötigt Diagramme"
+
+#: checker/checker/RChecker.py:24
 msgid "If the R script creates a Rplots.pdf file, keep it."
 msgstr "Wenn das R-Skript eine Rplots.pdf-Datei erstellt, behalten Sie diese."
+
+#: checker/checker/RChecker.py:25
+msgid "Keep Plots"
+msgstr "Diagramme behalten"
+
+#: checker/checker/RChecker.py:38
+msgid "Runs a submitted R script using the Rscript tool"
+msgstr "Führt ein eingereichtes R-Skript mit dem Rscript-Tool aus"
+
+#: checker/checker/ScriptChecker.py:17
+msgid "filename"
+msgstr "Dateiname"
 
 #: checker/checker/ScriptChecker.py:18
 msgid ""
@@ -1085,12 +1435,20 @@ msgstr ""
 msgid "Regular expression describing passages to be removed from the output."
 msgstr "Zum Erstellen einer Rplots.pdf-Datei ist das Skript erforderlich."
 
+#: checker/checker/ScriptChecker.py:19 templates/admin/tasks/stacked.html:67
+msgid "Remove"
+msgstr "Entfernen"
+
 #: checker/checker/ScriptChecker.py:20
 msgid ""
 "If the script doesn't return HTML it will be enclosed in &lt; pre &gt; tags."
 msgstr ""
 "Wenn das Skript kein HTML zurückgibt, wird es in &lt; pre &gt; Tags "
 "eingeschlossen."
+
+#: checker/checker/ScriptChecker.py:20
+msgid "Returns HTML"
+msgstr "Gibt HTML zurück"
 
 #: checker/checker/TextChecker.py:17
 msgid "The text must not be in the solution"
@@ -1100,18 +1458,34 @@ msgstr "Der Text darf nicht in der Lösung enthalten sein"
 msgid "The text has to be in the solution"
 msgstr "Der Text muss in der Lösung enthalten sein"
 
+#: checker/checker/TextChecker.py:21
+msgid "Select:"
+msgstr "Auswahl:"
+
 #: checker/compiler/Builder.py:30
 msgid "Compiler flags"
 msgstr "Compiler-Flags"
+
+#: checker/compiler/Builder.py:30
+msgid "Flags"
+msgstr "Flags"
 
 #: checker/compiler/Builder.py:31
 #, python-format
 msgid "Output flags. '%s' will be replaced by the program name."
 msgstr "Ausgabe-Flags. '%s' wird durch den Programmnamen ersetzt."
 
+#: checker/compiler/Builder.py:31
+msgid "Output Flags"
+msgstr "Ausgabe Flags"
+
 #: checker/compiler/Builder.py:32
 msgid "Compiler libraries"
 msgstr "Compiler-Bibliotheken"
+
+#: checker/compiler/Builder.py:32
+msgid "Libs"
+msgstr "Bibliotheken"
 
 #: checker/compiler/Builder.py:33
 msgid ""
@@ -1120,9 +1494,17 @@ msgstr ""
 "Regulärer Ausdruck, der alle an den Compiler zu übergebenden Quelldateien "
 "beschreibt."
 
+#: checker/compiler/Builder.py:33
+msgid "File Pattern"
+msgstr "Dateimuster"
+
 #: checker/compiler/Builder.py:34
 msgid "Is a submission required to provide a main method?"
 msgstr "Ist eine Einreichung notwendig die eine main-Methode besitzt?"
+
+#: checker/compiler/Builder.py:34
+msgid "Main required"
+msgstr "Main notwendig"
 
 #: checker/compiler/Builder.py:107
 msgid "The main module could not be found.\n"
@@ -1147,11 +1529,11 @@ msgstr "Einstellungen"
 
 #: configuration/models.py:15
 msgid "Email validation regex"
-msgstr "E-Mail-Validierung regex"
+msgstr "E-Mail-Validierung"
 
 #: configuration/models.py:24
 msgid "Mat number validation regex"
-msgstr "Matrikelnummervalidierungs regex"
+msgstr "Matrikelnummervalidierung"
 
 #: configuration/models.py:28
 msgid "Regular expression used to check the student number."
@@ -1172,7 +1554,7 @@ msgstr ""
 
 #: configuration/models.py:40
 msgid "Deny registration from"
-msgstr "Verweigern Sie die Registrierung von"
+msgstr "Anmeldung verweigern von"
 
 #: configuration/models.py:42
 msgid "After this date, registration won't be possible."
@@ -1192,7 +1574,7 @@ msgstr ""
 
 #: configuration/models.py:54
 msgid "Account manual validation"
-msgstr "Kontomanuelle Validierung"
+msgstr "Konto manuelle Validierung"
 
 #: configuration/models.py:56
 msgid ""
@@ -1333,14 +1715,14 @@ msgstr ""
 "Die Checker (einschließlich derjenigen, die bei der Einreichung nicht "
 "ausgeführt wurden) für ausgewählte Lösungen wurden erfolgreich ausgeführt."
 
-#: solutions/admin.py:46
+#: solutions/admin.py:45
 msgid ""
 "Run Checkers (including those not run at submission) for selected solution "
 msgstr ""
 "Checkers (einschließlich derjenigen, die bei der Einreichung nicht laufen) "
 "für die ausgewählte Lösung ausführen "
 
-#: solutions/admin.py:51
+#: solutions/admin.py:50
 msgid ""
 "Checkers (only those also run at submission) for selected solutions were "
 "successfully run."
@@ -1348,48 +1730,48 @@ msgstr ""
 "Checker (nur diejenigen, die auch bei der Einreichung laufen) für "
 "ausgewählte Lösungen wurden erfolgreich ausgeführt."
 
-#: solutions/admin.py:53
+#: solutions/admin.py:51
 msgid "Run Checkers (only those also run at submission) for selected solutions"
 msgstr ""
 "Starte Checker (nur diejenigen, die auch bei der Einreichung laufen) für "
 "ausgewählte Lösungen"
 
-#: solutions/admin.py:66
+#: solutions/admin.py:64
 #, python-format
 msgid "%d solutions marked as plagiated"
 msgstr "%d als plagiiert markierte Lösungen"
 
-#: solutions/admin.py:67
+#: solutions/admin.py:65
 msgid "Mark as plagiated"
 msgstr "Als Plagiat markieren"
 
-#: solutions/admin.py:71
+#: solutions/admin.py:69
 #, python-format
 msgid "%d solutions marked as not plagiated"
 msgstr "%d als nicht plagiiert markierte Lösungen"
 
-#: solutions/admin.py:72
+#: solutions/admin.py:70
 msgid "Mark as not plagiated"
 msgstr "Nicht als Plagiat markieren"
 
-#: solutions/admin.py:81
+#: solutions/admin.py:79
 msgid "View (User Site)"
 msgstr "Ansicht (Benutzerseite)"
 
-#: solutions/admin.py:88
+#: solutions/admin.py:86
 #, python-format
 msgid "<a href=\"%s\">Run Checkers</a>"
 msgstr "<a href=\"%s\">Führe Checker aus</a>"
 
-#: solutions/admin.py:89
+#: solutions/admin.py:87
 msgid "Run Checker (incl. those run at submission)"
 msgstr "Starte Checker (inkl. derjenigen, die bei der Einreichung laufen)"
 
-#: solutions/admin.py:95
+#: solutions/admin.py:93
 msgid "Solution author"
 msgstr "Author der Lösungen"
 
-#: solutions/admin.py:99
+#: solutions/admin.py:97
 #, python-brace-format
 msgid ""
 "<a href=\"{0}\">Attestations of this solution</a> • <a href=\"{1}\">User "
@@ -1397,6 +1779,14 @@ msgid ""
 msgstr ""
 "<a href=\"{0}\">Bewertungen dieser Lösung</a> - <a href="
 "\"{1}\">Benutzerseitenansicht dieser Lösung</a>"
+
+#: solutions/admin.py:107
+msgid "Tests failed"
+msgstr "Tests fehlgeschlagen"
+
+#: solutions/admin.py:114
+msgid "Latest of only failed"
+msgstr "Die Letzten der nur fehlgeschlagenen"
 
 #: solutions/forms.py:38
 #, python-format
@@ -1472,20 +1862,9 @@ msgstr ""
 "Id ist einzigartig pro Aufgabe und Benutzer. Z.B. Lösung 1 von Benutzer X in "
 "Aufgabe Y im Gegensatz zur globalen Lösung Z"
 
-#: solutions/models.py:38 tasks/models.py:39
-#: templates/admin/tasks/task/import.html:15
-#: templates/attestation/attestation_edit.html:103
-#: templates/attestation/attestation_edit.html:115
-msgid "Task"
-msgstr "Aufgabe"
-
 #: solutions/models.py:39
 msgid "solution author"
 msgstr "Autor der Lösungen"
-
-#: solutions/models.py:40
-msgid "Creation Date"
-msgstr "Erstellungsdatum"
 
 #: solutions/models.py:42
 msgid "Indicates whether this solution is a test upload."
@@ -1553,30 +1932,41 @@ msgstr "Geschätzter Dateityp. Wird automatisch bei save() gesetzt."
 msgid "%s submission confirmation"
 msgstr "%s Einreichungsbestätigung"
 
-#: tasks/admin.py:94
+#: tasks/admin.py:75
+msgid "Export Tasks"
+msgstr "Aufgaben exportieren"
+
+#: tasks/admin.py:85
+#, python-format
+msgid " final solutions were successfully checked (%d seconds elapsed)."
+msgstr " wurden erfolgreich überprüft (%d Sekunden verstrichen)."
+
+#: tasks/admin.py:86
+msgid "Run all checkers"
+msgstr "Alle Checker starten"
+
+#: tasks/admin.py:96
 #, python-brace-format
 msgid "<a href=\"{0}\">Attestations (User site)</a>"
 msgstr "<a href=\"{0}\">Bescheinigungen (Benutzerseite)</a>"
 
-#: tasks/admin.py:99
+#: tasks/admin.py:101
 #, python-brace-format
 msgid "<a href=\"{0}\">Test Submission</a>"
 msgstr "<a href=\"{0}\">Testeinreichung</a>"
 
-#: tasks/admin.py:101
+#: tasks/admin.py:103
 msgid "Test Submission"
 msgstr "Testeinreichung"
 
-#: tasks/admin.py:106
+#: tasks/admin.py:108
 #, python-brace-format
-msgid "<a href=\"{0}\">Attestations (including for-user-submission)</a> • "
+msgid ""
+"<a href=\"{0}\">Attestations (including for-user-submission)</a> • <a href="
+"\"{1}\">Test upload</a>"
 msgstr ""
-"<a href=\"{0}\">Bewertungen (einschließlich Benutzer-Einreichung)</a> - "
-
-#: tasks/admin.py:107
-#, python-brace-format
-msgid "<a href=\"{1}\">Test upload</a>"
-msgstr "<a href=\"{1}\">Testupload</a>"
+"<a href=\"{0}\">Bewertungen (einschließlich Benutzer-Einreichung)</a> • <a "
+"href=\"{1}\">Test upload</a>"
 
 #: tasks/models.py:24
 msgid "The name of the task"
@@ -1631,7 +2021,7 @@ msgstr "Die maximale Größe einer hochgeladenen Lösungsdatei in Kilobyte."
 msgid "Max file size"
 msgstr "Max. Dateigröße"
 
-#: tasks/models.py:30 tasks/views.py:139
+#: tasks/models.py:30 tasks/views.py:140
 #: templates/admin/tasks/task/change_form.html:17
 msgid "Model Solution"
 msgstr "Musterlösung"
@@ -1693,12 +2083,27 @@ msgstr "JPlag ist aktuell"
 msgid "Tasks"
 msgstr "Aufgaben"
 
-#: tasks/models.py:264 tasks/views.py:99
-#: templates/admin/tasks/task/import.html:16
+#: tasks/models.py:264 templates/admin/tasks/task/import.html:16
 msgid "Import Task"
 msgstr "Aufgabe importieren"
 
-#: tasks/models.py:283
+#: tasks/models.py:276 tasks/models.py:280
+msgid "Media File"
+msgstr "Datei"
+
+#: tasks/models.py:277
+msgid "Media Files"
+msgstr "Dateien"
+
+#: tasks/models.py:286
+msgid "HTML Injector"
+msgstr "HTML-Injektor"
+
+#: tasks/models.py:287
+msgid "HTML Injectors"
+msgstr "HTML-Injektoren"
+
+#: tasks/models.py:292
 msgid ""
 "Indicates whether HTML code shall be injected in public  solution views, e."
 "g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
@@ -1706,7 +2111,11 @@ msgstr ""
 "Zeigt an, ob HTML-Code in öffentliche Lösungsansichten eingespeist werden "
 "soll, z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
 
-#: tasks/models.py:287
+#: tasks/models.py:293
+msgid "inject in solution view"
+msgstr "Einfügen in Lösungsansicht"
+
+#: tasks/models.py:297
 msgid ""
 "Indicates whether HTML code shall be injected in private solution views, e."
 "g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/full"
@@ -1714,7 +2123,11 @@ msgstr ""
 "Zeigt an, ob HTML-Code in private Lösungsansichten eingespeist werden soll, "
 "z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
 
-#: tasks/models.py:291
+#: tasks/models.py:298
+msgid "inject in solution full view"
+msgstr "Einfügen in Lösungsvollansicht"
+
+#: tasks/models.py:302
 msgid ""
 "Indicates whether HTML code shall be injected in attestation edits, e.g.: in "
 "https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134/edit"
@@ -1723,7 +2136,11 @@ msgstr ""
 "werden soll, z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/"
 "attestation/134/edit"
 
-#: tasks/models.py:295
+#: tasks/models.py:303
+msgid "inject in attestation edit"
+msgstr "Einfügen in Bescheinigungsbearbeitung"
+
+#: tasks/models.py:307
 msgid ""
 "Indicates whether HTML code shall be injected in attestation views, e.g.: in "
 "https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"
@@ -1731,19 +2148,36 @@ msgstr ""
 "Gibt an, ob HTML-Code in Beglaubigungsansichten eingefügt werden soll, z.B.: "
 "in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"
 
-#: tasks/views.py:78
-msgid "File"
-msgstr "Datei"
+#: tasks/models.py:308
+msgid "inject in attestation view"
+msgstr "Einfügen in Bescheinigungsansicht"
+
+#: tasks/models.py:310
+msgid "HTML File"
+msgstr "HTML-Datei"
 
 #: tasks/views.py:81
+msgid ""
+"Enabled if the imported task is just used as template to create another "
+"task. If disabled, the publication date and the rating scale are also "
+"imported. This means that students might see the task immediately, and "
+"rating scales might be duplicated."
+msgstr ""
+"Aktiviert, wenn die importierte Aufgabe nur als Vorlage zum Erstellen einer "
+"weiteren Aufgabe verwendet wird. Wenn deaktiviert, werden auch das "
+"Veröffentlichungsdatum und die Bewertungsskala importiert. Dies bedeutet, "
+"dass die Studierenden die Aufgabe sofort sehen können und die "
+"Bewertungsskala möglicherweise doppelt vorhanden ist."
+
+#: tasks/views.py:82
 msgid "Is template"
 msgstr "Vorlage"
 
-#: tasks/views.py:91
+#: tasks/views.py:92
 msgid "The import was successful."
 msgstr "Der Import war erfolgreich."
 
-#: tasks/views.py:95
+#: tasks/views.py:96
 #, python-format
 msgid "An Error occured. The import file was probably malformed: %s"
 msgstr ""
@@ -1817,10 +2251,6 @@ msgstr "Start"
 msgid "Accounts"
 msgstr "Konten"
 
-#: templates/admin/accounts/user/import.html:16
-msgid "Import User"
-msgstr "Benutzer importieren"
-
 #: templates/admin/accounts/user/import.html:26
 #: templates/admin/accounts/user/import_tutorial_assignment.html:26
 #: templates/admin/accounts/user/import_user_texts.html:26
@@ -1840,6 +2270,7 @@ msgstr[1] "Bitte die unten aufgeführten Fehler korrigieren."
 #: templates/admin/attestation/update.html:36
 #: templates/admin/auth/group/import_matriculation_list.html:31
 #: templates/admin/tasks/task/import.html:36
+#: templates/admin/tasks/task/model_solution.html:16
 #: templates/attestation/attestation_view.html:125
 msgid "Save"
 msgstr "Speichern"
@@ -1906,10 +2337,6 @@ msgstr "Benutzerseite"
 #, python-format
 msgid "Add another %(verbose_name)s"
 msgstr "%(verbose_name)s hinzufügen"
-
-#: templates/admin/tasks/stacked.html:67
-msgid "Remove"
-msgstr "Entfernen"
 
 #: templates/admin/tasks/task/change_form.html:7
 msgid "Download Final Solutions"
@@ -2012,6 +2439,14 @@ msgstr "Als Plagiat markiert"
 msgid "Created: "
 msgstr "Erstellt: "
 
+#: templates/attestation/attestation_edit.html:92
+msgid "Save/Preview"
+msgstr "Speicher/Vorschau"
+
+#: templates/attestation/attestation_edit.html:93
+msgid "Discard/Back"
+msgstr "Verwerfen/Zurück"
+
 #: templates/attestation/attestation_edit.html:97
 msgid "Solution by:"
 msgstr "Lösung von:"
@@ -2041,10 +2476,6 @@ msgstr "Download (inkl. Checker-Dateien)"
 #: templates/attestation/attestation_edit.html:155
 msgid "re-run all checkers"
 msgstr "Alle Checker nochmal starten"
-
-#: templates/attestation/attestation_edit.html:161
-msgid "Annotated solution files"
-msgstr "Kommentierte Lösungsdateien"
 
 #: templates/attestation/attestation_edit.html:178
 msgid "Editor Options"
@@ -2094,11 +2525,11 @@ msgstr "Das %(site_name)s-Team"
 #: templates/attestation/attestation_list.html:29
 #: templates/attestation/attestation_view.html:21
 msgid "Are you sure?"
-msgstr "Sind Sie sicher?"
+msgstr "'Sind Sie sicher?'"
 
 #: templates/attestation/attestation_list.html:30
 msgid "Really publish all final attestations?"
-msgstr "Wirklich alle Abschlussbescheinigungen veröffentlichen?"
+msgstr "'Wirklich alle Abschlussbescheinigungen veröffentlichen?'"
 
 #: templates/attestation/attestation_list.html:56
 msgid "Upload a test solution"
@@ -2111,7 +2542,7 @@ msgstr "Alle Lösungen herunterladen"
 #: templates/attestation/attestation_list.html:58
 #: templates/solutions/checker_results_inline.html:32
 msgid "Download all solutions, including checker files"
-msgstr "Download all solutions, including checker files"
+msgstr "Laden Sie alle Lösungen herunter, einschließlich Checker-Dateien"
 
 #: templates/attestation/attestation_list.html:64
 msgid "Upload solutions in a students name"
@@ -2119,7 +2550,7 @@ msgstr "Lösungen im Namen eines Studenten hochladen"
 
 #: templates/attestation/attestation_list.html:70
 msgid "Edit Solutions"
-msgstr "Lösungen editieren"
+msgstr "\"Lösungen editieren\""
 
 #: templates/attestation/attestation_list.html:75
 msgid "The task is not yet expired."
@@ -2133,9 +2564,23 @@ msgstr "Es wurden noch nicht alle Prüfungen durchgeführt."
 msgid "Attestation Progress"
 msgstr "Bescheinigungsfortschritt"
 
+#: templates/attestation/attestation_list.html:85
+#: templates/attestation/attestation_list.html:158
+msgid "solutions to attest."
+msgstr "Lösungen zum bescheinigen."
+
+#: templates/attestation/attestation_list.html:87
+#: templates/attestation/attestation_list.html:156
+msgid "Attest next solution"
+msgstr "\"Bescheinige nächste Lösungen\""
+
 #: templates/attestation/attestation_list.html:92
 msgid "Attestation Progress by Tutor"
 msgstr "Bescheinigung des Fortschritts durch den Tutor"
+
+#: templates/attestation/attestation_list.html:96
+msgid "Tutor"
+msgstr "Tutor"
 
 #: templates/attestation/attestation_list.html:97
 msgid "Unrated"
@@ -2161,9 +2606,9 @@ msgstr "Unbescheinigte Lösungen"
 msgid "All solutions have been attested."
 msgstr "Alle Lösungen wurden bescheinigt."
 
-#: templates/attestation/attestation_list.html:158
-msgid "solutions to attest."
-msgstr "Lösungen zum bescheinigen."
+#: templates/attestation/attestation_list.html:152
+msgid "Attest selected user"
+msgstr "\"Bescheinige ausgewählten Benutzer\""
 
 #: templates/attestation/attestation_list.html:163
 msgid "The solutions of"
@@ -2235,18 +2680,13 @@ msgstr "Vorschau"
 msgid "My solutions"
 msgstr "Meine Lösungen"
 
-#: templates/attestation/attestation_view.html:52
-msgid "Private Comment"
-msgstr "Privates Kommentar"
-
 #: templates/attestation/attestation_view.html:60
 msgid "Comment"
 msgstr "Kommentar"
 
-#: templates/attestation/attestation_view.html:67
-#: templates/attestation/statistics.html:365
-msgid "Ratings"
-msgstr "Bewertungen"
+#: templates/attestation/attestation_view.html:76
+msgid "Final grade: "
+msgstr "Endbewertungen: "
 
 #: templates/attestation/attestation_view.html:93
 msgid "Annotated Files"
@@ -2263,15 +2703,15 @@ msgstr "Ursprüngliche Dateien"
 
 #: templates/attestation/attestation_view.html:127
 msgid "Save and publish"
-msgstr "Speichern und veröffentlichen"
+msgstr "\"Speichern und veröffentlichen\""
 
 #: templates/attestation/attestation_view.html:129
 msgid "Edit again"
-msgstr "Erneut bearbeiten"
+msgstr "\"Erneut bearbeiten\""
 
 #: templates/attestation/attestation_view.html:137
 msgid "Withdraw published attestation"
-msgstr "Veröffentlichte Bescheinigung zurückziehen"
+msgstr "\"Veröffentlichte Bescheinigung zurückziehen\""
 
 #: templates/attestation/attestation_withdraw_email.html:3
 #, python-format
@@ -2347,63 +2787,6 @@ msgstr "E-Mail an Benutzer mit Warnungen"
 msgid "Export as csv (utf-8)"
 msgstr "Als csv exportieren (utf-8)"
 
-#: templates/attestation/statistics.html:15
-msgid "Solution Submission Rate"
-msgstr "Einreichungsrate der Lösung"
-
-#: templates/attestation/statistics.html:20
-#: templates/attestation/statistics.html:122
-msgid "Date"
-msgstr "Datum"
-
-#: templates/attestation/statistics.html:26
-msgid "(Final) Submissions"
-msgstr "(Endgültige) Lösung"
-
-#: templates/attestation/statistics.html:39
-#: templates/attestation/statistics.html:68
-#: templates/attestation/statistics.html:85
-msgid "Submissions Total"
-msgstr "Einreichungen insgesamt"
-
-#: templates/attestation/statistics.html:93
-#: templates/attestation/statistics.html:256
-msgid "Final Submissions"
-msgstr "Endgültige Lösungen"
-
-#: templates/attestation/statistics.html:100
-#: templates/attestation/statistics.html:251
-msgid "Submissions"
-msgstr "Einreichungen"
-
-#: templates/attestation/statistics.html:117
-msgid "Solution runtimes"
-msgstr "Laufzeiten der Lösung"
-
-#: templates/attestation/statistics.html:127
-msgid "Runtime (ms)"
-msgstr "Laufzeit (ms)"
-
-#: templates/attestation/statistics.html:192
-msgid "Submission Activity by Day and Hour"
-msgstr "Einreichungsaktivität nach Tag und Stunde"
-
-#: templates/attestation/statistics.html:200
-msgid "Time"
-msgstr "Zeit"
-
-#: templates/attestation/statistics.html:208
-msgid "Day"
-msgstr "Tag"
-
-#: templates/attestation/statistics.html:305
-msgid "ready"
-msgstr "fertig"
-
-#: templates/attestation/statistics.html:309
-msgid "published"
-msgstr "veröffentlicht"
-
 #: templates/attestation/statistics.html:394
 #: templates/attestation/statistics.html:399
 #: templates/tasks/task_detail.html:19 templates/tasks/task_list.html:65
@@ -2453,10 +2836,6 @@ msgstr "Sie beaufsichtigen keinen Lehrgang."
 #: templates/attestation/tutorial_overview.html:8
 msgid "Other Tutorials"
 msgstr "Andere Lehrgänge"
-
-#: templates/attestation/tutorial_overview.html:28
-msgid "Rating Aspects"
-msgstr "Bewertungsaspekte"
 
 #: templates/attestation/tutorial_overview.html:54
 msgid "Marked as plagiarism"
@@ -2921,10 +3300,6 @@ msgstr ""
 msgid "The submitted attributes are:"
 msgstr "Die eingereichten Attribute sind:"
 
-#: templates/solutions/checker_result_list.html:29
-msgid "Checker Results"
-msgstr "Checker-Ergebnisse"
-
 #: templates/solutions/checker_result_list.html:35
 msgid "Matrnumber"
 msgstr "Matrikelnummer"
@@ -3079,6 +3454,11 @@ msgstr "Verbleibende Zeit:"
 #: templates/solutions/solution_test_upload.html:51
 msgid "Upload solution"
 msgstr "Lösung hochladen"
+
+#: templates/solutions/solution_list.html:57
+#: templates/solutions/solution_test_upload.html:54
+msgid "upload"
+msgstr "hochladen"
 
 #: templates/solutions/solution_list.html:61
 msgid "The deadline has passed. Therefore (re)submission is not possible."
@@ -3238,3 +3618,56 @@ msgid ""
 msgstr ""
 "<tr class=\"final_grade\"><td>Vorhergesagte Endnote</td><td>"
 "%(calculated_grade)s</td></tr>"
+
+#~ msgid "Checker"
+#~ msgstr "Checker"
+
+#~ msgid "private_comment"
+#~ msgstr "Private Kommentar"
+
+#, fuzzy
+#~| msgid "Accounts"
+#~ msgid "Account"
+#~ msgstr "Konten"
+
+#~ msgid "Trainer"
+#~ msgstr "Trainer"
+
+#~ msgid "Coordinator"
+#~ msgstr "Koordinator"
+
+#~ msgid "<a href=\"{1}\">Test upload</a>"
+#~ msgstr "<a href=\"{1}\">Testupload</a>"
+
+#~ msgid "Solution Submission Rate"
+#~ msgstr "Einreichungsrate der Lösung"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
+
+#~ msgid "(Final) Submissions"
+#~ msgstr "(Endgültige) Lösung"
+
+#~ msgid "Submissions Total"
+#~ msgstr "Einreichungen insgesamt"
+
+#~ msgid "Final Submissions"
+#~ msgstr "Endgültige Lösungen"
+
+#~ msgid "Submissions"
+#~ msgstr "Einreichungen"
+
+#~ msgid "Solution runtimes"
+#~ msgstr "Laufzeiten der Lösung"
+
+#~ msgid "Submission Activity by Day and Hour"
+#~ msgstr "Einreichungsaktivität nach Tag und Stunde"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Day"
+#~ msgstr "Tag"
+
+#~ msgid "ready"
+#~ msgstr "fertig"

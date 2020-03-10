@@ -472,13 +472,13 @@ form .errorlist li {
 
 /* @group Solution Upload */
 
-#soluion_upload div.left {
+#solution_upload div.left {
 	float: left;
 	width: 48%;
 	padding-right: 2%;
 }
 
-#soluion_upload div.right {
+#solution_upload div.right {
 	float: right;
 	width: 48%;
 	padding-left: 2%;
@@ -488,24 +488,24 @@ a.add-row {
 	
 }
 
-#soluion_upload div.left a {
+#solution_upload div.left a {
 	float: right;
 }
 
-#soluion_upload div.left .errorlist {
+#solution_upload div.left .errorlist {
 	margin-left: 10px;
 	display: block;
 }
 
-#soluion_upload div.left .help {
+#solution_upload div.left .help {
 	margin-left: 10px;
 }
 
-#soluion_upload label {
+#solution_upload label {
 	float: none;
 }
 
-#soluion_upload .simple_overlay {
+#solution_upload .simple_overlay {
 	/* must be hidden initially */ 
     display: none;
 	/* styling */ 
@@ -516,11 +516,11 @@ a.add-row {
 	font-size: 20px;
 }
 
-#soluion_upload .simple_overlay p{
+#solution_upload .simple_overlay p{
 	margin: 0;
 }
 
-#soluion_upload img#spinner {
+#solution_upload img#spinner {
 	display: inline;
 	float: left;
 	position: relative;
@@ -659,7 +659,7 @@ body.fullscreen{
 	margin-top: 40px;
 }
 
-#soluion_upload div.attestation {
+#solution_upload div.attestation {
 	margin-left: 15px;
 }
 

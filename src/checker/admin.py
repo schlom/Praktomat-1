@@ -44,7 +44,7 @@ class CheckerResultAdmin(admin.ModelAdmin):
         return qs
 
     def edit(self, checkerResult):
-        return 'Edit'
+        return _('Edit')
     edit.short_description = _('Edit (Admin Site)')
 
     def view_solution(self, checkerResult):
@@ -54,6 +54,7 @@ class CheckerResultAdmin(admin.ModelAdmin):
     def solution_final(self, checkerResult):
         return checkerResult.solution.final
     solution_final.boolean = True
+    solution_final.short_description = _('Solution Final')
 
     def has_add_permission(self, request):
         return False

@@ -16,8 +16,8 @@ RXFAIL = re.compile(r"^\*\*\*", re.MULTILINE)
 
 
 class IsabelleChecker(Checker):
-    logic = models.CharField(max_length=100, default="HOL", help_text=_("Default heap to use"))
-    additional_theories = models.CharField(max_length=200, blank=True, help_text=_("Isabelle theories to be run in addition to those provided by the user (Library theories or theories uploaded using the Create File Checker). Do not include the file extensions. Separate multiple theories by space"))
+    logic = models.CharField(max_length=100, default="HOL", help_text=_("Default heap to use"), verbose_name=_('Logic'))
+    additional_theories = models.CharField(max_length=200, blank=True, help_text=_("Isabelle theories to be run in addition to those provided by the user (Library theories or theories uploaded using the Create File Checker). Do not include the file extensions. Separate multiple theories by space"), verbose_name=_('Additional Theories'))
 
     def title(self):
         """ Returns the title for this checker category. """
@@ -30,7 +30,7 @@ class IsabelleChecker(Checker):
     @staticmethod
     def description():
         """ Returns a description for this Checker. """
-        return "Verifies that every submitted Isabelle theory can be processed without error"
+        return _("Verifies that every submitted Isabelle theory can be processed without error")
 
 
     def run(self, env):

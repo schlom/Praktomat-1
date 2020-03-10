@@ -51,15 +51,15 @@ class Checker(models.Model):
     If a Checker is not always run, it is only run if a *task_maker*
     starts the complete rerun of all Checkers. """
 
-    created = models.DateTimeField(auto_now_add=True)
-    order = models.IntegerField(help_text = _('Determines the order in which the checker will start. Not necessary continuously!'))
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('Created'))
+    order = models.IntegerField(help_text = _('Determines the order in which the checker will start. Not necessary continuously!'), verbose_name=_('Order'))
 
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name=_('Task'))
 
-    public = models.BooleanField(default=True, help_text = _('Test results are displayed to the submitter.'))
-    required = models.BooleanField(default=False, help_text = _('The test must be passed to submit the solution.'))
-    always = models.BooleanField(default=True, help_text = _('The test will run on submission time.'))
-    critical = models.BooleanField(default=False, help_text = _('If this test fails, do not display further test results.'))
+    public = models.BooleanField(default=True, help_text = _('Test results are displayed to the submitter.'), verbose_name=_('Public'))
+    required = models.BooleanField(default=False, help_text = _('The test must be passed to submit the solution.'), verbose_name=_('Required'))
+    always = models.BooleanField(default=True, help_text = _('The test will run on submission time.'), verbose_name=_('Always'))
+    critical = models.BooleanField(default=False, help_text = _('If this test fails, do not display further test results.'), verbose_name=_('Critical'))
 
     results = GenericRelation("CheckerResult") # enables cascade on delete.
 
@@ -186,16 +186,20 @@ class CheckerResult(models.Model):
         - The log of the run.
         - The time of the run. """
 
+    class Meta:
+        verbose_name = _('Checker Result')
+        verbose_name_plural = _('Checker Results')
+
     from solutions.models import Solution
-    solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
+    solution = models.ForeignKey(Solution, on_delete=models.CASCADE, verbose_name=_('Solution'))
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, verbose_name=_('Content type'))
+    object_id = models.PositiveIntegerField(verbose_name=_('Object Id'))
     checker = GenericForeignKey('content_type', 'object_id')
 
-    passed = models.BooleanField(default=True,  help_text=_('Indicates whether the test has been passed'))
-    log = models.TextField(help_text=_('Text result of the checker'))
-    creation_date = models.DateTimeField(auto_now_add=True)
-    runtime = models.IntegerField(default=0, help_text=_('Runtime in milliseconds'))
+    passed = models.BooleanField(default=True,  help_text=_('Indicates whether the test has been passed'), verbose_name=_('Passed'))
+    log = models.TextField(help_text=_('Text result of the checker'), verbose_name=_('Log'))
+    creation_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
+    runtime = models.IntegerField(default=0, help_text=_('Runtime in milliseconds'), verbose_name=_('Runtime'))
 
     def title(self):
         """ Returns the title of the Checker that did run. """
@@ -257,7 +261,8 @@ class CheckerResultArtefact(models.Model):
     file = models.FileField(
         upload_to = get_checkerresultartefact_upload_path,
         max_length=500,
-        help_text = _('Artefact produced by a checker')
+        help_text = _('Artefact produced by a checker'),
+        verbose_name=_('File')
         )
 
     def __str__(self):
@@ -329,7 +334,8 @@ def check_multiple(solutions, run_secret = False, debug_keep_tmp = False):
 
 
 def run_checks(solution, env, run_all):
-    """  """
+    """
+    """
 
     passed_checkers = set()
     checkers = solution.task.get_checkers()

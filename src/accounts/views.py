@@ -120,7 +120,7 @@ def import_user(request):
                 form._errors["file"] = ErrorList([msg])
     else:
         form = ImportForm()
-    return render(request, 'admin/accounts/user/import.html', {'form': form, 'title':"Import User" })
+    return render(request, 'admin/accounts/user/import.html', {'form': form, 'title':_("Import User") })
 
 @staff_member_required
 def import_tutorial_assignment(request):

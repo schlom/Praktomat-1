@@ -13,7 +13,7 @@ from utilities.file_operations import *
 class CheckStyleChecker(Checker):
 
     name = models.CharField(max_length=100, default="CheckStyle", help_text=_("Name to be displayed on the solution detail page."))
-    configuration = CheckerFileField(help_text=_("XML configuration of CheckStyle. See https://github.com/checkstyle/checkstyle"))
+    configuration = CheckerFileField(help_text=_("XML configuration of CheckStyle. See https://github.com/checkstyle/checkstyle"), verbose_name=_('Configuration'))
 
     def title(self):
         """ Returns the title for this checker category. """

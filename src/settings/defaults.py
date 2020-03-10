@@ -329,7 +329,7 @@ def load_defaults(settings):
     }
 
     d.SHIB_USERNAME = "email"
-    d.SHIB_PROVIDER = "kit.edu"
+    d.SHIB_PROVIDER = "fra-uas.de"
     
     # URL to the MOTD page which will be shown on login page and task list
     d.SYSADMIN_MOTD_URL = None

@@ -615,7 +615,7 @@ def generate_ratingscale(request):
             return HttpResponseRedirect(reverse('admin:attestation_ratingscale_changelist'))
     else:
         form = GenerateRatingScaleForm()
-    return render(request, 'admin/attestation/ratingscale/generate.html', {'form': form, 'title':"Generate RatingScale"  })
+    return render(request, 'admin/attestation/ratingscale/generate.html', {'form': form, 'title':_("Generate RatingScale")  })
 
 
 @login_required

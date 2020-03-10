@@ -12,7 +12,7 @@ class Settings(models.Model):
 
     email_validation_regex = \
             models.CharField(
-		verbose_name=_('Email validation regex'),
+		        verbose_name=_('Email validation regex'),
                 max_length=200,
                 blank=True,
                 default=".*@(stud.)?fra-uas.de",
@@ -21,7 +21,7 @@ class Settings(models.Model):
 
     mat_number_validation_regex = \
             models.CharField(
-		verbose_name=_('Mat number validation regex'),
+		        verbose_name=_('Mat number validation regex'),
                 max_length=200,
                 blank=True,
                 default="\d{5,7}",
@@ -30,28 +30,28 @@ class Settings(models.Model):
 
     new_users_via_sso = \
             models.BooleanField(
-		verbose_name=_('New user via sso'),
+		        verbose_name=_('New user via sso'),
                 default=True,
                 help_text=_("If enabled, users previously unknown to the Praktomat can register via single sign on (eg. Shibboleth).")
             )
 
     deny_registration_from = \
             models.DateTimeField(
-		verbose_name=_('Deny registration from'),
+		        verbose_name=_('Deny registration from'),
                 default=date(2222, 1, 1),
                 help_text=_("After this date, registration won't be possible.")
             )
 
     acount_activation_days = \
             models.IntegerField(
-		verbose_name=_('Account activation days'),
+		        verbose_name=_('Account activation days'),
                 default=10,
                 help_text=_("Days until the user has time to activate his account with the link sent in the registration email.")
             )
 
     account_manual_validation = \
             models.BooleanField(
-		verbose_name=_('Account manual validation'),
+		        verbose_name=_('Account manual validation'),
                 default=False,
                 help_text=_("If enabled, registrations via the website must be manually validated by a trainer.")
             )
@@ -65,14 +65,14 @@ class Settings(models.Model):
 
     anonymous_attestation = \
             models.BooleanField(
-		verbose_name=_('Anonymous attestation'),
+		        verbose_name=_('Anonymous attestation'),
                 default=False,
                 help_text=_("If enabled, the tutor can't see the name of the user who submitted the solution.")
             )
 
     final_grades_published = \
             models.BooleanField(
-		verbose_name=_('Finale grades published'),
+		        verbose_name=_('Finale grades published'),
                 default=False,
                 help_text=_("If enabled, all users can see their final grades.")
             )
@@ -87,7 +87,7 @@ class Settings(models.Model):
 
     final_grades_arithmetic_option = \
             models.CharField(
-		verbose_name=_('Final grades arithmetic option'),
+		        verbose_name=_('Final grades arithmetic option'),
                 max_length=3,
                 choices=ARITHMETIC_CHOICES,
                 default=SUM,
@@ -103,7 +103,7 @@ class Settings(models.Model):
 
     final_grades_plagiarism_option = \
             models.CharField(
-		verbose_name=_('Final grades plagiarism option'),
+		        verbose_name=_('Final grades plagiarism option'),
                 max_length=2,
                 choices=PLAGIARISM_CHOICES,
                 default=NO_PLAGIARISM,
@@ -111,21 +111,21 @@ class Settings(models.Model):
 
     invisible_attestor = \
             models.BooleanField(
-		verbose_name=_('Invisible attestor'),
+		        verbose_name=_('Invisible attestor'),
                 default=False,
                 help_text=_("If enabled, a user will not learn which tutor wrote attestations to his solutions. In particular, tutors will not be named in attestation emails.")
             )
 
     attestation_reply_to = \
             models.EmailField(
-		verbose_name=_('Attestation Reply-To'),
+		        verbose_name=_('Attestation Reply-To'),
                 blank=True,
                 help_text=_("Additional Reply-To: address to be set for attestation emails.")
             )
 
     attestation_allow_run_checkers = \
             models.BooleanField(
-		verbose_name=_('Attestation allow run checkers'),
+		        verbose_name=_('Attestation allow run checkers'),
                 default=False,
                 help_text=_("If enabled, tutors can re-run all checkers for solutions they attest. Can be used to re-run checks that failed due to problems unrelated to the solution (e.g.: time-outs because of high server load), but needs to be used with care, since it may change the results from what the student saw when he submitted his solution.")
             )

@@ -34,17 +34,18 @@ class JUnitChecker(Checker):
     # The fields created, task, public, required and always will be inherited from the abstract base class Checker
     class_name = models.CharField(
             max_length=100,
-            help_text=_("The fully qualified name of the test case class (without .class)")
+            help_text=_("The fully qualified name of the test case class (without .class)"),
+            verbose_name=_('Class name')
         )
-    test_description = models.TextField(help_text = _("Description of the Testcase. To be displayed on Checker Results page when checker is  unfolded."))
+    test_description = models.TextField(help_text = _("Description of the Testcase. To be displayed on Checker Results page when checker is  unfolded."), verbose_name=_('Test Description'))
     name = models.CharField(max_length=100, help_text=_("Name of the Testcase. To be displayed as title on Checker Results page"))
-    ignore = models.CharField(max_length=4096, help_text=_("space-separated list of files to be ignored during compilation, i.e.: these files will not be compiled."), default="", blank=True)
+    ignore = models.CharField(max_length=4096, help_text=_("space-separated list of files to be ignored during compilation, i.e.: these files will not be compiled."), default="", blank=True, verbose_name=_('ignore'))
 
     JUNIT_CHOICES = (
       ('junit4', 'JUnit 4'),
       ('junit3', 'JUnit 3'),
     )
-    junit_version = models.CharField(max_length=16, choices=JUNIT_CHOICES, default="junit3")
+    junit_version = models.CharField(max_length=16, choices=JUNIT_CHOICES, default="junit3", verbose_name=_('JUnit Version'))
 
     def runner(self):
         return {'junit4' : 'org.junit.runner.JUnitCore', 'junit3' : 'junit.textui.TestRunner' }[self.junit_version]

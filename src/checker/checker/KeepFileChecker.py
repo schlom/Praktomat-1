@@ -14,10 +14,10 @@ from django.contrib import admin
 
 
 class KeepFileChecker(Checker):
-    filename = models.CharField(max_length=500, blank=True, help_text=_("The name of the file to preserve (e.g. out.txt)"))
+    filename = models.CharField(max_length=500, blank=True, help_text=_("The name of the file to preserve (e.g. out.txt)"), verbose_name=_('Filename'))
 
     def title(self):
-        return "Keep file %s" % self.filename
+        return _("Keep file %s") % self.filename
 
     def run(self, env):
         path = os.path.join(env.tmpdir(), self.filename)

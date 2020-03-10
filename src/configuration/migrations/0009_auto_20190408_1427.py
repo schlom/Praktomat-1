@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='settings',
             name='email_validation_regex',
-            field=models.CharField(blank=True, default='.*@(student.)?kit.edu', help_text='Regular expression used to check the email domain of registering users.', max_length=200),
+            field=models.CharField(blank=True, default='.*@(stud.)?fra-uas.de', help_text='Regular expression used to check the email domain of registering users.', max_length=200),
         ),
         migrations.AlterField(
             model_name='settings',

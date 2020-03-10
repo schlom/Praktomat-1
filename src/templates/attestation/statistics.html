@@ -12,18 +12,18 @@
 				margin: [80, 100, 60, 100],
 			},
 			title: {
-				text: {% trans 'Solution Submission Rate' %},
+				text: 'Solution Submission Rate',
 			},
 			xAxis: {
 				type: 'datetime',
 				title: {
-					text: {% trans 'Date' %}
+					text: 'Date'
 				},
 				max: Date.parse('{{task.submission_date|date:"SHORT_DATE_FORMAT"}}'),
 			},
 			yAxis: [{
 				title: {
-					text: {% trans '(Final) Submissions' %},
+					text: '(Final) Submissions',
 					style: {
 						color: '#AA4643'
 					},
@@ -36,7 +36,7 @@
 				min: 0,
 			}, {
 				title: {
-					text: {% trans 'Submissions Total' %},
+					text: 'Submissions Total',
 					style: {
 						color: '#4572A7'
 					},
@@ -65,7 +65,7 @@
 					date = new Date(this.x);
 					// getMonth() is zero-based
 					date_str = date.getDate() + '.' + (date.getMonth()+1) +'.'+ date.getFullYear();
-					if (this.series.name == {% trans 'Submissions Total' %}) {
+					if (this.series.name == 'Submissions Total') {
 						return '<b>' + this.series.name + '</b><br/>' + date_str + ': ' + Math.round(this.y*100) + '%' ;
 					} else {
 						return '<b>' + this.series.name + '</b><br/>' + date_str + ': ' + this.y ;
@@ -82,7 +82,7 @@
 			},
 			series: [{
 				type: 'area',
-				name: {% trans 'Submissions Total' %},
+				name: 'Submissions Total',
 				color: '#4572A7',
 				yAxis: 1,
 				pointInterval: 24 * 3600 * 1000,
@@ -90,14 +90,14 @@
 				data: {{acc_submissions}}
 			}, {
 				type: 'line',
-				name: {% trans 'Final Submissions' %},
+				name: 'Final Submissions',
 				color: '#AA4643',
 				pointInterval: 24 * 3600 * 1000,
 				pointStart: Date.parse('{{task.publication_date|date:"SHORT_DATE_FORMAT"}}'),
 				data: {{submissions_final}}
 			}, {
 				type: 'line',
-				name: {% trans 'Submissions' %},
+				name: 'Submissions',
 				color: '#89A54E',
 				pointInterval: 24 * 3600 * 1000,
 				pointStart: Date.parse('{{task.publication_date|date:"SHORT_DATE_FORMAT"}}'),
@@ -114,17 +114,17 @@
 					margin: [80, 100, 60, 100],
 				},
 				title: {
-					text: {% trans 'Solution runtimes' %},
+					text: 'Solution runtimes',
 				},
 				xAxis: {
 					type: 'datetime',
 					title: {
-						text: {% trans 'Date' %}
+						text: 'Date'
 					},
 				},
 				yAxis: {
 					title: {
-						text: {% trans 'Runtime (ms)' %},
+						text: 'Runtime (ms)',
 						style: {
 							color: '#AA4643'
 						},
@@ -189,7 +189,7 @@
 				margin: [80, 100, 60, 100],
 			},
 			title: {
-				text: {% trans 'Submission Activity by Day and Hour' %}
+				text: 'Submission Activity by Day and Hour'
 			},
 			credits: {
 				enabled: false
@@ -197,7 +197,7 @@
 			xAxis: {
 				title: {
 					enabled: true,
-					text: {% trans 'Time' %}
+					text: 'Time'
 				},
 				type: "datetime",
 				min: 0,
@@ -205,7 +205,7 @@
 			},
 			yAxis: {
 				title: {
-					text: {% trans 'Day' %},
+					text: 'Day',
 					margin: 80,
 				},
 				categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -248,12 +248,12 @@
 			},
 			series: [
 				{
-					name: {% trans 'Submissions' %},
+					name: 'Submissions',
 					color: '#89A54E',
 					data: {{creation_times}}
 				},
 				{
-					name: {% trans 'Final Submissions' %},
+					name: 'Final Submissions',
 					color: '#AA4643',
 					data: {{creation_times_final}}
 				}
@@ -270,7 +270,7 @@
 				height:200,
 			},
 			title: {
-				text: {% trans 'Attestations' %}
+				text: 'Attestations'
 			},
 			credits: {
 				enabled: false
@@ -302,11 +302,11 @@
 			},
 			series: [
 				{
-					name: {% trans 'ready' %},
+					name: 'ready',
 					data: [{{attestations.final}}]
 				},
 				{
-					name: {% trans 'published' %},
+					name: 'published',
 					data: [{{attestations.published}}]
 				}
 			]
@@ -362,7 +362,7 @@
 				},
 
 				series: [{
-					name: {% trans 'Ratings' %},
+					name: 'Ratings',
 					data: ratings,
 					dataLabels: {
 						enabled: true,

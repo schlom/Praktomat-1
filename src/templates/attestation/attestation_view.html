@@ -73,7 +73,7 @@
 		{%endfor%}
 		{% if attest.final_grade %}
 			<div class="result">
-				<h3 href="#">Final grade: <span class="mark"/>{{attest.final_grade}}</h3>
+				<h3 href="#">{% trans 'Final grade: ' %}<span class="mark"/>{{attest.final_grade}}</h3>
 			</div>
 		{% endif %}
 	</div>

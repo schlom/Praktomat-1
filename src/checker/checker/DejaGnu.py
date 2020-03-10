@@ -27,6 +27,8 @@ RXRUN_BY   = re.compile(r"Run By .* on ")
 
 # Stuff to remove from output
 RXREMOVE   = re.compile(r"(Schedule of variations:.*interface file.)|(Running \./[ -z]*/[a-z]*\.exp \.\.\.)", re.DOTALL)
+RXREMOVE1  = re.compile(r"spawn .*")
+RXREMOVE2  = re.compile(r"testcase .*")
 
 class DejaGnu(object):
     """ Common superclass for all DejaGnu-related stuff. """
@@ -55,7 +57,7 @@ class DejaGnuTester(Checker, DejaGnu):
     """ Run a test case on the program.  Requires a previous `DejaGnuSetup'. """
 
     name = models.CharField(max_length=100, help_text=_("The name of the Test"))
-    test_case = CheckerFileField(help_text=_("In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert wurden.     Siehe    auch den Abschnitt <em>How to write a test case</em> im <a target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/\">DejaGnu-Handbuch</a>."))
+    test_case = CheckerFileField(help_text=_("In den folgenden DejaGnu-Testfällen werden typischerweise Funktionen aufgerufen, die beim vorherigen Schritt <em>Tests einrichten</em> definiert wurden.     Siehe    auch den Abschnitt <em>How to write a test case</em> im <a target=\"_blank\" href=\"https://www.gnu.org/software/dejagnu/manual/\">DejaGnu-Handbuch</a>."), verbose_name=_('Test Case'))
 
     def __str__(self):
         return self.name
@@ -83,6 +85,8 @@ class DejaGnuTester(Checker, DejaGnu):
 
         # Clean the output
         log = re.sub(RXREMOVE, "", log)
+        log = re.sub(RXREMOVE1, "", log)
+        log = re.sub(RXREMOVE2, "", log)
 
         log = re.sub(re.escape(settings.JVM_SECURE), os.path.basename(settings.JVM_SECURE), log)
 
@@ -90,9 +94,9 @@ class DejaGnuTester(Checker, DejaGnu):
         log = escape(log)
 
         # Every line that contains a passed message is to be enhanced.
-        log = re.sub(RXPASS, r'\1 <b class="passed"> \2 </b> \3', log)
+        log = re.sub(RXPASS, r'\1 <b class="passed"> \2 </b><strong style="color:LightGreen;"> \3 </strong>', log)
         # Every line that contains a failure message is to be enhanced.
-        return  "<samp><pre>" + re.sub(RXFAIL, r'\1 <b class="error"> \2 </b> \3', log) + "</pre></samp>"
+        return  "<samp><pre>" + re.sub(RXFAIL, r'\1 <b class="error"> \2 </b><strong style="color:Tomato;"> \3 </strong>', log) + "</pre></samp>"
 
 
     # Run tests.  Return a CheckerResult.
@@ -158,7 +162,7 @@ DEFAULT_TEST_CASES = """# `tests.exp' template
 
 class DejaGnuSetup(Checker, DejaGnu):
 
-    test_defs = CheckerFileField(help_text=_("Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/\">DejaGnu-Testrahmen</a>, um die Programme zu testen. Die in dieser Datei enthaltenen Definitionen gelten für alle Testfälle dieser Aufgabe. Sie werden beim Testen in die DejaGnu-Datei <samp>default.exp</samp> geschrieben. (Vergl. hier zu den Abschnitt <em>Target dependent procedures</em> im    <a href=\"https://www.gnu.org/software/dejagnu/\" target=\"_blank\">DejaGnu-Handbuch</a>.) Die Variablen PROGRAM und JAVA werden mit dem Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."))
+    test_defs = CheckerFileField(help_text=_("Das Setup benutzt den <a href=\"https://www.gnu.org/software/dejagnu/\">DejaGnu-Testrahmen</a>, um die Programme zu testen. Die in dieser Datei enthaltenen Definitionen gelten für alle Testfälle dieser Aufgabe. Sie werden beim Testen in die DejaGnu-Datei <samp>default.exp</samp> geschrieben. (Vergl. hier zu den Abschnitt <em>Target dependent procedures</em> im    <a href=\"https://www.gnu.org/software/dejagnu/\" target=\"_blank\">DejaGnu-Handbuch</a>.) Die Variablen PROGRAM und JAVA werden mit dem Programmnamen bzw. dem Pfad zur Java-Runtime ersetzt."), verbose_name=_('Test Defs'))
 
     def title(self):
         return "Tests einrichten"

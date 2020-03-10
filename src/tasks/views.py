@@ -75,10 +75,11 @@ def taskDetail(request, task_id):
                   })
 
 class ImportForm(forms.Form):
-    file = forms.FileField(label=_('File'))
+    file = forms.FileField()#label=_('File'))
     is_template = forms.BooleanField(initial=True,
                                      required=False,
-                                     help_text="Enabled if the imported task is just used as template to create another task. If disabled, the publication date and the rating scale are also imported. This means that students might see the task immediately, and rating scales might be duplicated.", label=_('Is template'))
+                                     help_text=_("Enabled if the imported task is just used as template to create another task. If disabled, the publication date and the rating scale are also imported. This means that students might see the task immediately, and rating scales might be duplicated.")
+                                     , label=_('Is template'))
 
 @staff_member_required
 def import_tasks(request):
@@ -96,7 +97,7 @@ def import_tasks(request):
                 form._errors["file"] = ErrorList([msg])
     else:
         form = ImportForm()
-    return render(request, 'admin/tasks/task/import.html', {'form': form, 'title':_("Import Task")  })
+    return render(request, 'admin/tasks/task/import.html', {'form': form, 'title':"Import Task"  })
 
 @staff_member_required
 def download_final_solutions(request, task_id):

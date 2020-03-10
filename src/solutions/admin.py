@@ -42,14 +42,12 @@ class SolutionAdmin(admin.ModelAdmin):
         """ Run Checkers (including those not run at submission) for selected solution """
         check_multiple(queryset, True)
         self.message_user(request, _("Checkers (including those not run at submission) for selected solutions were successfully run."))
-
     run_checkers_all.short_description = _("Run Checkers (including those not run at submission) for selected solution ")
 
     def run_checkers(self, request, queryset):
         """ Run Checkers (only those also run at submission) for selected solutions"""
         check_multiple(queryset, False)
         self.message_user(request, _("Checkers (only those also run at submission) for selected solutions were successfully run."))
-
     run_checkers.short_description = _("Run Checkers (only those also run at submission) for selected solutions")
 
     def mod_plagiarism(self, queryset, value):
@@ -73,7 +71,7 @@ class SolutionAdmin(admin.ModelAdmin):
 
 
     def edit(self, solution):
-        return 'Edit'
+        return _('Edit')
     edit.short_description = _('Edit (Admin Site)')
 
     def view_url(self, solution):
@@ -106,11 +104,13 @@ class SolutionAdmin(admin.ModelAdmin):
     def tests_failed(self,solution):
         return CheckerResult.objects.filter(solution=solution,passed=False).exists()
     tests_failed.boolean = True
+    tests_failed.short_description = _('Tests failed')
 
     def latest_of_only_failed(self, solution):
         successfull_solution_from_user_for_task_available = solution.final or  [ s for s in Solution.objects.all().filter(author=solution.author, task=solution.task) if s.final]
         is_latest_failed_attempt = (not solution.final) and (Solution.objects.all().filter(task=solution.task, author=solution.author).aggregate(Max('number'))['number__max'] == solution.number)
         return (not successfull_solution_from_user_for_task_available) and is_latest_failed_attempt
     latest_of_only_failed.boolean = True
+    latest_of_only_failed.short_description = _('Latest of only failed')
 
 admin.site.register(Solution, SolutionAdmin)

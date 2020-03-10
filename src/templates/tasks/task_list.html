@@ -43,7 +43,7 @@ function resize(id) {
 	{% if user_text %}<pre>{{ user_text }}</pre>{% endif %}
 </div>
 
-<div style="font-size:18px;color:red;font-weight: bold;">{% if calculated_grade < threshold and user.is_user %}{% chunk 'Warning message' %}{% endif %}</div>
+<div style="font-size:18px;color:red;font-weight: bold;">{% if calculated_grade < threshold and user.is_user %}{% chunk 'warning message' %}{% endif %}</div>
 
 {% regroup tasks by 0.expired as grouped_tasks %}
 

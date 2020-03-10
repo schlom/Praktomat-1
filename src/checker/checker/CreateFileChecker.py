@@ -16,12 +16,12 @@ class CheckerWithFile(Checker):
     class Meta:
         abstract = True
 
-    file = CheckerFileField(help_text=_("The file that is copied into the sandbox"))
-    filename = models.CharField(max_length=500, blank=True, help_text=_("What the file will be named in the sandbox. If empty, we try to guess the right filename!"))
-    path = models.CharField(max_length=500, blank=True, help_text=_("Subfolder in the sandbox which shall contain the file."))
-    unpack_zipfile = models.BooleanField(default=False, help_text=_("Unpack the zip file into the given subfolder. (It will be an error if the file is not a zip file; the filename is ignored.)"))
-    is_sourcecode = models.BooleanField(default=False, help_text=_("The file is (or, if it is a zipfile to be unpacked: contains) source code"))
-    include_in_solution_download = models.BooleanField(default=True, help_text=_("The file is (or, if it is a zipfile to be unpacked: its content) is included in \"full\" solution download .zip files"))
+    file = CheckerFileField(help_text=_("The file that is copied into the sandbox"), verbose_name=_('File'))
+    filename = models.CharField(max_length=500, blank=True, help_text=_("What the file will be named in the sandbox. If empty, we try to guess the right filename!"), verbose_name=_('Filename'))
+    path = models.CharField(max_length=500, blank=True, help_text=_("Subfolder in the sandbox which shall contain the file."), verbose_name=_('Path'))
+    unpack_zipfile = models.BooleanField(default=False, help_text=_("Unpack the zip file into the given subfolder. (It will be an error if the file is not a zip file; the filename is ignored.)"), verbose_name=_('Unpack Zip File'))
+    is_sourcecode = models.BooleanField(default=False, help_text=_("The file is (or, if it is a zipfile to be unpacked: contains) source code"), verbose_name=_('is Sourcecode'))
+    include_in_solution_download = models.BooleanField(default=True, help_text=_("The file is (or, if it is a zipfile to be unpacked: its content) is included in \"full\" solution download .zip files"), verbose_name=_('Include in solution download'))
 
 
 
@@ -71,7 +71,7 @@ class CreateFileChecker(CheckerWithFile):
 
     def title(self):
         """ Returns the title for this checker category. """
-        return "Copy File"
+        return _("Copy File")
 
     @staticmethod
     def description():

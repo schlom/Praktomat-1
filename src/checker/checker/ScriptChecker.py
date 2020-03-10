@@ -14,10 +14,10 @@ from utilities.file_operations import *
 class ScriptChecker(Checker):
 
     name = models.CharField(max_length=100, default="Externen Tutor ausführen", help_text=_("Name to be displayed on the solution detail page."))
-    filename = models.CharField(max_length=500, blank=True, help_text=_("What the file will be named in the sandbox. If empty, we try to guess the right filename!"))
-    shell_script = CheckerFileField(help_text=_("A script (e.g. a shell script) to run. Its output will be displayed to the user (if public), the checker will succeed if it returns an exit code of 0. The environment will contain the variables JAVA and PROGRAM."))
-    remove = models.CharField(max_length=5000, blank=True, help_text=_("Regular expression describing passages to be removed from the output."))
-    returns_html = models.BooleanField(default= False, help_text=_("If the script doesn't return HTML it will be enclosed in &lt; pre &gt; tags."))
+    filename = models.CharField(max_length=500, blank=True, help_text=_("What the file will be named in the sandbox. If empty, we try to guess the right filename!"), verbose_name=_('filename'))
+    shell_script = CheckerFileField(help_text=_("A script (e.g. a shell script) to run. Its output will be displayed to the user (if public), the checker will succeed if it returns an exit code of 0. The environment will contain the variables JAVA and PROGRAM."), verbose_name=_('Shell Script'))
+    remove = models.CharField(max_length=5000, blank=True, help_text=_("Regular expression describing passages to be removed from the output."), verbose_name=_('Remove'))
+    returns_html = models.BooleanField(default= False, help_text=_("If the script doesn't return HTML it will be enclosed in &lt; pre &gt; tags."), verbose_name=_('Returns HTML'))
 
 
     def title(self):

@@ -18,7 +18,7 @@ class TextChecker(Checker):
                       (1, _('The text has to be in the solution')),]
 
     text = models.TextField()
-    choices = models.IntegerField(default=1, verbose_name='Select:', choices=SET_OF_CHOICES, blank=False)
+    choices = models.IntegerField(default=1, verbose_name=_('Select:'), choices=SET_OF_CHOICES, blank=False)
 
 
     def title(self):

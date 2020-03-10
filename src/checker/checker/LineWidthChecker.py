@@ -13,10 +13,10 @@ from checker.basemodels import Checker
 
 class LineWidthChecker(Checker):
 
-    max_line_length = models.IntegerField(default = 120, help_text=_("The maximum length of a line of code."))
-    tab_width =  models.IntegerField(default = 4, help_text=_("The amount of characters a tab represents."))
-    include = models.CharField(max_length=100, blank = True, default=".*", help_text=_("Regular expression describing the filenames to be checked. Case insensitive. Blank: use all files."))
-    exclude = models.CharField(max_length=100, blank = True, default=".*\.txt$", help_text=_("Regular expression describing included filenames, which shall be excluded. Case insensitive. Blank: use all files."))
+    max_line_length = models.IntegerField(default = 120, help_text=_("The maximum length of a line of code."), verbose_name=_('Max line length'))
+    tab_width =  models.IntegerField(default = 4, help_text=_("The amount of characters a tab represents."), verbose_name=_('tab width'))
+    include = models.CharField(max_length=100, blank = True, default=".*", help_text=_("Regular expression describing the filenames to be checked. Case insensitive. Blank: use all files."), verbose_name=_('include'))
+    exclude = models.CharField(max_length=100, blank = True, default=".*\.txt$", help_text=_("Regular expression describing included filenames, which shall be excluded. Case insensitive. Blank: use all files."), verbose_name=_('exclude'))
 
     def title(self):
         """ Returns the title for this checker category. """

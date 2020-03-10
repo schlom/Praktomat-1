@@ -20,9 +20,9 @@ from utilities.file_operations import *
 
 class DiffChecker(Checker):
     shell_script = CheckerFileField(help_text=_(
-        "The shell script whose output for the given input file is compared to the given output file: The substrings JAVA and PROGRAM got replaced by Praktomat determined values."))
-    input_file = CheckerFileField(blank=True, help_text=_("The file containing the input for the program."))
-    output_file = CheckerFileField(blank=True, help_text=_("The file containing the output for the program."))
+        "The shell script whose output for the given input file is compared to the given output file: The substrings JAVA and PROGRAM got replaced by Praktomat determined values."), verbose_name=_('Shell Script'))
+    input_file = CheckerFileField(blank=True, help_text=_("The file containing the input for the program."), verbose_name=_('Input File'))
+    output_file = CheckerFileField(blank=True, help_text=_("The file containing the output for the program."), verbose_name=_('Output File'))
 
     def clean(self):
         super(DiffChecker, self).clean()

@@ -13,14 +13,16 @@ from utilities.file_operations import *
 
 
 class RChecker(Checker):
-    r_script = models.CharField(max_length=100, help_text=_("R script to execute. If left blank, it will run any *.R file, as long as there is only one."), blank=True)
+    r_script = models.CharField(max_length=100, help_text=_("R script to execute. If left blank, it will run any *.R file, as long as there is only one."), blank=True, verbose_name=_('R Script'))
     require_plots = models.BooleanField(
         default = False,
-        help_text = _("Require the script to create an Rplots.pdf file.")
+        help_text = _("Require the script to create an Rplots.pdf file."),
+        verbose_name=_('Require Plots')
         )
     keep_plots = models.BooleanField(
         default = True,
-        help_text = _("If the R script creates a Rplots.pdf file, keep it.")
+        help_text = _("If the R script creates a Rplots.pdf file, keep it."),
+        verbose_name=_('Keep Plots')
         )
 
 
@@ -33,7 +35,7 @@ class RChecker(Checker):
     @staticmethod
     def description():
         """ Returns a description for this Checker. """
-        return "Runs a submitted R script using the Rscript tool"
+        return _("Runs a submitted R script using the Rscript tool")
 
 
     def run(self, env):

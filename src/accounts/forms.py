@@ -178,7 +178,7 @@ class AdminUserChangeForm(UserBaseChangeForm):
                 del cleaned_data["mat_number"]
         return cleaned_data
 
-reactivation_message_text = """ {% autoescape off %}
+reactivation_message_text = _(""" {% autoescape off %}
 You're receiving this e-mail because you have been registered at {{ site_name }}.
 
 Please go to the following page to activate your account within {{ expiration_days }} days.
@@ -191,20 +191,20 @@ Thanks for using our site!
 
 The {{ site_name }} team
 
-{% endautoescape %} """
+{% endautoescape %} """)
 
 class ImportForm(forms.Form):
-    file = forms.FileField(required=True, help_text = _("The file exported from the list view. Already existing users will be ignored."))
-    require_reactivation = forms.BooleanField(initial=True, required=False, help_text = _("Deactivate all imported users"))
-    send_reactivation_email = forms.BooleanField(initial=False, required=False, help_text = _("Send activation email to imported users (if deactivated during import)"))
-    meassagetext = forms.CharField(required=False, widget=forms.Textarea, initial = reactivation_message_text, help_text = _("Message to be embedded into activation mail if reactivation is required."))
+    file = forms.FileField(required=True, help_text = _("The file exported from the list view. Already existing users will be ignored."), label=_('File'))
+    require_reactivation = forms.BooleanField(initial=True, required=False, help_text = _("Deactivate all imported users"), label=_('Require Reactivation'))
+    send_reactivation_email = forms.BooleanField(initial=False, required=False, help_text = _("Send activation email to imported users (if deactivated during import)"), label=_('Send reactivation mail'))
+    meassagetext = forms.CharField(required=False, widget=forms.Textarea, initial = reactivation_message_text, help_text = _("Message to be embedded into activation mail if reactivation is required."), label=_('Messagetext'))
 
 class ImportTutorialAssignmentForm(forms.Form):
     csv_file = forms.FileField(required=True, help_text = _("The csv file containing the tutorial name and the students' mat number."), label=_('csv-File'))
     delimiter = forms.CharField(required=True, max_length = 1, initial = ";", help_text = _("A one-character string used to separate fields."), label=_('Delimiter'))
     quotechar = forms.CharField(required=True, max_length = 1, initial = "|", help_text = _("A one-character string used to quote fields."), label=_('Quotechar'))
     name_coloum = forms.IntegerField(required=True, initial = 0, help_text = _("The index of the field containing the name of the tutorial."), label=_('Name column'))
-    mat_coloum = forms.IntegerField(required=True, initial = 1, help_text = _("The index of the field containing the mat number of the user."), label=('Mat column'))
+    mat_coloum = forms.IntegerField(required=True, initial = 1, help_text = _("The index of the field containing the mat number of the user."), label=_('Mat column'))
 
 class ImportUserTextsForm(forms.Form):
     csv_file = forms.FileField(required=True, help_text = _("The csv file containing the tutorial name and the students' mat number."), label=_('csv-File'))

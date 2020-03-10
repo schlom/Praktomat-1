@@ -72,6 +72,7 @@ class TaskAdmin(admin.ModelAdmin):
         response = HttpResponse(Task.export_Tasks(queryset).read(), content_type="application/zip")
         response['Content-Disposition'] = 'attachment; filename=TaskExport.zip'
         return response
+    export_tasks.short_description = _('Export Tasks')
 
 
     def run_all_checkers(self, request, queryset):
@@ -81,7 +82,8 @@ class TaskAdmin(admin.ModelAdmin):
         for task in queryset:
             count += task.check_all_final_solutions()
         end = timer()
-        self.message_user(request, "%d final solutions were successfully checked (%d seconds elapsed)." % (count, end-start))
+        self.message_user(request, count + _(" final solutions were successfully checked (%d seconds elapsed).") % (end-start))
+    run_all_checkers.short_description = _('Run all checkers')
 
     def get_urls(self):
         """ Add URL to task import """
@@ -103,8 +105,7 @@ class TaskAdmin(admin.ModelAdmin):
     def useful_links(self, instance):
         if instance.id:
             return format_html (
-                _('<a href="{0}">Attestations (including for-user-submission)</a> • ') +
-                _('<a href="{1}">Test upload</a>'),
+                _('<a href="{0}">Attestations (including for-user-submission)</a> • <a href="{1}">Test upload</a>'),
                 reverse('attestation_list', kwargs={'task_id': instance.id}),
                 reverse('upload_test_solution', kwargs={'task_id': instance.id})
                 )

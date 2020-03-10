@@ -159,7 +159,7 @@ class Task(models.Model):
 
     @classmethod
     def export_Tasks(cls, queryset):
-        """ Serializes a task queryset and related checkers to xml and bundels it with all files into a zipfile  """
+        """ Serializes a task queryset and related checkers to xml and bundles it with all files into a zipfile  """
         from solutions.models import Solution, SolutionFile
         from attestation.models import RatingScaleItem
 
@@ -272,26 +272,39 @@ def get_htmlinjectorfile_storage_path(instance, filename):
 
 class MediaFile(models.Model):
 
+    class Meta:
+        verbose_name = _('Media File')
+        verbose_name_plural = _('Media Files')
+
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    media_file = DeletingFileField(upload_to=get_mediafile_storage_path, max_length=500)
+    media_file = DeletingFileField(upload_to=get_mediafile_storage_path, max_length=500, verbose_name= _('Media File'))
 
 
 class HtmlInjector(models.Model):
+
+    class Meta:
+        verbose_name = _('HTML Injector')
+        verbose_name_plural = _('HTML Injectors')
+
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     inject_in_solution_view      = models.BooleanField(
         default=False,
-        help_text = _("Indicates whether HTML code shall be injected in public  solution views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/")
+        help_text = _("Indicates whether HTML code shall be injected in public  solution views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"),
+        verbose_name= _('inject in solution view')
     )
     inject_in_solution_full_view = models.BooleanField(
         default=False,
-        help_text = _("Indicates whether HTML code shall be injected in private solution views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/full")
+        help_text = _("Indicates whether HTML code shall be injected in private solution views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/full"),
+        verbose_name=_('inject in solution full view')
     )
     inject_in_attestation_edit = models.BooleanField(
         default=True,
-        help_text = _("Indicates whether HTML code shall be injected in attestation edits, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134/edit")
+        help_text = _("Indicates whether HTML code shall be injected in attestation edits, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134/edit"),
+        verbose_name=_('inject in attestation edit')
     )
     inject_in_attestation_view = models.BooleanField(
         default=False,
-        help_text = _("Indicates whether HTML code shall be injected in attestation views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134")
+        help_text = _("Indicates whether HTML code shall be injected in attestation views, e.g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"),
+        verbose_name=_('inject in attestation view')
     )
-    html_file = DeletingFileField(upload_to=get_htmlinjectorfile_storage_path, max_length=500)
+    html_file = DeletingFileField(upload_to=get_htmlinjectorfile_storage_path, max_length=500, verbose_name=_('HTML File'))

@@ -13,56 +13,32 @@ PRAKTOMAT_PATH = dirname(dirname(dirname(__file__)))
 PRAKTOMAT_ID = basename(dirname(PRAKTOMAT_PATH))
 
 match = re.match(r'''
-    (?:praktomat_)?
-    (?P<algo1>algo1_)?
-    (?P<cram>cram_)?
-    (?P<birap>birap_)?
-    (?P<tba>tba_)?
-    (?P<mlfds>mlfds_)?
-    (?P<pp>pp_)?
-    (?P<iimb>iimb_)?
-    (?P<year>\d+)_
-    (?P<semester>WS|SS)
-    (?P<abschluss>_Abschluss)?
-    (?P<mirror>_Mirror)?
-    ''', PRAKTOMAT_ID, flags=re.VERBOSE)
+	(?:praktomat_)?
+	(?P<oop>OOP_)?
+	(?P<swprojekt>SW_Projekt_)?
+	(?P<year>\d+)_
+	(?P<semester>WS|SS)
+	''', PRAKTOMAT_ID, flags=re.VERBOSE)
 
 if match:
-    if match.group('algo1') is not None:
-        SITE_NAME = 'Algorithmen I '
-    elif match.group('cram') is not None:
-        SITE_NAME = 'CRAM '
-    elif match.group('birap') is not None:
-        SITE_NAME = 'BIRAP '
-    elif match.group('mlfds') is not None:
-        SITE_NAME = 'MLFDS '
-    elif match.group('tba') is not None:
-        SITE_NAME = 'Theorembeweiser '
-    elif match.group('pp') is not None:
-        SITE_NAME = 'Programmierparadigmen '
-    elif match.group('iimb') is not None:
-        SITE_NAME = 'Informatik im Maschinenbau '
-    else:
-        SITE_NAME = 'Programmieren '
+	if match.group('oop') is not None:
+		SITE_NAME = 'OOP Java Informatik '
+	elif match.group('swprojekt') is not None:
+		SITE_NAME = 'Softwareprojekt EKT '
+	else:
+		SITE_NAME = 'Programmieren '
 
-    if match.group('abschluss'):
-        SITE_NAME += "Abschlussaufgaben "
-
-    year = int(match.group('year'))
-    if match.group('semester') == "WS":
-        SITE_NAME += "Wintersemester %d/%d" % (year, year+1)
-    else:
-        SITE_NAME += "Sommersemester %d" % year
-
-    if match.group('mirror') is not None:
-        SITE_NAME += " (Mirror)"
-        MIRROR = True
-    else:
-        MIRROR = False
+	year = int(match.group('year'))
+	if match.group('semester') == "WS":
+		SITE_NAME += "Wintersemester %d/%d" % (year, year+1)
+	else:
+		SITE_NAME += "Sommersemester %d" % year
 
 else:
     raise NotImplementedError("Autoconfig for PRAKTOMAT_ID %s not possible", PRAKTOMAT_ID)
 
+# The name that will be displayed on top of the page and in emails.
+#SITE_NAME = 'Praktomat der Frankfurt University of Applied Sciences'
 
 # The URL where this site is reachable. 'http://localhost:8000/' in case of the
 # development server.
@@ -102,6 +78,7 @@ if "Programmieren" in SITE_NAME:
 
 # Example: "/home/media/media.lawrence.com/"
 UPLOAD_ROOT = join(dirname(PRAKTOMAT_PATH), "PraktomatSupport/")
+#SANDBOX_DIR = join('/home/praktomat/sandbox/', PRAKTOMAT_ID)
 
 if MIRROR:
     SANDBOX_DIR = join('/srv/praktomat/sandbox_Mirror/', PRAKTOMAT_ID)
@@ -137,16 +114,18 @@ DATABASES = {
 # Private key used to sign uploded solution files in submission confirmation email
 PRIVATE_KEY = '/srv/praktomat/mailsign/signer_key.pem'
 CERTIFICATE = '/srv/praktomat/mailsign/signer.pem'
+Private_KEY = None
 
 # Enable Shibboleth:
-SHIB_ENABLED = True
+SHIB_ENABLED = FALSE
 REGISTRATION_POSSIBLE = False
 
-SYSADMIN_MOTD_URL = "https://praktomat.cs.kit.edu/sysadmin_motd.html"
+SYSADMIN_MOTD_URL = None
 
 # Use a dedicated user to test submissions
 USEPRAKTOMATTESTER = False
 
+# It is recommended to use DOCKER and not a tester account
 # for using Docker from https://github.com/nomeata/safe-docker
 # Use docker to test submission
 # To allow Praktomat the execution of scriptfile  safe-docker  without requiring a password:

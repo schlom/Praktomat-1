@@ -27,11 +27,11 @@ class Builder(Checker):
     _env                            = {}
 
 
-    _flags              = models.CharField(max_length = 1000, blank = True, default="-Wall", help_text = _('Compiler flags'))
-    _output_flags      = models.CharField(max_length = 1000, blank = True, default ="-o %s", help_text = _('Output flags. \'%s\' will be replaced by the program name.'))
-    _libs              = models.CharField(max_length = 1000, blank = True, default = "", help_text = _('Compiler libraries'))
-    _file_pattern      = models.CharField(max_length = 1000, default = r"^[a-zA-Z0-9_]*$", help_text = _('Regular expression describing all source files to be passed to the compiler.'))
-    _main_required    = models.BooleanField(default = True, help_text = _('Is a submission required to provide a main method?'))
+    _flags              = models.CharField(max_length = 1000, blank = True, default="-Wall", help_text = _('Compiler flags'), verbose_name=_('Flags'))
+    _output_flags      = models.CharField(max_length = 1000, blank = True, default ="-o %s", help_text = _('Output flags. \'%s\' will be replaced by the program name.'), verbose_name=_('Output Flags'))
+    _libs              = models.CharField(max_length = 1000, blank = True, default = "", help_text = _('Compiler libraries'), verbose_name=_('Libs'))
+    _file_pattern      = models.CharField(max_length = 1000, default = r"^[a-zA-Z0-9_]*$", help_text = _('Regular expression describing all source files to be passed to the compiler.'), verbose_name=_('File Pattern'))
+    _main_required    = models.BooleanField(default = True, help_text = _('Is a submission required to provide a main method?'), verbose_name=_('Main required'))
 
     def title(self):
         return "%s - Compiler" % self.language()

@@ -48,18 +48,18 @@ class TestOnlyBuildingBuilder(HaskellBuilder):
 class HaskellTestFrameWorkChecker(CheckerWithFile):
     """ Checker for Haskell TestFrameWork Tests. """
 
-    test_description = models.TextField(help_text = _("Description of the Testcase. To be displayed on Checker Results page when checker is unfolded."))
+    test_description = models.TextField(help_text = _("Description of the Testcase. To be displayed on Checker Results page when checker is unfolded."), verbose_name=_('Test Description'))
     name = models.CharField(max_length=100, help_text=_("Name of the Testcase. To be displayed as title on Checker Results page"))
-    ignore = models.CharField(max_length=4096, help_text=_("space-separated list of files to be ignored during compilation"), default="", blank=True)
-    require_safe = models.BooleanField(default = True, help_text=_("Is a submission required to be Safe (according to GHCs Safe-Mode)?"))
+    ignore = models.CharField(max_length=4096, help_text=_("space-separated list of files to be ignored during compilation"), default="", blank=True, verbose_name=_('Ignore'))
+    require_safe = models.BooleanField(default = True, help_text=_("Is a submission required to be Safe (according to GHCs Safe-Mode)?"), verbose_name=_('Require Safe'))
 
-    TESTCASE_CHOICES = ( ("DL", "Download-Link only"), ("NO", "Do not make the testcases source available"), ("FULL", "Also copy the source into the report"))
-    include_testcase_in_report = models.CharField(max_length=4, choices=TESTCASE_CHOICES, default = "DL", help_text=_("Make the testcases source available via the checkers result report?"))
+    TESTCASE_CHOICES = ( ("DL", _("Download-Link only")), ("NO", _("Do not make the testcases source available")), ("FULL", _("Also copy the source into the report")))
+    include_testcase_in_report = models.CharField(max_length=4, choices=TESTCASE_CHOICES, default = "DL", help_text=_("Make the testcases source available via the checkers result report?"), verbose_name=_('Include in Report'))
 
     _add_to_environment = False
 
     def title(self):
-        return "Haskell test-framework test: " + self.name
+        return _("Haskell test-framework test: ") + self.name
 
     @staticmethod
     def description():

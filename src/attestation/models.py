@@ -24,17 +24,17 @@ class Attestation(models.Model):
         verbose_name_plural = _('Attestations')
     """An attestation for a student's solution."""
 
-    created = models.DateTimeField(auto_now_add=True)
-    solution = models.ForeignKey(Solution, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, verbose_name="attestation author", limit_choices_to = {'groups__name': 'Tutor'}, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
+    solution = models.ForeignKey(Solution, on_delete=models.CASCADE,verbose_name=_('solution'))
+    author = models.ForeignKey(User, verbose_name=_("attestation author") , limit_choices_to = {'groups__name': 'Tutor'}, on_delete=models.CASCADE)
 
-    public_comment = models.TextField(blank=True, help_text = _('Comment which is shown to the user.'))
-    private_comment = models.TextField(blank=True, help_text = _('Comment which is only visible to tutors'))
-    final_grade = models.ForeignKey('RatingScaleItem', null=True, help_text = _('The mark for the whole solution.'), on_delete=models.SET_NULL)
+    public_comment = models.TextField(blank=True, help_text = _('Comment which is shown to the user.'), verbose_name=_('Public Comment'))
+    private_comment = models.TextField(blank=True, help_text = _('Comment which is only visible to tutors'),verbose_name=_('Private Comment'))
+    final_grade = models.ForeignKey('RatingScaleItem', null=True, help_text = _('The mark for the whole solution.'), on_delete=models.SET_NULL, verbose_name=_("Finale Grade"))
 
-    final = models.BooleanField(default = False, help_text = _('Indicates whether the attestation is ready to be published'))
-    published = models.BooleanField(default = False, help_text = _('Indicates whether the user can see the attestation.'))
-    published_on = models.DateTimeField(blank=True, null=True, help_text = _('The Date/Time the attestation was published.'))
+    final = models.BooleanField(default = False, help_text = _('Indicates whether the attestation is ready to be published'), verbose_name=_('final'))
+    published = models.BooleanField(default = False, help_text = _('Indicates whether the user can see the attestation.'), verbose_name=_('published'))
+    published_on = models.DateTimeField(blank=True, null=True, help_text = _('The Date/Time the attestation was published.'), verbose_name=_('published on'))
 
     def publish(self, request, by):
         """ Publish attestation and send email to user """
@@ -187,6 +187,10 @@ class Attestation(models.Model):
 
 
 class AnnotatedSolutionFile(models.Model):
+
+    class Meta:
+        verbose_name = _('Annotated solution file')
+        verbose_name_plural = _('Annotated solution files')
     """"""
     attestation = models.ForeignKey(Attestation, on_delete=models.CASCADE)
     solution_file = models.ForeignKey(SolutionFile, on_delete=models.CASCADE)
@@ -208,9 +212,14 @@ class AnnotatedSolutionFile(models.Model):
         return self.solution_file.__str__()
 
 class RatingAspect(models.Model):
+
+    class Meta:
+        verbose_name = _('Rating Aspect')
+        verbose_name_plural = _('Rating Aspects')
+
     """ describes a review aspect which the reviewer has to evaluate """
     name = models.CharField(max_length=100, help_text = _('The Name of the Aspect to be rated. E.g.: "Readability"'))
-    description = models.TextField(verbose_name=_('Description'), help_text = _('Description of the Aspect and how it should be rated. E.w.: "How well is the code structured?"'))
+    description = models.TextField(help_text = _('Description of the Aspect and how it should be rated. E.w.: "How well is the code structured?"') , verbose_name=_('Description'))
 
     def __str__(self):
         return self.name
@@ -235,7 +244,7 @@ class RatingScaleItem(models.Model):
         verbose_name_plural = _('Rating Scale Items')
 
     """ lists all items(marks) of an rating scale"""
-    scale = models.ForeignKey(RatingScale, on_delete=models.CASCADE)
+    scale = models.ForeignKey(RatingScale, on_delete=models.CASCADE, verbose_name=_('Rating Scale'))
     name = models.CharField(max_length=100, help_text = _('The Name of the item(mark) in the rating scale. E.g.: "A" or "very good" '))
     position = models.PositiveSmallIntegerField(help_text = _('Defines the order in which the items are sorted. Lowest is best.'))
 
@@ -246,24 +255,39 @@ class RatingScaleItem(models.Model):
         return self.name
 
 class Rating(models.Model):
+
+    class Meta:
+        verbose_name = _('Rating')
+        verbose_name_plural = _('Ratings')
+
     """ intermediate model to assign a rating aspect and a rating scale to a task """
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    aspect = models.ForeignKey(RatingAspect, on_delete=models.CASCADE)
-    scale = models.ForeignKey(RatingScale, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, verbose_name=_('Task'))
+    aspect = models.ForeignKey(RatingAspect, on_delete=models.CASCADE, verbose_name=_('Rating Aspect'))
+    scale = models.ForeignKey(RatingScale, on_delete=models.CASCADE, verbose_name=_('Rating Scale'))
 
     def __str__(self):
         return "%s - %s - %s" % (self.task.title, self.aspect.name, self.scale.name)
 
 class RatingResult(models.Model):
+
+    class Meta:
+        verbose_name = _('Rating result')
+        verbose_name_plural = _('Rating results')
+
     """ the rating of particular aspect of a specific solution """
-    attestation = models.ForeignKey(Attestation, on_delete=models.CASCADE)
-    rating = models.ForeignKey(Rating, on_delete=models.CASCADE)
-    mark = models.ForeignKey(RatingScaleItem, null=True, on_delete=models.SET_NULL) # allow for db-null so that rating results can be created programaticly without mark (blank = False !)
+    attestation = models.ForeignKey(Attestation, on_delete=models.CASCADE, verbose_name=_('Attestation'))
+    rating = models.ForeignKey(Rating, on_delete=models.CASCADE, verbose_name=_('Rating'))
+    mark = models.ForeignKey(RatingScaleItem, null=True, on_delete=models.SET_NULL, verbose_name=_('Rating Scale Item'))# allow for db-null so that rating results can be created programmatically without mark (blank = False !)
 
     def __str__(self):
         return str(self.rating.aspect)
 
 class Script(models.Model):
+
+    class Meta:
+        verbose_name = _('Script')
+        verbose_name_plural = _('Scripts')
+
     """ save java script function of the rating overview page """
     script = models.TextField(blank=True, help_text = _("This JavaScript will calculate a recommend end note for every user based on final grade of every task."), default="""var sum = 0.0;\nfor (x = 0; x != grades.length; ++x) {\n    grade = parseFloat(grades[x]);\n    if (!isNaN(grade)) {\n        sum += grade;\n    }\n}\nresult=sum;""")
 
