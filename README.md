@@ -54,11 +54,10 @@ Prerequisites
     libapache2-mod-xsendfile
     libapache2-mod-wsgi-py3
 
-    openjdk-11-jdk (or: openjdk-8-jdk)
+    openjdk-11-jdk
     junit
     junit4
     dejagnu
-    gcj-jdk (gcj compiler)
     r-base
 
     git-core
