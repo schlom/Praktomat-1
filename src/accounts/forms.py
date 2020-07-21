@@ -215,3 +215,6 @@ class ImportMatriculationListForm(forms.Form):
     mat_number_file = forms.FileField(required=True, help_text = _("A text file consisting of one matriculation number per line."), label=_('Mat number file'))
     remove_others = forms.BooleanField(required=False, initial = True, help_text = _("Also remove all users from the group if they are not listed here."), label=_('Remove others'))
     create_users = forms.BooleanField(required=False, initial = False, help_text = _("If a matriculation number is not known yet, create a stub user object"), label=_('Create users'))
+
+class AcceptDisclaimerForm(forms.Form):
+    accept_disclaimer = forms.BooleanField(required=True, initial = False, help_text = _("You need to accept the disclaimer before using the site."), label=_('Accept disclaimer'))

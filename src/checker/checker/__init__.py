@@ -14,6 +14,7 @@ __all__ = [
     "HaskellTestFrameWorkChecker",
     "RChecker",
     "KeepFileChecker",
+    "CUnitChecker_v2",
     "DiffChecker",
     "JavaChecker",
 ]

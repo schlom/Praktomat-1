@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-10 13:29+0100\n"
-"PO-Revision-Date: 2020-03-10 13:31+0100\n"
+"POT-Creation-Date: 2020-07-19 12:54+0200\n"
+"PO-Revision-Date: 2020-07-19 13:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: accounts/admin.py:34
 msgid "Personal info"
@@ -331,6 +331,14 @@ msgstr ""
 msgid "Create users"
 msgstr "Benutzer erstellen"
 
+#: accounts/forms.py:220
+msgid "You need to accept the disclaimer before using the site."
+msgstr "Sie müssen der Erklärung zustimmen, bevor Sie die Website nutzen."
+
+#: accounts/forms.py:220 accounts/models.py:33
+msgid "Accept disclaimer"
+msgstr "Erklärung akzeptieren"
+
 #: accounts/models.py:23
 msgid "This is not a valid student number."
 msgstr "Dies ist keine gültige Studentennummer."
@@ -339,7 +347,7 @@ msgstr "Dies ist keine gültige Studentennummer."
 msgid "The tutorial the student belongs to."
 msgstr "Lehrgang, zu dem der Student gehört."
 
-#: accounts/models.py:27 accounts/models.py:207
+#: accounts/models.py:27 accounts/models.py:208
 msgid "Tutorial"
 msgstr "Lehrgang"
 
@@ -375,7 +383,11 @@ msgstr "Benutzerdefinierter Text, der diesem Studenten angezeigt wird."
 msgid "User text"
 msgstr "Benutzertext"
 
-#: accounts/models.py:38 templates/admin/accounts/user/import.html:15
+#: accounts/models.py:33
+msgid "Whether the user accepted the disclaimer."
+msgstr "Gibt an, ob der Benutzer den Haftungsausschluss akzeptiert hat."
+
+#: accounts/models.py:39 templates/admin/accounts/user/import.html:15
 #: templates/admin/accounts/user/import_tutorial_assignment.html:15
 #: templates/admin/accounts/user/import_user_texts.html:15
 #: templates/attestation/rating_overview.html:55
@@ -383,23 +395,23 @@ msgstr "Benutzertext"
 msgid "User"
 msgstr "Benutzer"
 
-#: accounts/models.py:39
+#: accounts/models.py:40
 msgid "Users"
 msgstr "Benutzer"
 
-#: accounts/models.py:202
+#: accounts/models.py:203
 msgid "The name of the tutorial"
 msgstr "Der Name des Lehrgangs"
 
-#: accounts/models.py:204
+#: accounts/models.py:205
 msgid "The tutors in charge of the tutorial."
 msgstr "Die für den Lehrgang verantwortlichen Tutoren."
 
-#: accounts/models.py:208
+#: accounts/models.py:209
 msgid "Tutorials"
 msgstr "Lehrgang"
 
-#: accounts/models.py:212
+#: accounts/models.py:213
 msgid "Tutors"
 msgstr "Tutoren"
 
@@ -903,6 +915,104 @@ msgstr ""
 "Bitte entfernen Sie Ihren Namen und Ihre Benutzerkennung und reichen Sie sie "
 "erneut ein."
 
+#: checker/checker/CUnitChecker_v2.py:98
+msgid ""
+"The fully qualified name of the test case executable (with file ending like ."
+"exe or .out)"
+msgstr ""
+"Der vollqualifizierte Name des Testfalls (mit der Dateiendung .exe oder .out)"
+
+#: checker/checker/CUnitChecker_v2.py:99
+msgid "TestApp Filename"
+msgstr "Teatanwendungsdateiname"
+
+#: checker/checker/CUnitChecker_v2.py:103
+msgid "Regular Expression for ignoring files while compile and link test-code."
+msgstr ""
+"Regulärer Ausdruck zum Ignorieren von Dateien beim Kompilieren und "
+"Verknüpfen von Testcode."
+
+#: checker/checker/CUnitChecker_v2.py:108
+msgid ""
+"Compiler and Linker flags for i.e. libraries used while generating TestApp. "
+"<br> Don't fill in cunit or cppunit here."
+msgstr ""
+"Compiler- und Linker-Flags für z.B. Bibliotheken, die beim Generieren von "
+"TestApp verwendet werden.<br>Füllen Sie hier keine cunit oder cppunit aus."
+
+#: checker/checker/CUnitChecker_v2.py:116
+msgid "How to use solution submission in test-code?"
+msgstr "Wie verwendet man die Lösungsübermittlung im Testcode?"
+
+#: checker/checker/CUnitChecker_v2.py:126
+msgid "Unittest type or library"
+msgstr "Unittest-Typ oder Bibliothek"
+
+#: checker/checker/CUnitChecker_v2.py:131
+msgid "Command line parameters for running TestApp"
+msgstr "Befehlszeilenparameter für die Ausführung von TestApp"
+
+#: checker/checker/CUnitChecker_v2.py:135 checker/checker/JUnitChecker.py:40
+msgid ""
+"Description of the Testcase. To be displayed on Checker Results page when "
+"checker is  unfolded."
+msgstr ""
+"Beschreibung des Testfalls. Wird auf der Checker-Ergebnisseite angezeigt, "
+"wenn der Checker ausgeklappt wird."
+
+#: checker/checker/CUnitChecker_v2.py:136
+#: checker/checker/HaskellTestFrameWorkChecker.py:52
+#: checker/checker/JUnitChecker.py:41 checker/checker/JavaChecker.py:28
+msgid "Name of the Testcase. To be displayed as title on Checker Results page"
+msgstr ""
+"Name des Testfalls. Wird als Titel auf der Seite mit den Checker-Ergebnissen "
+"angezeigt"
+
+#: checker/checker/CUnitChecker_v2.py:140
+msgid ""
+"base filename ( = filename without file ending!) for interaction with  MUT "
+"(Module-Under-Test)<br>The file ending to use gets determined by your chosen "
+"Link type.<br>"
+msgstr ""
+"Basisdateiname ( = Dateiname ohne Dateiende!) für die Interaktion mit MUT "
+"(Module-Under-Test)<br>Die zu verwendende Dateiendung wird durch den "
+"gewählten Linktyp bestimmt.<br>"
+
+#: checker/checker/CUnitChecker_v2.py:143
+msgid "MUT Filename"
+msgstr "MUT Dateiname"
+
+#: checker/checker/CUnitChecker_v2.py:147
+msgid ""
+"Regular Expression for ignoring files while compile CUT and link MUT.<br>CUT "
+"= Code Under Test - MUT = Module Under Test <br>Play with RegEx at <a href="
+"\"http://pythex.org/\" target=\"_blank\">http://pythex.org/ </a>"
+msgstr ""
+"Regulärer Ausdruck zum Ignorieren von Dateien beim Kompilieren von CUT und "
+"Link MUT.<br>CUT = Code im Test - MUT = Modul im Test<br>Spielen Sie mit "
+"RegEx auf <a href=\"http://pythex.org/\" target=\"_blank\">http://pythex.org/"
+"</a>"
+
+#: checker/checker/CUnitChecker_v2.py:152
+msgid "MUT ignore files"
+msgstr "MUT-Dateien ignorieren"
+
+#: checker/checker/CUnitChecker_v2.py:157
+msgid ""
+"Compiler and Linker flags used while generating MUT (Module-under-Test)."
+msgstr ""
+"Compiler und Linker Flags nutzen für die Generierung des MUT (Module-under-"
+"Test)"
+
+#: checker/checker/CUnitChecker_v2.py:158
+msgid "MUT flags"
+msgstr "MUT flags"
+
+#: checker/checker/CUnitChecker_v2.py:419
+msgid "You should check \"Filename\" value. The correct name could be: "
+msgstr ""
+"Überprüfen Sie den Wert \"Dateiname\". Der korrekte Name könnte z.B. sein:"
+
 #: checker/checker/CheckStyleChecker.py:15 checker/checker/ScriptChecker.py:16
 msgid "Name to be displayed on the solution detail page."
 msgstr "Name, der auf der Seite der Lösungen angezeigt werden soll."
@@ -1111,13 +1221,6 @@ msgstr ""
 msgid "Test Description"
 msgstr "Testbeschreibung"
 
-#: checker/checker/HaskellTestFrameWorkChecker.py:52
-#: checker/checker/JUnitChecker.py:41 checker/checker/JavaChecker.py:28
-msgid "Name of the Testcase. To be displayed as title on Checker Results page"
-msgstr ""
-"Name des Testfalls. Wird als Titel auf der Seite mit den Checker-Ergebnissen "
-"angezeigt"
-
 #: checker/checker/HaskellTestFrameWorkChecker.py:53
 msgid "space-separated list of files to be ignored during compilation"
 msgstr ""
@@ -1219,14 +1322,6 @@ msgstr "Der vollqualifizierte Name der Testfallklasse (ohne .class)"
 #: checker/checker/JUnitChecker.py:38 checker/checker/JavaChecker.py:23
 msgid "Class name"
 msgstr "Klassenname"
-
-#: checker/checker/JUnitChecker.py:40
-msgid ""
-"Description of the Testcase. To be displayed on Checker Results page when "
-"checker is  unfolded."
-msgstr ""
-"Beschreibung des Testfalls. Wird auf der Checker-Ergebnisseite angezeigt, "
-"wenn der Checker ausgeklappt wird."
 
 #: checker/checker/JUnitChecker.py:42
 msgid ""
@@ -1462,51 +1557,89 @@ msgstr "Der Text muss in der Lösung enthalten sein"
 msgid "Select:"
 msgstr "Auswahl:"
 
-#: checker/compiler/Builder.py:30
-msgid "Compiler flags"
-msgstr "Compiler-Flags"
+#: checker/compiler/Builder.py:25
+msgid "Is a submission required to provide a main method or function?"
+msgstr "Ist eine Einreichung notwendig die eine main-Methode besitzt?"
 
-#: checker/compiler/Builder.py:30
-msgid "Flags"
-msgstr "Flags"
+#: checker/compiler/Builder.py:51
+msgid "flags for libraries like '-lm ' as math library for C"
+msgstr "Flags für Libraries wie z.B. '-lm ' als Mathe Library für C"
 
-#: checker/compiler/Builder.py:31
+#: checker/compiler/Builder.py:66
+msgid "flags for additional search path for compiler or linker "
+msgstr "Flags für zusätzliche Suchpfade für  den Compiler oder Linker "
+
+#: checker/compiler/Builder.py:90
+msgid "Compiler or Linker flags"
+msgstr "Compiler oder Linker-Flags"
+
+#: checker/compiler/Builder.py:91
+msgid ""
+"Regular expression describing all source files to be passed to the compiler "
+"or linker. (Play with  RegEx at <a href=\"http://pythex.org/\" target="
+"\"_blank\">http://pythex.org/ </a>"
+msgstr ""
+"Regulärer Ausdruck, der alle an den Compiler oder Linker zu übergebenden "
+"Quelldateien beschreibt. (Play with  RegEx at <a href=\"http://pythex.org/\" "
+"target=\"_blank\">http://pythex.org/ </a>"
+
+#: checker/compiler/Builder.py:266 checker/compiler/Builder.py:344
 #, python-format
 msgid "Output flags. '%s' will be replaced by the program name."
 msgstr "Ausgabe-Flags. '%s' wird durch den Programmnamen ersetzt."
 
-#: checker/compiler/Builder.py:31
+#: checker/compiler/Builder.py:304
+#, python-format
+msgid "choose link output type. '%s' will replaced by output_name. "
+msgstr "Link-Ausgabeart wählen. '%s' wird durch output_name ersetzt. "
+
+#: checker/compiler/Builder.py:307
+#, python-format
+msgid "choose a outputname. '%s' will be replaced by an internal default name."
+msgstr ""
+"wählen Sie einen Ausgabenamen. '%s' wird durch einen internen Standardnamen "
+"ersetzt."
+
+#: checker/compiler/Builder.py:343
+msgid "Compiler flags"
+msgstr "Compiler-Flags"
+
+#: checker/compiler/Builder.py:343
+msgid "Flags"
+msgstr "Flags"
+
+#: checker/compiler/Builder.py:344
 msgid "Output Flags"
 msgstr "Ausgabe Flags"
 
-#: checker/compiler/Builder.py:32
+#: checker/compiler/Builder.py:345
 msgid "Compiler libraries"
 msgstr "Compiler-Bibliotheken"
 
-#: checker/compiler/Builder.py:32
+#: checker/compiler/Builder.py:345
 msgid "Libs"
 msgstr "Bibliotheken"
 
-#: checker/compiler/Builder.py:33
+#: checker/compiler/Builder.py:346
 msgid ""
 "Regular expression describing all source files to be passed to the compiler."
 msgstr ""
 "Regulärer Ausdruck, der alle an den Compiler zu übergebenden Quelldateien "
 "beschreibt."
 
-#: checker/compiler/Builder.py:33
+#: checker/compiler/Builder.py:346
 msgid "File Pattern"
 msgstr "Dateimuster"
 
-#: checker/compiler/Builder.py:34
+#: checker/compiler/Builder.py:347
 msgid "Is a submission required to provide a main method?"
 msgstr "Ist eine Einreichung notwendig die eine main-Methode besitzt?"
 
-#: checker/compiler/Builder.py:34
+#: checker/compiler/Builder.py:347
 msgid "Main required"
 msgstr "Main notwendig"
 
-#: checker/compiler/Builder.py:107
+#: checker/compiler/Builder.py:423
 msgid "The main module could not be found.\n"
 msgstr "Main konnte nicht gefunden werden.\n"
 
@@ -1584,11 +1717,17 @@ msgstr ""
 "Falls aktiviert, müssen Anmeldungen über die Website manuell von einem "
 "Trainer validiert werden."
 
-#: configuration/models.py:61
+#: configuration/models.py:62
+msgid "If enabled, users have to accept the disclaimer before using the site."
+msgstr ""
+"Falls aktiviert, müssen Benutzer die Erklärung akzeptieren, bevor sie die "
+"Website nutzen können."
+
+#: configuration/models.py:67
 msgid "Accept all solutions"
 msgstr "Akzeptieren Sie alle Lösungen"
 
-#: configuration/models.py:63
+#: configuration/models.py:69
 msgid ""
 "If enabled, solutions can become the final soution even if not all required "
 "checkers are passed."
@@ -1596,11 +1735,11 @@ msgstr ""
 "Wenn aktiviert, können Lösungen zur Endlösung werden, auch wenn nicht alle "
 "erforderlichen Prüfungen bestanden werden."
 
-#: configuration/models.py:68
+#: configuration/models.py:74
 msgid "Anonymous attestation"
 msgstr "Anonyme Bescheinigung"
 
-#: configuration/models.py:70
+#: configuration/models.py:76
 msgid ""
 "If enabled, the tutor can't see the name of the user who submitted the "
 "solution."
@@ -1608,43 +1747,43 @@ msgstr ""
 "Wenn aktiviert, kann der Tutor den Namen des Benutzers, der die Lösung "
 "eingereicht hat, nicht sehen."
 
-#: configuration/models.py:75
+#: configuration/models.py:81
 msgid "Finale grades published"
 msgstr "Endgültige Bewertungen veröffentlicht"
 
-#: configuration/models.py:77
+#: configuration/models.py:83
 msgid "If enabled, all users can see their final grades."
 msgstr "Wenn aktiviert, können alle Benutzer ihre Abschlussbewertungen sehen."
 
-#: configuration/models.py:84
+#: configuration/models.py:90
 msgid "Sum"
 msgstr "Summe"
 
-#: configuration/models.py:85
+#: configuration/models.py:91
 msgid "Average"
 msgstr "Durchschnitt"
 
-#: configuration/models.py:90
+#: configuration/models.py:96
 msgid "Final grades arithmetic option"
 msgstr "Endbewertung arithmetische Option"
 
-#: configuration/models.py:100
+#: configuration/models.py:106
 msgid "Without"
 msgstr "Ohne"
 
-#: configuration/models.py:101
+#: configuration/models.py:107
 msgid "Including"
 msgstr "mit"
 
-#: configuration/models.py:106
+#: configuration/models.py:112
 msgid "Final grades plagiarism option"
 msgstr "Endgültige Bewertungen Plagiatsoption"
 
-#: configuration/models.py:114
+#: configuration/models.py:120
 msgid "Invisible attestor"
 msgstr "Geheimer Gutachter"
 
-#: configuration/models.py:116
+#: configuration/models.py:122
 msgid ""
 "If enabled, a user will not learn which tutor wrote attestations to his "
 "solutions. In particular, tutors will not be named in attestation emails."
@@ -1653,21 +1792,21 @@ msgstr ""
 "Bescheinigungen für seine Lösungen geschrieben hat. Insbesondere werden die "
 "Tutoren in den Bescheinigungs-E-Mails nicht namentlich genannt."
 
-#: configuration/models.py:121
+#: configuration/models.py:127
 msgid "Attestation Reply-To"
 msgstr "Bescheinigung Reply-To"
 
-#: configuration/models.py:123
+#: configuration/models.py:129
 msgid "Additional Reply-To: address to be set for attestation emails."
 msgstr ""
 "Zusätzliche Reply-To: Adresse, die für Bescheinigungs-E-Mails festgelegt "
 "wird."
 
-#: configuration/models.py:128
+#: configuration/models.py:134
 msgid "Attestation allow run checkers"
 msgstr "Bescheinigung erlaubt Ausführung der Checker"
 
-#: configuration/models.py:130
+#: configuration/models.py:136
 msgid ""
 "If enabled, tutors can re-run all checkers for solutions they attest. Can be "
 "used to re-run checks that failed due to problems unrelated to the solution "
@@ -1683,27 +1822,27 @@ msgstr ""
 "gegenüber dem, was der Student bei der Einreichung seiner Lösung gesehen "
 "hat, verändern kann."
 
-#: configuration/models.py:137
+#: configuration/models.py:143
 msgid "Default settings for jPlag"
 msgstr "Standardeinstellungen für jPlag"
 
-#: configuration/models.py:144
+#: configuration/models.py:150
 msgid "Chunk"
 msgstr "Stück"
 
-#: configuration/models.py:145
+#: configuration/models.py:151
 msgid "Chunks"
 msgstr "Stücke"
 
-#: configuration/models.py:151
+#: configuration/models.py:157
 msgid "Makes it easy to display chunks as inlines in Settings."
 msgstr "Macht es einfach, Teile als Inlines in den Einstellungen anzuzeigen."
 
-#: configuration/models.py:157
+#: configuration/models.py:163
 msgid "A unique name for this chunk of content"
 msgstr "Ein eindeutiger Name für diesen Teil des Inhalts"
 
-#: configuration/models.py:164
+#: configuration/models.py:170
 msgid "Content"
 msgstr "Inhalt"
 
@@ -1841,10 +1980,9 @@ msgstr ""
 "das nicht unterstützt wird."
 
 #: solutions/forms.py:72
-#, python-format
-msgid "The file '%(file)s' is bigger than %(size)iKB which is not suported."
+msgid "The file '%(file)s' is bigger than %(size)KiB which is not supported."
 msgstr ""
-"Die Datei '%(file)s' ist größer als %(size)iKB, die nicht unterstützt wird."
+"Die Datei '%(file)s' ist größer als %(size)KiB, die nicht unterstützt wird."
 
 #: solutions/forms.py:79
 msgid "You must choose at least one file."
@@ -2893,27 +3031,19 @@ msgstr ""
 "<strong>Warnung:</strong> Diese Website ist für die Verwendung von "
 "Javascript ausgelegt! Es wird empfohlen, es zu aktivieren. </p>"
 
-#: templates/checker/compiler/builder_report.html:3
-msgid "user-submitted files matching "
-msgstr "vom Benutzer eingereichte Dateien, die übereinstimmen "
-
-#: templates/checker/compiler/builder_report.html:3
-msgid " found for compilation: "
-msgstr " für die Kompilierung gefunden: "
-
-#: templates/checker/compiler/builder_report.html:5
+#: templates/checker/compiler/builder_report.html:18
 msgid "Compiler output:"
 msgstr "Kompiler-Ausgabe:"
 
-#: templates/checker/compiler/builder_report.html:8
+#: templates/checker/compiler/builder_report.html:21
 msgid "The Compiler produced no messages."
 msgstr "Der Kompiler erzeugte keine Meldungen."
 
-#: templates/checker/compiler/builder_report.html:11
+#: templates/checker/compiler/builder_report.html:25
 msgid "No Input files matching "
 msgstr "Keine übereinstimmenden Eingabedateien "
 
-#: templates/checker/compiler/builder_report.html:11
+#: templates/checker/compiler/builder_report.html:25
 msgid " found."
 msgstr " gefunden."
 
@@ -2937,6 +3067,16 @@ msgstr "Der Java-Compiler erzeugte keine Meldungen."
 #: templates/checker/compiler/java_builder_report.html:11
 msgid "No Java input files found."
 msgstr "Keine Java-Eingabedateien gefunden."
+
+#: templates/registration/accept_disclaimer.html:7
+msgid "Accept Disclaimer "
+msgstr "Erklärung akzeptieren "
+
+#: templates/registration/accept_disclaimer.html:12
+msgid "Before using this site, you have to accept the following disclaimer:"
+msgstr ""
+"Bevor Sie diese Website nutzen, müssen Sie die folgende Erklärung "
+"akzeptieren:"
 
 #: templates/registration/login.html:30
 #: templates/registration/registration_activation_allowed.html:6
@@ -3618,6 +3758,12 @@ msgid ""
 msgstr ""
 "<tr class=\"final_grade\"><td>Vorhergesagte Endnote</td><td>"
 "%(calculated_grade)s</td></tr>"
+
+#~ msgid "user-submitted files matching "
+#~ msgstr "vom Benutzer eingereichte Dateien, die übereinstimmen "
+
+#~ msgid " found for compilation: "
+#~ msgstr " für die Kompilierung gefunden: "
 
 #~ msgid "Checker"
 #~ msgstr "Checker"

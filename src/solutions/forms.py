@@ -69,7 +69,7 @@ class SolutionFileForm(ModelForm):
             elif tartype_re.match(contenttype):
                 raise forms.ValidationError(_('Tar files are not supported, please upload the files individually or use a zip file.'))
             if data.size > max_file_size:
-                raise forms.ValidationError(_("The file '%(file)s' is bigger than %(size)iKB which is not suported." %{'file':data.name, 'size':max_file_size_kb}))
+                raise forms.ValidationError(_("The file '%(file)s' is bigger than %(size)KiB which is not supported." %{'file':data.name, 'size':max_file_size_kb}))
             return data
 
 class MyBaseInlineFormSet(BaseInlineFormSet):

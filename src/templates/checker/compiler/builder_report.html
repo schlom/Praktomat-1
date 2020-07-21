@@ -1,11 +1,25 @@
 {% load i18n%}
 {% if filenames %}
-<div>{{ filenames|length }} {% trans "user-submitted files matching " %}"{{regexp}}"{% trans " found for compilation: " %}{% for file in filenames%} {{ file }} &nbsp; {% endfor %}</div>
+<div>{{ filenames|length }} {% if not linker %} user-submitted {% endif %} files matching "{{regexp}}" found for compilation: {% for file in filenames%} {{ file }} &nbsp; {% endfor %}</div>
+{% if debug %}
+{% if cmdline %}
+<div>{{ cmdline|safe }}  </div>
+{% endif %}
+{% endif %}
+{% if linker %}
 {% if output %}
+<div>Linker output:</div>
+<pre>{{output|safe}}</pre>
+{% else %}
+<div>The Linker produced no messages.</div>
+{% endif %}
+{% else %}
+    {% if output %}
 <div>{% trans "Compiler output:" %}</div>
 <pre>{{output|safe}}</pre>
 {% else %}
 <div>{% trans "The Compiler produced no messages." %}</div>
+{% endif %}
 {% endif %}
 {% else %}
 <div>{% trans "No Input files matching " %}"{{regexp}}"{% trans " found." %}</div>

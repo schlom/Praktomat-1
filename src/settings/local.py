@@ -30,7 +30,7 @@ if match:
 		SITE_NAME += "Sommersemester %d" % year
 
 else:
-    raise NotImplementedError("Autoconfig for PRAKTOMAT_ID %s not possible", PRAKTOMAT_ID)
+    SITE_NAME = PRAKTOMAT_ID
 
 # The name that will be displayed on top of the page and in emails.
 #SITE_NAME = 'Praktomat der Frankfurt University of Applied Sciences'

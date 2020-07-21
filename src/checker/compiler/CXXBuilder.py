@@ -5,10 +5,10 @@ A C++ compiler for construction.
 """
 
 from django.utils.translation import ugettext_lazy as _
-from checker.compiler.Builder import Builder
+from checker.compiler.Builder import Compiler
 from django.conf import settings
 
-class CXXBuilder(Builder):
+class CXXBuilder(Compiler):
     """ A C++ compiler for construction. """
 
     # override configuration
@@ -16,14 +16,26 @@ class CXXBuilder(Builder):
     _language                = "C++"
     #_rx_warnings            = r"^([^ :]*:[^:].*)$"
 
+    def pre_run(self,env):
+        return self.compiler()
+
+    def post_run(self,env):
+        passed = True
+        log = ""
+        return [passed,log]
+
+    def connected_flags(self, env):
+        return self.search_path() + self.flags()
+
+
 from checker.admin import CheckerInline, AlwaysChangedModelForm
 
 class CheckerForm(AlwaysChangedModelForm):
     def __init__(self, **args):
         """ override default values for the model fields """
         super(CheckerForm, self).__init__(**args)
-        #self.fields["_flags"].initial = "-Wall"
-        self.fields["_output_flags"].initial = ""
+        self.fields["_flags"].initial = "-Wall -Wextra"
+        self.fields["_output_flags"].initial = "-c"
         #self.fields["_libs"].initial = ""
         # GCC accepts the following extensions for C++ files: ".cc", ".cxx", ".cpp", ".c++", ".C".
         self.fields["_file_pattern"].initial = r"^[a-zA-Z0-9_]*\.(c|C|cc|CC|cxx|CXX|c\+\+|C\+\+|cpp|CPP)$"
@@ -31,3 +43,4 @@ class CheckerForm(AlwaysChangedModelForm):
 class CXXBuilderInline(CheckerInline):
     model = CXXBuilder
     form = CheckerForm
+    verbose_name = "C++ Compiler"
