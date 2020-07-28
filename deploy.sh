@@ -137,18 +137,12 @@ echo "##############################################"
 echo "#  Add mailsign key "
 echo "##############################################"
 mkdir -p /srv/praktomat/mailsign
-KEY_FILE=/srv/praktomat/mailsign/createkey.py
-echo "#!/usr/bin/python" >> "$KEY_FILE"
-echo "import os" >> "$KEY_FILE"
-echo "import M2Crypto" >> "$KEY_FILE"
-echo "" >> "$KEY_FILE"
-echo "SIGNER_KEY = M2Crypto.RSA.gen_key (1024, 65537)" >> "$KEY_FILE"
-echo "SIGNER_KEY.save_key ('signer_key.pem', None)" >> "$KEY_FILE"
-echo "SIGNER_KEY.save_pub_key ('signer_key_pub.pem')" >> "$KEY_FILE"
-chmod 755 /srv/praktomat/mailsign/createkey.py
-python /srv/praktomat/mailsign/createkey.py
+echo "##############################################"
+echo "#  OPENSSL Self-Signed Certificate creation "
+echo "##############################################"
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout signer_key.pem -out signer.pem
 mv signer_key.pem /srv/praktomat/mailsign/signer_key.pem
-mv signer_key_pub.pem /srv/praktomat/mailsign/signer_key_pub.pem
+mv signer.pem /srv/praktomat/mailsign/signer.pem
 
 echo "changing to directory /srv/praktomat/$name"
 cd "$name"

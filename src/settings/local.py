@@ -65,8 +65,7 @@ DEBUG = False
 
 # Private key used to sign uploaded solution files in submission confirmation email
 PRIVATE_KEY = '/srv/praktomat/mailsign/signer_key.pem'
-#CERTIFICATE = '/srv/praktomat/mailsign/signer.pem'
-#PRIVATE_KEY = None
+CERTIFICATE = '/srv/praktomat/mailsign/signer.pem'
 
 # Enable Shibboleth:
 SHIB_ENABLED = False
