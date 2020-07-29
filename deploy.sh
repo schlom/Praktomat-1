@@ -211,4 +211,5 @@ sleep 2
 
 get_repository
 create_praktomat
+config_apache
 edit_indexhtml
