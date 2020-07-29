@@ -221,6 +221,7 @@ function add_user()
 	--inputbox "Bitte das Passwort eingeben:" 10 30 3>&1- 1>&2- 2>&3-)
 	echo "praktomat:$data" | chpasswd
 	usermod -aG sudo praktomat
+	clear
 }
 
 #***********************************************************************************
@@ -250,6 +251,8 @@ function create_folder()
 	echo 'www-data ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 	#echo 'praktomat ALL=NOPASSWD:ALL, NOPASSWD:/usr/local/bin/safe-docker' >> /etc/sudoers
 	echo "switching to user praktomat"
+	sleep 2
+	clear
 	su praktomat -c ./deploy.sh
 }
 

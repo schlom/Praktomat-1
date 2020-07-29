@@ -29,6 +29,8 @@ function get_repository()
 	echo "#############################################################################"
 	sleep 2
 	git clone --branch FRA-UAS git://github.com/schlom/Praktomat-1.git /srv/praktomat/"$name"/Praktomat
+	sudo chmod -R 0775 Praktomat
+    sudo chown -R praktomat:praktomat Praktomat
 }
 
 #***********************************************************************************
@@ -63,7 +65,7 @@ function create_praktomat()
 	echo "##############################################"
 	echo "# set local.py "
 	echo "##############################################"
-	ipaddr=`dialog --ascii-lines --no-cancel --inputbox "Geben Sie die URL des Praktomaten ein!\n\
+	ipaddr=`dialog --ascii-lines --no-cancel --clear --inputbox "Geben Sie die URL des Praktomaten ein!\n\
 	\n\
 	\n Die URL ueber die die Seite erreichbar sein soll, z.B. http://localhost:8000" \
 	0 0 "http://10.18.2.59:8000" 3>&1 1>&2 2>&3`
@@ -98,19 +100,77 @@ function create_praktomat()
     echo "DEFAULT_FROM_EMAIL = \"$DEFAULT_FROM_EMAIL\""  >> "$DST_FILE"
 
     chmod +x $DST_FILE
-
+    clear
 	echo "##############################################"
 	echo "# prepare database "
 	echo "##############################################"
 	mkdir -p PraktomatSupport
 	./Praktomat/src/manage-local.py collectstatic --noinput --link
 	./Praktomat/src/manage-local.py migrate --noinput
+    sudo chown -R praktomat:praktomat Praktomat/static
 	sleep 2
-	#clear
+	clear
 	echo "##############################################"
 	echo "# create superuser for Praktomat "
 	echo "##############################################"
 	./Praktomat/src/manage-local.py createsuperuser
+	deactivate
+	sleep 2
+	clear
+}
+
+#***********************************************************************************
+# CONFIGURE APACHE SERVER
+#***********************************************************************************
+
+function config_apache()
+{
+	echo "##############################################"
+	echo "# configure apache server "
+	echo "##############################################"
+    sudo a2enmod macro
+    sudo a2enmod ssl
+    sudo mkdir /etc/apache2/ssl
+    sudo cp /srv/praktomat/mailsign/signer_key.pem /etc/apache2/ssl/apache.key
+    sudo cp /srv/praktomat/mailsign/signer.pem /etc/apache2/ssl/apache.pem
+    echo "copied ssl key and certificate"
+	sleep 2
+	clear
+	sudo mv /srv/praktomat/"$name"/Praktomat/documentation/mpm_event.conf /etc/apache2/sites-available/mpm_event.conf
+    sudo mv /srv/praktomat/"$name"/Praktomat/documentation/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+	ipaddr=`dialog --ascii-lines --no-cancel --clear --inputbox "Geben Sie die URL des Praktomaten ein!\n\
+	\n\
+	\n Die IP-Adresse ueber die die Seite erreichbar sein soll:" \
+	0 0 "10.18.2.59" 3>&1 1>&2 2>&3`
+	sudo sed -i "s|ServerName .*|ServerName \'${ipaddr}\'|" /etc/apache2/sites-available/000-default.conf
+
+	sudo sed -i "s|Use Praktomat  .*|Use Praktomat  \'${name}\'    /srv/praktomat/${name}    80|" /etc/apache2/sites-available/000-default.conf
+	sleep 2
+	clear
+	echo "restarting apache server"
+	sudo service apache2 restart
+	sleep 2
+	clear
+}
+
+#***********************************************************************************
+# EDIT LANDING PAGE
+#***********************************************************************************
+
+function edit_indexhtml()
+{
+	echo "##############################################"
+	echo "# edit index.html "
+	echo "##############################################"
+	sleep 2
+    sudo mv /srv/praktomat/"$name"/Praktomat/static-index/* /srv/praktomat
+
+    output=$(dialog --ascii-lines --clear --title "Edit index.html" --no-cancel \
+    --editbox "/srv/praktomat/index.html" 0 0 3>&1- 1>&2- 2>&3-)
+    echo "$output" > index.html
+
+    clear
 }
 
 #***********************************************************************************
@@ -147,6 +207,8 @@ mv signer.pem /srv/praktomat/mailsign/signer.pem
 echo "changing to directory /srv/praktomat/$name"
 cd "$name"
 clear
+sleep 2
 
 get_repository
 create_praktomat
+edit_indexhtml
