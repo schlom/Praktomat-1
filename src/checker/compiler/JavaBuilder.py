@@ -36,7 +36,7 @@ class ClassFileGeneratingBuilder(Builder):
                         main_class_name = class_name.search(classinfo, re.MULTILINE).group(5)
                         return main_class_name
 
-        raise self.NotFoundError(_("A class containing the main method ('public static void main(String[] args)') could not be found in the files %s") % ", ".join(class_files))
+        raise self.NotFoundError("A class containing the main method ('public static void main(String[] args)') could not be found in the files %s" % ", ".join(class_files))
 
 class JavaBuilder(ClassFileGeneratingBuilder):
     """     A Java bytecode compiler for construction. """

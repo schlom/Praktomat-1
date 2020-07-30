@@ -173,6 +173,64 @@ function edit_indexhtml()
     clear
 }
 
+
+#***********************************************************************************
+#	INSTALL DOCKER
+#***********************************************************************************
+
+function install_docker()
+{
+	echo "#############################################################################"
+	echo " INSTALL DOCKER "
+	echo "#############################################################################"
+    sudo $APTGETCMD -y install apt-transport-https curl gnupg-agent software-properties-common
+    sleep 2
+	clear
+    echo "-----------------------------"
+    echo "Add Docker’s official GPG key"
+    echo "-----------------------------"
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo apt-key fingerprint 0EBFCD88
+	sleep 2
+	clear
+    echo "-----------------------------"
+    echo "Add Docker repository"
+    echo "-----------------------------"
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	sleep 2
+	clear
+    echo "-----------------------------"
+    echo "Install Docker Engine"
+    echo "-----------------------------"
+    sudo $APTGETCMD -y update
+    sudo $APTGETCMD -y install docker-ce docker-ce-cli containerd.io
+	sleep 2
+	clear
+}
+
+#***********************************************************************************
+#	CREATE DOCKER IMAGE
+#***********************************************************************************
+
+function create_docker_image()
+{
+	echo "#############################################################################"
+	echo " CREATE DOCKER IMAGE "
+	echo "#############################################################################"
+    sudo mv /srv/praktomat/"$name"/Praktomat/safe-docker/safe-docker /usr/local/bin
+    sudo chmod +x /usr/local/bin/safe-docker
+    cd /srv/praktomat/"$name"/Praktomat
+    sudo docker build -t safe-docker docker-image
+    echo "-----------------------------"
+    echo "Show Docker Images"
+    echo "-----------------------------"
+    sudo docker image ls
+    sleep 5
+    cd /srv
+    chown -R praktomat:praktomat praktomat/
+    clear
+}
+
 #***********************************************************************************
 # Main PROGRAM
 #***********************************************************************************
@@ -213,3 +271,5 @@ get_repository
 create_praktomat
 config_apache
 edit_indexhtml
+install_docker
+create_docker_image
