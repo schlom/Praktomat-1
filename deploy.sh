@@ -173,7 +173,6 @@ function edit_indexhtml()
     clear
 }
 
-
 #***********************************************************************************
 #	INSTALL DOCKER
 #***********************************************************************************
@@ -183,7 +182,8 @@ function install_docker()
 	echo "#############################################################################"
 	echo " INSTALL DOCKER "
 	echo "#############################################################################"
-    sudo $APTGETCMD -y install apt-transport-https curl gnupg-agent software-properties-common
+	sudo apt-get -y install libipc-run-perl libdata-guid-perl libterm-readline-gnu-perl
+    sudo apt-get -y install apt-transport-https curl gnupg-agent software-properties-common
     sleep 2
 	clear
     echo "-----------------------------"
@@ -202,8 +202,8 @@ function install_docker()
     echo "-----------------------------"
     echo "Install Docker Engine"
     echo "-----------------------------"
-    sudo $APTGETCMD -y update
-    sudo $APTGETCMD -y install docker-ce docker-ce-cli containerd.io
+    sudo apt-get -y update
+    sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 	sleep 2
 	clear
 }
@@ -227,7 +227,7 @@ function create_docker_image()
     sudo docker image ls
     sleep 5
     cd /srv
-    chown -R praktomat:praktomat praktomat/
+    sudo chown -R praktomat:praktomat praktomat/
     clear
 }
 
@@ -271,5 +271,6 @@ get_repository
 create_praktomat
 config_apache
 edit_indexhtml
+
 install_docker
 create_docker_image
