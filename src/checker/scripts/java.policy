@@ -3,4 +3,5 @@
 grant {
 	permission java.lang.RuntimePermission "shutdownHooks";
 	permission java.lang.RuntimePermission "setIO";
+	permission java.net.SocketPermission "*", "listen,connect,accept,resolve";
 };

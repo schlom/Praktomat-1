@@ -71,7 +71,7 @@ class CreateFileChecker(CheckerWithFile):
 
     def title(self):
         """ Returns the title for this checker category. """
-        return _("Copy File")
+        return "Copy File"
 
     @staticmethod
     def description():

@@ -796,7 +796,7 @@ msgstr "Notwendig"
 
 #: checker/basemodels.py:61
 msgid "The test will run on submission time."
-msgstr "Der Test muss bestanden werden, um die Lösung einzureichen."
+msgstr "Der Test wird bei Einreichung ausgeführt."
 
 #: checker/basemodels.py:61
 msgid "Always"

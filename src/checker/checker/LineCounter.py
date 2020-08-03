@@ -22,7 +22,7 @@ class LineCounter(Checker):
     def title(self):
         """ Returns the title for this checker category. """
         # _de("Lexikalische Statistik")
-        return _("Lexical statistics")
+        return "Lexical statistics"
 
     @staticmethod
     def description():
