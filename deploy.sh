@@ -80,7 +80,10 @@ function create_praktomat()
     EMAIL_USE_SSL="True or False"
     DEFAULT_FROM_EMAIL="z.B. user@host.com"
 
-    dialog --ascii-lines --no-cancel --clear \
+    # open fd
+    exec 3>&1
+
+    VALUES=$(dialog --ascii-lines --no-cancel --clear \
     --title "EMail-Konfiguration" \
     --form "\nBitte geben Sie die Konfiguration zum Versenden von EMails an:" 0 0 0 \
     "HOST:" 		1 1 "$EMAIL_HOST" 		1 25 255 0 \
@@ -88,16 +91,22 @@ function create_praktomat()
     "HOST USER:" 		3 1 "$EMAIL_HOST_USER" 		3 25 255 0 \
     "HOST PASSWORD:" 	4 1 "$EMAIL_HOST_PASSWORD" 	4 25 255 0 \
     "USE SSL:" 		5 1 "$EMAIL_USE_SSL" 		5 25 10 0 \
-    "FROM EMAIL:" 		6 1 "$DEFAULT_FROM_EMAIL" 	6 25 255 0
+    "FROM EMAIL:" 		6 1 "$DEFAULT_FROM_EMAIL" 	6 25 255 0 \
+    2>&1 1>&3)
+
+    # close fd
+    exec 3>&-
+
+    array=($VALUES)
 
     echo "# Setting for E-Mail service" >> "$DST_FILE"
     echo "EMAIL_BACKEND = '$EMAIL_BACKEND'" >> "$DST_FILE"
-    echo "EMAIL_HOST = \"$EMAIL_HOST\"" >> "$DST_FILE"
-    echo "EMAIL_PORT = $EMAIL_PORT"  >> "$DST_FILE"
-    echo "EMAIL_HOST_USER = \"$EMAIL_HOST_USER\""  >> "$DST_FILE"
-    echo "EMAIL_HOST_PASSWORD = \"$EMAIL_HOST_PASSWORD\""  >> "$DST_FILE"
-    echo "EMAIL_USE_SSL = $EMAIL_USE_SSL"  >> "$DST_FILE"
-    echo "DEFAULT_FROM_EMAIL = \"$DEFAULT_FROM_EMAIL\""  >> "$DST_FILE"
+    echo "EMAIL_HOST = \""${array[0]}"\"" >> "$DST_FILE"
+    echo "EMAIL_PORT = "${array[1]}""  >> "$DST_FILE"
+    echo "EMAIL_HOST_USER = \""${array[2]}"\""  >> "$DST_FILE"
+    echo "EMAIL_HOST_PASSWORD = \""${array[3]}"\""  >> "$DST_FILE"
+    echo "EMAIL_USE_SSL = "${array[4]}""  >> "$DST_FILE"
+    echo "DEFAULT_FROM_EMAIL = \""${array[5]}"\""  >> "$DST_FILE"
 
     chmod +x $DST_FILE
     clear
