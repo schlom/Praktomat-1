@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-19 12:54+0200\n"
-"PO-Revision-Date: 2020-07-19 13:05+0200\n"
+"PO-Revision-Date: 2020-08-04 16:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 
 #: accounts/admin.py:34
 msgid "Personal info"
@@ -3666,7 +3666,8 @@ msgstr " ihr"
 msgid ""
 "solution to the task \"%(solution.task)s\" has been successfully uploaded"
 msgstr ""
-"Die Lösung der Aufgabe \"%(solution.task)s\" wurde erfolgreich hochgeladen"
+"Die L&ouml;sung der Aufgabe \"%(solution.task)s\" wurde erfolgreich "
+"hochgeladen"
 
 #: templates/solutions/submission_confirmation_email.html:9
 #, python-format
@@ -3675,7 +3676,7 @@ msgstr "in Ihrem Namen durch den Ausbilder %(uploader)s"
 
 #: templates/solutions/submission_confirmation_email.html:12
 msgid "You can view the uploaded solution here: "
-msgstr "Sie können die hochgeladene Lösung hier einsehen: "
+msgstr "Sie k&ouml;nnen die hochgeladene L&ouml;sung hier einsehen: "
 
 #: templates/solutions/submission_confirmation_email.html:14
 msgid "The upload included these files:"
@@ -3687,7 +3688,7 @@ msgid ""
 "completed the task."
 msgstr ""
 "Bitte bewahren Sie diese E-Mail und die von Ihnen hochgeladenen Dateien auf, "
-"um zu überprüfen, ob Sie die Aufgabe erfüllt haben."
+"um zu &uuml;berpr&uuml;fen, ob Sie die Aufgabe erf&uuml;llt haben."
 
 #: templates/tasks/task_detail.html:11
 msgid "Submission date: "
