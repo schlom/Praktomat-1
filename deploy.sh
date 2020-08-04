@@ -40,6 +40,8 @@ function get_repository()
 function create_praktomat()
 {
 	clear
+	cp /srv/praktomat/"$name"/Praktomat/docker-image/contrib/checkstyle-8.29-all.jar /srv/praktomat/contrib/
+	cp /srv/praktomat/"$name"/Praktomat/docker-image/contrib/jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar /srv/praktomat/contrib/
 	cd /srv/praktomat/"$name"
 	echo "##############################################"
 	echo "# create virtualenv "

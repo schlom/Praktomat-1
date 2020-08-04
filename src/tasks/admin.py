@@ -82,7 +82,7 @@ class TaskAdmin(admin.ModelAdmin):
         for task in queryset:
             count += task.check_all_final_solutions()
         end = timer()
-        self.message_user(request, count + _(" final solutions were successfully checked (%d seconds elapsed).") % (end-start))
+        self.message_user(request, str(count) + _(" final solutions were successfully checked (%d seconds elapsed).") % (end-start))
     run_all_checkers.short_description = _('Run all checkers')
 
     def get_urls(self):
