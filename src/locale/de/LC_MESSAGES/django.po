@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-19 12:54+0200\n"
-"PO-Revision-Date: 2020-08-04 17:17+0200\n"
+"PO-Revision-Date: 2020-08-04 18:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -2910,7 +2910,7 @@ msgstr "alle übernehmen"
 
 #: templates/attestation/rating_overview.html:119
 msgid "Save Final Grades"
-msgstr "Endbewertungen_speichern"
+msgstr "\"Endbewertungen speichern\""
 
 #: templates/attestation/rating_overview.html:122
 #: templates/attestation/tutorial_overview.html:90
