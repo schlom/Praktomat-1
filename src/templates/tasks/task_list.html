@@ -90,9 +90,9 @@ function resize(id) {
 				{% endfor %}
 
 				{% if show_final_grade %}
-					{% blocktrans %}<tr class="final_grade"><td>Final Grade</td><td>{{user.final_grade}}</td></tr>{% endblocktrans %}
+					{% blocktrans %}<tr class="final_grade"><td>Final Grade</td><td>{% endblocktrans %}{{user.final_grade}}</td></tr>
 				{% else %}
-					{% blocktrans %}<tr class="final_grade"><td>Predicted Final Grade</td><td>{{calculated_grade}}</td></tr>{% endblocktrans %}
+					{% blocktrans %}<tr class="final_grade"><td>Predicted Final Grade</td><td>{% endblocktrans %}{{calculated_grade}}</td></tr>
 				{% endif %}
 
 			</table>

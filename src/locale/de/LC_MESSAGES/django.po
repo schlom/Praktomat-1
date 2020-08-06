@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-19 12:54+0200\n"
-"PO-Revision-Date: 2020-08-04 19:39+0200\n"
+"POT-Creation-Date: 2020-08-06 10:23+0200\n"
+"PO-Revision-Date: 2020-08-06 10:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -1104,10 +1104,6 @@ msgstr ""
 "Diese Dateien existierten bereits. Fügen Sie diese NICHT in Ihren "
 "Einreichungen mit ein:<br/><ul>\n"
 
-#: checker/checker/CreateFileChecker.py:74
-msgid "Copy File"
-msgstr "Kopiere Datei"
-
 #: checker/checker/DejaGnu.py:59
 msgid "The name of the Test"
 msgstr "Der Name des Tests"
@@ -1404,10 +1400,6 @@ msgstr "Datei %s aufbewahren"
 msgid "<p>Could not find file <tt>%s</tt>.</p>"
 msgstr "<p>Konnte Datei nicht finden <samp>%s</samp>.</p>"
 
-#: checker/checker/LineCounter.py:25
-msgid "Lexical statistics"
-msgstr "Lexikalische Statistik"
-
 #: checker/checker/LineCounter.py:31
 msgid "This check is always passed."
 msgstr "Diese Prüfung wird immer bestanden."
@@ -1642,15 +1634,6 @@ msgstr "Main notwendig"
 #: checker/compiler/Builder.py:423
 msgid "The main module could not be found.\n"
 msgstr "Main konnte nicht gefunden werden.\n"
-
-#: checker/compiler/JavaBuilder.py:39
-#, python-format
-msgid ""
-"A class containing the main method ('public static void main(String[] "
-"args)') could not be found in the files %s"
-msgstr ""
-"Eine Klasse, die die Hauptmethode ('public static void main(String[] args)') "
-"enthält, konnte in den Dateien %s nicht gefunden werden"
 
 #: configuration/models.py:10
 msgid "Setting"
@@ -3743,21 +3726,25 @@ msgid "<tr><th>Task</th><th>Grade</th><th>Rating Scale</th></tr>"
 msgstr "<tr><th>Aufgabe</th><th>Bewertung</th><th>Bewertungsskala</th></tr>"
 
 #: templates/tasks/task_list.html:93
-#, python-format
-msgid ""
-"<tr class=\"final_grade\"><td>Final Grade</td><td>%(user.final_grade)s</td></"
-"tr>"
-msgstr ""
-"<tr class=\"final_grade\"><td>Endnote</td><td>%(user.final_grade)s</td></tr>"
+msgid "<tr class=\"final_grade\"><td>Final Grade</td><td>"
+msgstr "<tr class=\"final_grade\"><td>Endbewertung</td><td>"
 
 #: templates/tasks/task_list.html:95
-#, python-format
-msgid ""
-"<tr class=\"final_grade\"><td>Predicted Final Grade</td><td>"
-"%(calculated_grade)s</td></tr>"
-msgstr ""
-"<tr class=\"final_grade\"><td>Vorhergesagte Endnote</td><td>"
-"%(calculated_grade)s</td></tr>"
+msgid "<tr class=\"final_grade\"><td>Predicted Final Grade</td><td>"
+msgstr "<tr class=\"final_grade\"><td>Vorhergesagte Endbewertung</td><td>"
+
+#~ msgid "Copy File"
+#~ msgstr "Kopiere Datei"
+
+#~ msgid "Lexical statistics"
+#~ msgstr "Lexikalische Statistik"
+
+#~ msgid ""
+#~ "A class containing the main method ('public static void main(String[] "
+#~ "args)') could not be found in the files %s"
+#~ msgstr ""
+#~ "Eine Klasse, die die Hauptmethode ('public static void main(String[] "
+#~ "args)') enthält, konnte in den Dateien %s nicht gefunden werden"
 
 #~ msgid "user-submitted files matching "
 #~ msgstr "vom Benutzer eingereichte Dateien, die übereinstimmen "
