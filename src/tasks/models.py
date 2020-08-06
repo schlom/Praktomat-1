@@ -98,8 +98,11 @@ class Task(models.Model):
     def jplag_languages():
         return { 'Java':     { 'param': 'java19', 'files': '.java,.JAVA' },
                  'R':        { 'param': 'text',   'files': '.R' },
-                 'Python':   { 'param': 'text',   'files': '.py' },
-                 'Isabelle': { 'param': 'text',   'files': '.thy' },
+                 'Python2':  { 'param': 'text',   'files': '.py' },
+                 'Python3':  { 'param': 'python3', 'files': '.py' },
+                 'C/C++':    { 'param': 'c/c++',  'files': '.c, .cpp, .h, .hpp'},
+                 'Text':     { 'param': 'text',   'files': '.txt'},
+                 'Script':   { 'param': 'text',   'files': '.sh'},
                }
 
     def run_jplag(self, lang):
