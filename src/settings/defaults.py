@@ -340,7 +340,7 @@ def load_defaults(settings):
     d.REGISTRATION_POSSIBLE = True
 
     # Set this to False to disable "Got Problems?"-link in task list
-    d.SHOW_CONTACT_LINK = True
+    d.SHOW_CONTACT_LINK = False
 
     # Length of timeout applied whenever an external check that runs a students
     # submission is executed,
