@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-19 12:54+0200\n"
-"PO-Revision-Date: 2020-08-04 18:50+0200\n"
+"PO-Revision-Date: 2020-08-04 19:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: accounts/forms.py:123
 msgid "Account activation on "
-msgstr "Kontoaktivierung auf %s "
+msgstr "Kontoaktivierung auf  "
 
 #: accounts/forms.py:125
 msgid " for "
@@ -649,11 +649,11 @@ msgstr "Aufgabe"
 
 #: attestation/models.py:274
 msgid "Rating result"
-msgstr "Bewertungs Ergebniss"
+msgstr "Bewertungsergebniss"
 
 #: attestation/models.py:275
 msgid "Rating results"
-msgstr "Bewertungs Ergebnisse"
+msgstr "Bewertungsergebnisse"
 
 #: attestation/models.py:288
 msgid "Script"
@@ -924,7 +924,7 @@ msgstr ""
 
 #: checker/checker/CUnitChecker_v2.py:99
 msgid "TestApp Filename"
-msgstr "Teatanwendungsdateiname"
+msgstr "Testanwendungsdateiname"
 
 #: checker/checker/CUnitChecker_v2.py:103
 msgid "Regular Expression for ignoring files while compile and link test-code."
@@ -1011,7 +1011,7 @@ msgstr "MUT flags"
 #: checker/checker/CUnitChecker_v2.py:419
 msgid "You should check \"Filename\" value. The correct name could be: "
 msgstr ""
-"Überprüfen Sie den Wert \"Dateiname\". Der korrekte Name könnte z.B. sein:"
+"Überprüfen Sie den Wert \"Dateiname\". Der korrekte Name könnte z.B. sein: "
 
 #: checker/checker/CheckStyleChecker.py:15 checker/checker/ScriptChecker.py:16
 msgid "Name to be displayed on the solution detail page."
@@ -3740,7 +3740,7 @@ msgstr "<h2>Ergebnisübersicht</h2>"
 
 #: templates/tasks/task_list.html:81
 msgid "<tr><th>Task</th><th>Grade</th><th>Rating Scale</th></tr>"
-msgstr "<tr><<th>Aufgabe</th><th>Bewertung</th><th>Bewertungsskala</th></tr>"
+msgstr "<tr><th>Aufgabe</th><th>Bewertung</th><th>Bewertungsskala</th></tr>"
 
 #: templates/tasks/task_list.html:93
 #, python-format
