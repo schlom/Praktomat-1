@@ -57,7 +57,7 @@ function resize(id) {
 				<a href="{% url "solution_list" task_id=task.id%}">{% trans "Solutions"%}</a>
 				{% if final_solution %}
 				  <br/>
-				  {% blocktrans %}Final solution submitted {{ final_solution.creation_date|timesince}} ago.{% endblocktrans %}
+				  {% blocktrans %}Final solution submitted {% endblocktrans %}{{ final_solution.creation_date|timesince}}{% trans " ago." %}
 				{% endif %}
 			{% endif %}
 			{% if user.is_tutor or user.is_trainer%}

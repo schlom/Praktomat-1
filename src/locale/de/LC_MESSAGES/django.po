@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 14:21+0200\n"
-"PO-Revision-Date: 2020-08-07 14:21+0200\n"
+"POT-Creation-Date: 2020-08-07 14:43+0200\n"
+"PO-Revision-Date: 2020-08-07 14:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -3710,12 +3710,12 @@ msgid "Due: "
 msgstr "Fällig bis: "
 
 #: templates/tasks/task_list.html:60
-#, python-format
-msgid ""
-"Final solution submitted %(final_solution.creation_date|timesince)s ago."
-msgstr ""
-"Die endgültige Lösung wurde vor %(final_solution.creation_date|timesince)s "
-"eingereicht."
+msgid "Final solution submitted "
+msgstr "Die endgültige Lösung wurde vor "
+
+#: templates/tasks/task_list.html:60
+msgid " ago."
+msgstr " eingereicht."
 
 #: templates/tasks/task_list.html:73
 msgid "No tasks to be submitted at the moment."
@@ -3736,6 +3736,12 @@ msgstr "<tr class=\"final_grade\"><td>Endbewertung</td><td>"
 #: templates/tasks/task_list.html:95
 msgid "<tr class=\"final_grade\"><td>Predicted Final Grade</td><td>"
 msgstr "<tr class=\"final_grade\"><td>Vorhergesagte Endbewertung</td><td>"
+
+#~ msgid ""
+#~ "Final solution submitted %(final_solution.creation_date|timesince)s ago."
+#~ msgstr ""
+#~ "Die endgültige Lösung wurde vor %(final_solution.creation_date|"
+#~ "timesince)s eingereicht."
 
 #~ msgid "Copy File"
 #~ msgstr "Kopiere Datei"
