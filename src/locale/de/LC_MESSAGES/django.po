@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-06 10:23+0200\n"
-"PO-Revision-Date: 2020-08-06 10:24+0200\n"
+"POT-Creation-Date: 2020-08-07 14:21+0200\n"
+"PO-Revision-Date: 2020-08-07 14:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -2015,7 +2015,7 @@ msgstr ""
 "erforderlichen Test nicht bestanden hat."
 
 #: solutions/models.py:44 templates/attestation/rating_overview.html:66
-#: templates/solutions/solution_list.html:69
+#: templates/solutions/solution_list.html:71
 #: templates/solutions/solution_list_inline.html:6
 msgid "Warnings"
 msgstr "Warnungen"
@@ -2204,27 +2204,27 @@ msgstr "JPlag ist aktuell"
 msgid "Tasks"
 msgstr "Aufgaben"
 
-#: tasks/models.py:264 templates/admin/tasks/task/import.html:16
+#: tasks/models.py:267 templates/admin/tasks/task/import.html:16
 msgid "Import Task"
 msgstr "Aufgabe importieren"
 
-#: tasks/models.py:276 tasks/models.py:280
+#: tasks/models.py:279 tasks/models.py:283
 msgid "Media File"
 msgstr "Datei"
 
-#: tasks/models.py:277
+#: tasks/models.py:280
 msgid "Media Files"
 msgstr "Dateien"
 
-#: tasks/models.py:286
+#: tasks/models.py:289
 msgid "HTML Injector"
 msgstr "HTML-Injektor"
 
-#: tasks/models.py:287
+#: tasks/models.py:290
 msgid "HTML Injectors"
 msgstr "HTML-Injektoren"
 
-#: tasks/models.py:292
+#: tasks/models.py:295
 msgid ""
 "Indicates whether HTML code shall be injected in public  solution views, e."
 "g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
@@ -2232,11 +2232,11 @@ msgstr ""
 "Zeigt an, ob HTML-Code in öffentliche Lösungsansichten eingespeist werden "
 "soll, z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
 
-#: tasks/models.py:293
+#: tasks/models.py:296
 msgid "inject in solution view"
 msgstr "Einfügen in Lösungsansicht"
 
-#: tasks/models.py:297
+#: tasks/models.py:300
 msgid ""
 "Indicates whether HTML code shall be injected in private solution views, e."
 "g.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/full"
@@ -2244,11 +2244,11 @@ msgstr ""
 "Zeigt an, ob HTML-Code in private Lösungsansichten eingespeist werden soll, "
 "z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/solutions/5710/"
 
-#: tasks/models.py:298
+#: tasks/models.py:301
 msgid "inject in solution full view"
 msgstr "Einfügen in Lösungsvollansicht"
 
-#: tasks/models.py:302
+#: tasks/models.py:305
 msgid ""
 "Indicates whether HTML code shall be injected in attestation edits, e.g.: in "
 "https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134/edit"
@@ -2257,11 +2257,11 @@ msgstr ""
 "werden soll, z.B.: in https://praktomat.cs.kit.edu/2016_WS_Abschluss/"
 "attestation/134/edit"
 
-#: tasks/models.py:303
+#: tasks/models.py:306
 msgid "inject in attestation edit"
 msgstr "Einfügen in Bescheinigungsbearbeitung"
 
-#: tasks/models.py:307
+#: tasks/models.py:310
 msgid ""
 "Indicates whether HTML code shall be injected in attestation views, e.g.: in "
 "https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"
@@ -2269,11 +2269,11 @@ msgstr ""
 "Gibt an, ob HTML-Code in Beglaubigungsansichten eingefügt werden soll, z.B.: "
 "in https://praktomat.cs.kit.edu/2016_WS_Abschluss/attestation/134"
 
-#: tasks/models.py:308
+#: tasks/models.py:311
 msgid "inject in attestation view"
 msgstr "Einfügen in Bescheinigungsansicht"
 
-#: tasks/models.py:310
+#: tasks/models.py:313
 msgid "HTML File"
 msgstr "HTML-Datei"
 
@@ -2746,7 +2746,7 @@ msgstr "Lösungen wurden als Plagiat gekennzeichnet."
 #: templates/attestation/attestation_list.html:170
 #: templates/attestation/attestation_view.html:35
 #: templates/solutions/solution_detail.html:10
-#: templates/solutions/solution_list.html:43
+#: templates/solutions/solution_list.html:45
 msgid "My attestations"
 msgstr "Meine Bescheinigungen"
 
@@ -2797,7 +2797,7 @@ msgstr "Vorschau"
 
 #: templates/attestation/attestation_view.html:39
 #: templates/solutions/solution_detail.html:11
-#: templates/solutions/solution_list.html:44
+#: templates/solutions/solution_list.html:46
 msgid "My solutions"
 msgstr "Meine Lösungen"
 
@@ -3560,67 +3560,67 @@ msgstr "Ergebnisse"
 msgid "(The preview requires iframe support)"
 msgstr "(Die Vorschau erfordert Iframe-Unterstützung)"
 
-#: templates/solutions/solution_list.html:44
+#: templates/solutions/solution_list.html:46
 msgid "solutions"
 msgstr "Lösungen"
 
-#: templates/solutions/solution_list.html:49
+#: templates/solutions/solution_list.html:51
 msgid "(as seen by "
 msgstr "(aus der Sicht von "
 
-#: templates/solutions/solution_list.html:53
+#: templates/solutions/solution_list.html:55
 msgid "Time left:"
 msgstr "Verbleibende Zeit:"
 
-#: templates/solutions/solution_list.html:54
-#: templates/solutions/solution_list.html:60
-#: templates/solutions/solution_test_upload.html:51
+#: templates/solutions/solution_list.html:56
+#: templates/solutions/solution_list.html:62
+#: templates/solutions/solution_test_upload.html:53
 msgid "Upload solution"
 msgstr "Lösung hochladen"
 
-#: templates/solutions/solution_list.html:57
-#: templates/solutions/solution_test_upload.html:54
+#: templates/solutions/solution_list.html:59
+#: templates/solutions/solution_test_upload.html:56
 msgid "upload"
 msgstr "hochladen"
 
-#: templates/solutions/solution_list.html:61
+#: templates/solutions/solution_list.html:63
 msgid "The deadline has passed. Therefore (re)submission is not possible."
 msgstr ""
 "Die Frist ist abgelaufen. Eine (Wieder-)Einreichung ist daher nicht möglich."
 
-#: templates/solutions/solution_list.html:68
+#: templates/solutions/solution_list.html:70
 #: templates/solutions/solution_list_inline.html:11
 msgid "Errors"
 msgstr "Fehler"
 
-#: templates/solutions/solution_list.html:70
+#: templates/solutions/solution_list.html:72
 #: templates/solutions/solution_list_inline.html:8
 msgid "No Warnings"
 msgstr "Keine Warnungen"
 
-#: templates/solutions/solution_list.html:71
+#: templates/solutions/solution_list.html:73
 #: templates/solutions/solution_list_inline.html:29
 msgid "Attest"
 msgstr "Bescheinigung"
 
-#: templates/solutions/solution_list.html:73
+#: templates/solutions/solution_list.html:75
 msgid "Final Solution"
 msgstr "Endgültige Lösung"
 
-#: templates/solutions/solution_list.html:79
+#: templates/solutions/solution_list.html:81
 msgid "There is no final solution."
 msgstr "Es gibt keine endgültige Lösung."
 
-#: templates/solutions/solution_list.html:82
+#: templates/solutions/solution_list.html:84
 msgid "Solution History"
 msgstr "Übersicht der Lösungen"
 
-#: templates/solutions/solution_list.html:86
+#: templates/solutions/solution_list.html:88
 msgid "No solutions have been uploaded."
 msgstr "Es wurden keine Lösungen hochgeladen."
 
-#: templates/solutions/solution_list.html:93
-#: templates/solutions/solution_test_upload.html:62
+#: templates/solutions/solution_list.html:95
+#: templates/solutions/solution_test_upload.html:64
 msgid "Please wait while your solution is examined."
 msgstr "Bitte warten Sie, während Ihre Lösung geprüft wird."
 
@@ -3632,7 +3632,7 @@ msgstr "vor kurzem"
 msgid "test submission"
 msgstr "Testeinreichung"
 
-#: templates/solutions/solution_test_upload.html:43
+#: templates/solutions/solution_test_upload.html:45
 msgid "Test Solution Upload"
 msgstr "Testlösung hochladen"
 
@@ -3704,6 +3704,10 @@ msgstr "Abgelaufene Aufgaben"
 #: templates/tasks/task_list.html:52
 msgid "Upcoming tasks"
 msgstr "Bevorstehende Aufgaben"
+
+#: templates/tasks/task_list.html:55
+msgid "Due: "
+msgstr "Fällig bis: "
 
 #: templates/tasks/task_list.html:60
 #, python-format
