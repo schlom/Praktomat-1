@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-08-07 14:43+0200\n"
-"PO-Revision-Date: 2020-08-07 14:46+0200\n"
+"POT-Creation-Date: 2020-08-07 15:01+0200\n"
+"PO-Revision-Date: 2020-08-07 15:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -3491,14 +3491,13 @@ msgstr ""
 "<code>JPLAGJAR</code>."
 
 #: templates/solutions/solution_detail.html:11
-#, python-format
-msgid "%(solution.author)s's solutions"
-msgstr "Lösungen von %(solution.author)s"
+msgid "'s solutions"
+msgstr " Lösungen"
 
 #: templates/solutions/solution_detail.html:19
-#, python-format
-msgid "(as seen by %(solution.author)s,"
-msgstr "(aus der Sicht von %(solution.author)s,"
+#: templates/solutions/solution_list.html:51
+msgid "(as seen by "
+msgstr "(aus der Sicht von "
 
 #: templates/solutions/solution_detail.html:20
 msgid "also show non-public checker results"
@@ -3563,10 +3562,6 @@ msgstr "(Die Vorschau erfordert Iframe-Unterstützung)"
 #: templates/solutions/solution_list.html:46
 msgid "solutions"
 msgstr "Lösungen"
-
-#: templates/solutions/solution_list.html:51
-msgid "(as seen by "
-msgstr "(aus der Sicht von "
 
 #: templates/solutions/solution_list.html:55
 msgid "Time left:"
@@ -3645,11 +3640,12 @@ msgid " your"
 msgstr " ihr"
 
 #: templates/solutions/submission_confirmation_email.html:7
-#, python-format
-msgid ""
-"solution to the task \"%(solution.task)s\" has been successfully uploaded"
-msgstr ""
-"Die Loesung der Aufgabe \"%(solution.task)s\" wurde erfolgreich hochgeladen"
+msgid "solution to the task "
+msgstr "Die Lösung der Aufgabe "
+
+#: templates/solutions/submission_confirmation_email.html:7
+msgid " has been successfully uploaded"
+msgstr " wurde erfolgreich hochgeladen"
 
 #: templates/solutions/submission_confirmation_email.html:9
 #, python-format
@@ -3689,9 +3685,8 @@ msgid "Got Problems?"
 msgstr "Haben Sie Probleme?"
 
 #: templates/tasks/task_list.html:27
-#, python-format
-msgid "<a> Your tutor%(tutors.count|pluralize)s: </a>"
-msgstr "<a> Ihr Tutor%(tutors.count|pluralize)s: </a>"
+msgid "<a> Your tutor"
+msgstr "<a> Ihr Tutor"
 
 #: templates/tasks/task_list.html:33
 msgid "Your trainer"
@@ -3736,6 +3731,21 @@ msgstr "<tr class=\"final_grade\"><td>Endbewertung</td><td>"
 #: templates/tasks/task_list.html:95
 msgid "<tr class=\"final_grade\"><td>Predicted Final Grade</td><td>"
 msgstr "<tr class=\"final_grade\"><td>Vorhergesagte Endbewertung</td><td>"
+
+#~ msgid "%(solution.author)s's solutions"
+#~ msgstr "Lösungen von %(solution.author)s"
+
+#~ msgid "(as seen by %(solution.author)s,"
+#~ msgstr "(aus der Sicht von %(solution.author)s,"
+
+#~ msgid ""
+#~ "solution to the task \"%(solution.task)s\" has been successfully uploaded"
+#~ msgstr ""
+#~ "Die Loesung der Aufgabe \"%(solution.task)s\" wurde erfolgreich "
+#~ "hochgeladen"
+
+#~ msgid "<a> Your tutor%(tutors.count|pluralize)s: </a>"
+#~ msgstr "<a> Ihr Tutor%(tutors.count|pluralize)s: </a>"
 
 #~ msgid ""
 #~ "Final solution submitted %(final_solution.creation_date|timesince)s ago."

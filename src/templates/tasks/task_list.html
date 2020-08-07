@@ -24,7 +24,7 @@ function resize(id) {
 		{% if tutors or trainers %}
 			<div id="contact"><a> {% trans 'Got Problems?' %} </a>
 			{% if tutors %}
-				{% blocktrans %}<a> Your tutor{{tutors.count|pluralize}}: </a>{% endblocktrans %}
+				{% blocktrans %}<a> Your tutor{% endblocktrans %}{{tutors.count|pluralize}}: </a>
 				{% for tutor in tutors %}
 					<a href="mailto:{{tutor.email}}">{{tutor.get_full_name}}</a>
 				{% endfor %}

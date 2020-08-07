@@ -4,7 +4,7 @@
    {% trans " a" %}
 {% else %}
    {% trans " your" %}
-{% endif %} {% blocktrans %}solution to the task "{{solution.task}}" has been successfully uploaded{% endblocktrans %}
+{% endif %} {% blocktrans %}solution to the task {% endblocktrans %}"{{solution.task}}"{% blocktrans %} has been successfully uploaded{% endblocktrans %}
     {% if uploader %}
         {% blocktrans %}in your name by trainer {{uploader}}{% endblocktrans %}
     {% endif %}.

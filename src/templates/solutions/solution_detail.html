@@ -8,7 +8,7 @@
 {{block.super}}
 &gt; <a href={% url "task_detail" task_id=solution.task.id%}>{{solution.task.title}}</a>
 &gt; {% if user.is_tutor or user.is_trainer %} <a href={% url "attestation_list" solution.task.id %}>{% trans 'My attestations' %}</a>
-&gt; <a href={% url "solution_list" task_id=solution.task.id user_id=solution.author.id %}>{% blocktrans %}{{solution.author}}'s solutions{% endblocktrans %}</a>{% else %}<a href={% url "solution_list" task_id=solution.task.id%}>{% trans 'My solutions' %}</a>{% endif %}
+&gt; <a href={% url "solution_list" task_id=solution.task.id user_id=solution.author.id %}>{{solution.author}}{% blocktrans %}'s solutions{% endblocktrans %}</a>{% else %}<a href={% url "solution_list" task_id=solution.task.id%}>{% trans 'My solutions' %}</a>{% endif %}
 &gt; {% trans "Solution " %}{{solution.number}}
 {% endblock %}
 {% block content %}<div id='solution_detail'>
@@ -16,7 +16,7 @@
 <h1>{{solution.task.title}}</h1>
 {% if user.is_tutor or user.is_trainer %}{% if not full %}
    <p>
-	{% blocktrans %}(as seen by {{solution.author}},{% endblocktrans %}
+	{% blocktrans %}(as seen by {% endblocktrans %}{{solution.author}},
 	<a href="{% url "solution_detail_full" solution_id=solution.id %}">{% trans "also show non-public checker results" %}</a>)
    </p>
 {% endif %}{% endif %}
