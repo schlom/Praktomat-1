@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{{STATIC_URL}}frameworks/jquery.formset/jquery.formset.min.js"></script>
+<script type="text/javascript" src="{{STATIC_URL}}frameworks/jquery.loading-overlay/loadingoverlay.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('fieldset.module .form-row').formset({
@@ -14,18 +15,19 @@ $(function() {
 })
 
 $(function(){
-	$('form[enctype=multipart/form-data]').submit(function(){
-		$("#progress").overlay({
-			top: 272,
-			api: true,
-			closeOnClick: false,
-			closeOnEsc: false,
-			expose: {
-				color: '#333',
-				loadSpeed: 1000,
-				opacity: 0.9
-			},
-		}).load();
+	$('form').submit(function(){
+		$.LoadingOverlaySetup({
+			background : "rgba(3, 3, 3, 0.8)",
+			image : "{{STATIC_URL}}/logo.svg",
+			imageAnimation : "2.5s pulse",
+            imageAutoResize : false,
+			imageResizeFactor : 4,
+			imageColor : "#4b70ad",
+            text : "Please wait while your solution is examined.",
+			textAnimation : "10.0s fadein",
+			textColor : "#ffffff"
+        });
+		$.LoadingOverlay("show");
 	});
 });
 
