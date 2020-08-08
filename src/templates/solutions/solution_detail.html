@@ -3,6 +3,24 @@
 {% block extrahead %}{{ block.super }}
 	<script type="text/javascript" src="{{STATIC_URL}}script/solution_inlines.js"></script>
 	<link type="text/css" rel="stylesheet" href="{{STATIC_URL}}styles/pygments_friendly.css" />
+    <style type="text/css">
+        .pulsate {
+            -webkit-animation: pulsate 3s ease-out;
+            -webkit-animation-iteration-count: infinite;
+            opacity: 0.5;
+        }
+        @-webkit-keyframes pulsate {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1.0;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+    </style>
 {% endblock %}
 {% block breadcrumbs %}
 {{block.super}}
@@ -23,13 +41,13 @@
 
 {% if solution.accepted %}
 	{% if solution.warnings %}
-		<p class="warning" id='commit_text'>{% trans "All required tests have been passed. Nevertheless there is at least one warning" %}
+		<p class="warning pulsate" id='commit_text'>{% trans "All required tests have been passed. Nevertheless there is at least one warning" %}
 		{% if not solution.task.expired %}{% trans "You should consider correcting it." %}{% endif %}</p>
 	{% else %}
-		<p class="passed" id='commit_text'>{% trans "All required tests have been passed." %}</p>
+		<p class="passed pulsate" id='commit_text'>{% trans "All required tests have been passed." %}</p>
 	{% endif %}
 {% else %}
-	<p class="error" id='commit_text'>{% trans "Not all required tests have been passed." %}
+	<p class="error pulsate" id='commit_text'>{% trans "Not all required tests have been passed." %}
 	{% if not solution.task.expired %}{% trans "Please correct the errors below and try again!" %}{% endif %}</p>
 {% endif %}
 

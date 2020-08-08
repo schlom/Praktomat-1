@@ -114,21 +114,11 @@ create_praktomat() {
     clear
 
     cd /srv/praktomat
-    output=$(dialog --ascii-lines --clear --title "Edit index.html\n\
-    ergaenzen Sie Aehnliches am Ende der Datei:
-    <div class=\"all-current\">\n\
-    \t<a href=\"https://10.18.2.59/20XX_WS/\" class=\"current\">\n\
-	\t<span class=\"lecture\">Softwareprojekt (JAVA)</span><br/>\n\
-	\t<span class=\"year\">Wintersemester 20XX/XX</span><br/>\n\
-    \t<span class=\"course\">EIT/EKT</span>\n\
-	\t</a>\n\
-	</div>" --no-cancel \
+    output=$(dialog --ascii-lines --clear --title "Edit index.html" --no-cancel \
     --editbox "/srv/praktomat/index.html" 0 0 3>&1- 1>&2- 2>&3-)
-    echo "$output" > index.html
+    sudo echo "$output" > index.html
 
-    tmp=$(dialog --ascii-lines --clear --title "Edit 000-default.conf\n\
-    ergaenzen Sie Aehnliches am Ende der Datei:
-	Use Praktomat 2022_WS     /srv/praktomat/2022_WS     80" --no-cancel \
+    tmp=$(dialog --ascii-lines --clear --title "Edit 000-default.conf" --no-cancel \
     --editbox "/etc/apache2/sites-available/000-default.conf" 0 0 3>&1- 1>&2- 2>&3-)
     sudo echo "$tmp" > /etc/apache2/sites-available/000-default.conf
 

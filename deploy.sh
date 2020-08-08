@@ -179,7 +179,7 @@ function edit_indexhtml()
 
     output=$(dialog --ascii-lines --clear --title "Edit index.html" --no-cancel \
     --editbox "/srv/praktomat/index.html" 0 0 3>&1- 1>&2- 2>&3-)
-    echo "$output" > index.html
+    sudo echo "$output" > index.html
 
     clear
 }
