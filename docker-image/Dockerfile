@@ -10,6 +10,8 @@ RUN echo "praktomat:x:1001:tester" >> /etc/group
 RUN chmod 1777 /home
 
 RUN apt-get --yes update
+RUN apt-get -y install dialog
+RUN apt-get -y install libipc-run-perl libdata-guid-perl libterm-readline-gnu-perl
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 RUN apt-get install --yes ca-certificates-java
 RUN apt-get install --yes openjdk-11-jdk junit junit4 dejagnu && apt-get clean
