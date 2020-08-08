@@ -156,7 +156,7 @@ function config_apache()
 	0 0 "10.18.2.59" 3>&1 1>&2 2>&3`
 	sudo sed -i "s|ServerName .*|ServerName \'${ipaddr}\'|" /etc/apache2/sites-available/000-default.conf
 
-	sudo sed -i "s|Use Praktomat  .*|Use Praktomat  \'${name}\'    /srv/praktomat/${name}    80|" /etc/apache2/sites-available/000-default.conf
+	sudo sed -i "s|Use Praktomat .*|Use Praktomat  \'${name}\'    /srv/praktomat/${name}    80|" /etc/apache2/sites-available/000-default.conf
 	sleep 2
 	clear
 	echo "restarting apache server"
@@ -179,7 +179,7 @@ function edit_indexhtml()
 
     output=$(dialog --ascii-lines --clear --title "Edit index.html" --no-cancel \
     --editbox "/srv/praktomat/index.html" 0 0 3>&1- 1>&2- 2>&3-)
-    sudo echo "$output" > index.html
+    sudo echo "$output" > /srv/praktomat/index.html
 
     clear
 }

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-07 15:01+0200\n"
-"PO-Revision-Date: 2020-08-08 14:01+0200\n"
+"PO-Revision-Date: 2020-08-08 15:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -3637,15 +3637,15 @@ msgstr "Testlösung hochladen"
 
 #: templates/solutions/submission_confirmation_email.html:4
 msgid " a"
-msgstr " ein"
+msgstr " eine"
 
 #: templates/solutions/submission_confirmation_email.html:6
 msgid " your"
-msgstr " ihr"
+msgstr " ihre"
 
 #: templates/solutions/submission_confirmation_email.html:7
 msgid "solution to the task "
-msgstr "Die Loesung der Aufgabe "
+msgstr " Loesung der Aufgabe "
 
 #: templates/solutions/submission_confirmation_email.html:7
 msgid " has been successfully uploaded"
