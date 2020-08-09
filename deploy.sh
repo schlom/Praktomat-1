@@ -157,6 +157,16 @@ function config_apache()
 	sudo sed -i "s|ServerName .*|ServerName \'${ipaddr}\'|" /etc/apache2/sites-available/000-default.conf
 
 	sudo sed -i "s|Use Praktomat .*|Use Praktomat  \'${name}\'    /srv/praktomat/${name}    80|" /etc/apache2/sites-available/000-default.conf
+
+	clear
+	echo "#############################################"
+	echo " please check the apache config file "
+	echo "#############################################"
+
+	tmp=$(dialog --ascii-lines --clear --title "Edit 000-default.conf" --no-cancel \
+    --editbox "/etc/apache2/sites-available/000-default.conf" 0 0 3>&1- 1>&2- 2>&3-)
+    sudo echo "$tmp" > /etc/apache2/sites-available/000-default.conf
+
 	sleep 2
 	clear
 	echo "restarting apache server"
