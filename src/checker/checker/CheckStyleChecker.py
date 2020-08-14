@@ -48,7 +48,7 @@ class CheckStyleChecker(Checker):
         result.set_log(log)
 
 
-        result.set_passed(not timed_out and not oom_ed and not exitcode and (not re.match('Starting audit...\nAudit done.', output) == None))
+        result.set_passed(not timed_out and not oom_ed and not exitcode and ((not re.match('Starting audit...\nAudit done.', output) == None) or (not re.match('Beginne Prüfung...\nPrüfung beendet.', output) == None)))
 
         return result
 

@@ -15,6 +15,12 @@ from checker.compiler.JavaBuilder import JavaBuilder
 
 RXFAIL       = re.compile(r"^(.*)(FAILURES!!!|your program crashed|cpu time limit exceeded|ABBRUCH DURCH ZEITUEBERSCHREITUNG|Could not find class|Killed|failures)(.*)$",    re.MULTILINE)
 
+RXPASSED0       = re.compile(r"^(.*)(\[OK\])(.*)$", re.MULTILINE)
+RXPASSED1       = re.compile(r"^(.*)(Passed\!)(.*)$", re.MULTILINE)
+RXFAILED0       = re.compile(r"^(.*)(\[X\])(.*)$", re.MULTILINE)
+RXFAILED1       = re.compile(r"^(.*)(Failed\!)(.*)$", re.MULTILINE)
+RXFAILED2       = re.compile(r"^(.*)(Output was|But expected|Does not start with|Does not contain|Output should have been empty but was)(.*)$", re.MULTILINE)
+
 class IgnoringJavaBuilder(JavaBuilder):
     _ignore = []
 
@@ -42,13 +48,14 @@ class JUnitChecker(Checker):
     ignore = models.CharField(max_length=4096, help_text=_("space-separated list of files to be ignored during compilation, i.e.: these files will not be compiled."), default="", blank=True, verbose_name=_('ignore'))
 
     JUNIT_CHOICES = (
+      ('junit5', 'JUnit 5'),
       ('junit4', 'JUnit 4'),
       ('junit3', 'JUnit 3'),
     )
-    junit_version = models.CharField(max_length=16, choices=JUNIT_CHOICES, default="junit3", verbose_name=_('JUnit Version'))
+    junit_version = models.CharField(max_length=16, choices=JUNIT_CHOICES, default="junit5", verbose_name=_('JUnit Version'))
 
     def runner(self):
-        return {'junit4' : 'org.junit.runner.JUnitCore', 'junit3' : 'junit.textui.TestRunner' }[self.junit_version]
+        return {'junit5' : '', 'junit4' : 'org.junit.runner.JUnitCore', 'junit3' : 'junit.textui.TestRunner' }[self.junit_version]
 
     def title(self):
         return "JUnit Test: " + self.name
@@ -59,6 +66,19 @@ class JUnitChecker(Checker):
 
     def output_ok(self, output):
         return (RXFAIL.search(output) == None)
+
+    def cleanup_output(self, log):
+        log = re.sub(r'(?s)(\nFailures)(.*?)(\nTest run finished)', r"\3", log, flags=re.M)
+        log = re.sub("\[(.*?)containers(.*?)\n","",log)
+        return log
+
+    def htmlize_output(self, log):
+        log = re.sub(RXPASSED0, r'\1 <b class="passed"> \2 </b><strong style="color:LightGreen;"> \3 </strong>', log)
+        log = re.sub(RXPASSED1, r'\1 <b class="passed"> \2 </b><strong style="color:LightGreen;"> \3 </strong>', log)
+        log = re.sub(RXFAILED0, r'\1 <b class="error"> \2 </b><strong style="color:Tomato;"> \3 </strong>', log)
+        log = re.sub(RXFAILED1, r'\1 <b class="error"> \2 </b><strong style="color:Tomato;"> \3 </strong>', log)
+        log = re.sub(RXFAILED2, r'\1 <em class="error"> \2</em><em style="color:Tomato;">\3 </em>', log)
+        return log
 
     def run(self, env):
         java_builder = IgnoringJavaBuilder(_flags="", _libs=self.junit_version, _file_pattern=r"^.*\.[jJ][aA][vV][aA]$", _output_flags="", _main_required=False)
@@ -81,6 +101,8 @@ class JUnitChecker(Checker):
         environ['POLICY'] = os.path.join(script_dir, "junit.policy")
 
         cmd = [settings.JVM_SECURE, "-cp", settings.JAVA_LIBS[self.junit_version]+":.", self.runner(), self.class_name]
+        if self.junit_version == 'junit5':
+            cmd = ["java", "-jar", settings.JAVA_LIBS[self.junit_version], "--scan-classpath", "--disable-ansi-colors", "--disable-banner", "--exclude-engine", "junit-vintage", "--details-theme", "ascii", "-cp", env.tmpdir()]
         [output, error, exitcode, timed_out, oom_ed] = execute_arglist(cmd, env.tmpdir(), environment_variables=environ, timeout=settings.TEST_TIMEOUT, fileseeklimit=settings.TEST_MAXFILESIZE, extradirs=[script_dir])
 
         result = self.create_result(env)
@@ -88,6 +110,8 @@ class JUnitChecker(Checker):
         (output, truncated) = truncated_log(output)
         output = '<pre>' + escape(self.test_description) + '\n\n======== Test Results ======\n\n</pre><br/><pre>' + escape(output) + '</pre>'
 
+        output = self.cleanup_output(output)
+        output = self.htmlize_output(output)
 
         result.set_log(output, timed_out=timed_out or oom_ed, truncated=truncated, oom_ed=oom_ed)
         result.set_passed(not exitcode and not timed_out and not oom_ed and self.output_ok(output) and not truncated)

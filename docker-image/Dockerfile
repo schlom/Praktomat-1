@@ -60,6 +60,7 @@ RUN apt-get install --yes python3-simplejson python-simplejson    && apt-get cle
 # checkstyle and jPlag
 COPY /contrib/checkstyle-8.29-all.jar /srv/praktomat/contrib/checkstyle-8.29-all.jar
 COPY /contrib/jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar /srv/praktomat/contrib/jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar
+COPY /contrib/junit-platform-console-standalone-1.6.2.jar /srv/praktomat/contrib/junit-platform-console-standalone-1.6.2.jar
 #########################################
 
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64

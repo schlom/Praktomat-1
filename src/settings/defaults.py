@@ -282,7 +282,7 @@ def load_defaults(settings):
     d.DEJAGNU_RUNTEST = '/usr/bin/runtest'
     d.CHECKSTYLEALLJAR = '/home/praktomat/contrib/checkstyle-8.14-all.jar'
     d.JUNIT38='junit'
-    d.JAVA_LIBS = { 'junit3' : '/usr/share/java/junit.jar', 'junit4' : '/usr/share/java/junit4.jar' }
+    d.JAVA_LIBS = { 'junit3' : '/usr/share/java/junit.jar', 'junit4' : '/usr/share/java/junit4.jar', 'junit5' : '/srv/praktomat/contrib/junit-platform-console-standalone-1.6.2.jar' }
     d.JAVA_CUSTOM_LIBS = PRAKTOMAT_ROOT + '/lib/java/*'
     d.JAVAP='javap'
     d.GHC='ghc'
