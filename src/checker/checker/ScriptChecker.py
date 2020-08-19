@@ -11,6 +11,8 @@ from checker.admin import    CheckerInline, AlwaysChangedModelForm
 from utilities.safeexec import execute_arglist
 from utilities.file_operations import *
 
+RXFAIL       = re.compile(r"^(.*)(FAIL|your program crashed|cpu time limit exceeded|Killed|fail)(.*)$",    re.MULTILINE)
+
 class ScriptChecker(Checker):
 
     name = models.CharField(max_length=100, default="Externen Tutor ausführen", help_text=_("Name to be displayed on the solution detail page."))
@@ -29,6 +31,8 @@ class ScriptChecker(Checker):
         """ Returns a description for this Checker. """
         return "Diese Prüfung wird bestanden, wenn das externe Programm keinen Fehlercode liefert."
 
+    def output_ok(self, output):
+        return (RXFAIL.search(output) == None)
 
     def path_relative_to_sandbox(self):
         filename = self.filename if self.filename else self.shell_script.path
@@ -82,7 +86,7 @@ class ScriptChecker(Checker):
             output = '<pre>' + escape(output) + '</pre>'
 
         result.set_log(output, timed_out=timed_out, truncated=truncated, oom_ed=oom_ed)
-        result.set_passed(not exitcode and not timed_out and not oom_ed and not truncated)
+        result.set_passed(not exitcode and not timed_out and not oom_ed and not truncated and self.output_ok(output))
 
         return result
 

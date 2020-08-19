@@ -304,7 +304,7 @@ def load_defaults(settings):
     d.USESAFEDOCKER = False
 
     # Make sure uploaded solution are not work-readable
-    d.FILE_UPLOAD_PERMISSIONS = 0o640
+    d.FILE_UPLOAD_PERMISSIONS = 0o644
 
     # This enables Shibboleth support.
     # In order to actually get it working, you need to protect the location

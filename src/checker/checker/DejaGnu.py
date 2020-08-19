@@ -172,7 +172,7 @@ class DejaGnuSetup(Checker, DejaGnu):
         return "Dies ist keine wirkliche Prüfung.  Sie dient nur dazu, den nachfolgenden Tests Definitionen zur Verfügung zu stellen. Diese 'Prüfung' wird immer bestanden."
 
     def requires(self):
-        return [ Builder ]
+        return []
 
     # Set up tests.
     def run(self, env):
