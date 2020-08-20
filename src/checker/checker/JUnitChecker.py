@@ -70,6 +70,7 @@ class JUnitChecker(Checker):
     def cleanup_output(self, log):
         log = re.sub(r'(?s)(\nFailures)(.*?)(\nTest run finished)', r"\3", log, flags=re.M)
         log = re.sub("\[(.*?)containers(.*?)\n","",log)
+        log = re.sub("at(.*?) (.*?)\)\n", "", log, flags=re.M)
         return log
 
     def htmlize_output(self, log):
