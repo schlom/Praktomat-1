@@ -96,6 +96,10 @@ USESAFEDOCKER = True
 CHECKSTYLEALLJAR = '/srv/praktomat/contrib/checkstyle-8.29-all.jar'
 JPLAGJAR = '/srv/praktomat/contrib/jplag-2.12.1-SNAPSHOT-jar-with-dependencies.jar'
 
+# Does Apache use "mod_xsendfile" version 1.0?
+# If you use "libapache2-mod-xsendfile", this flag needs to be set to False
+MOD_XSENDFILE_V1_0 = True
+
 # Our VM has n cores, so lets try to use them
 NUMBER_OF_TASKS_TO_BE_CHECKED_IN_PARALLEL = 10
 

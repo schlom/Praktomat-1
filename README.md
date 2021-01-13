@@ -50,7 +50,7 @@ Prerequisites: Database and Webserver
     libapache2-mod-macro       (<= Ubuntu 14, removed in Ubuntu 16)
     libapache2-mod-wsgi        (for using with Python2)
     libapache2-mod-wsgi-py3    (for using with Python3)
-    libapache2-mod-xsendfile  
+    libapache2-mod-xsendfile   (version 0.12; or install version 1.0 manually)
 
 Pitfalls while Systemupgrades
 ============
