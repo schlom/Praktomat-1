@@ -1,6 +1,9 @@
 {% load i18n%}
 {% if filenames %}
-<div>{{ filenames|length }} {% if not linker %} user-submitted {% endif %} files matching "{{regexp}}" found for compilation: {% for file in filenames%} {{ file }} &nbsp; {% endfor %}</div>
+    {{ filenames|length }} {% if not linker %} user-submitted {% endif %} files matching "{{regexp}}" found for compilation: {% for file in filenames%} {{ file }} &nbsp; {% endfor %}
+{% else %}
+    {% trans "No user-submitted files matching " %}"{{regexp}}"{% trans " found." %}
+{% endif %}
 {% if debug %}
 {% if cmdline %}
 <div>{{ cmdline|safe }}  </div>
@@ -20,7 +23,4 @@
 {% else %}
 <div>{% trans "The Compiler produced no messages." %}</div>
 {% endif %}
-{% endif %}
-{% else %}
-<div>{% trans "No Input files matching " %}"{{regexp}}"{% trans " found." %}</div>
 {% endif %}

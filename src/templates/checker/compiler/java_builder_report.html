@@ -1,12 +1,12 @@
 {% load i18n%}
 {% if filenames %}
-<div>{{ filenames|length }} <samp>Java</samp> {% trans "user-submitted files found for compilation: " %}{% for javafile in filenames%} {{ javafile }} &nbsp; {% endfor %}</div>
+    {{ filenames|length }} <samp>Java</samp> {% trans "user-submitted files found for compilation: " %}{% for javafile in filenames%} {{ javafile }} &nbsp; {% endfor %}
+{% else %}
+    <div>{% trans "No Java input files found." %}</div>
+{% endif %}
 {% if output %}
 <div>{% trans "Java compiler output:" %}</div>
 <pre>{{output|safe}}</pre>
 {% else %}
 <div>{% trans "The Java compiler produced no messages." %}</div>
-{% endif %}
-{% else %}
-<div>{% trans "No Java input files found." %}</div>
 {% endif %}
