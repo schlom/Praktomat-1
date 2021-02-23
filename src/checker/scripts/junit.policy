@@ -3,9 +3,29 @@ grant {
 	permission java.io.FilePermission "/home/praktomat/junit.properties", "read";
 	permission java.io.FilePermission "/home/tester/junit.properties", "read";
 	permission java.io.FilePermission "${user.dir}${/}data${/}-", "read";
+
 	permission java.lang.RuntimePermission "accessDeclaredMembers";
 	permission java.lang.RuntimePermission "getStackTrace";
 	permission java.lang.RuntimePermission "setIO";
 	permission java.net.SocketPermission "*", "listen,connect,accept,resolve";
 	permission java.util.logging.LoggingPermission "control";
+
+    // JUnit5 with RunListener
+	permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+	// Junit5 without RunListener
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.trace" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.converters.excludes" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.trimQuotes" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.color.commands" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.color.options" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.color.parameters" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.color.optionParams" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.usage.width" , "read";
+	permission java.util.PropertyPermission "org.junit.platform.console.shadow.picocli.ansi" , "read";
+	permission java.lang.RuntimePermission "getenv.NO_COLOR";
+	permission java.lang.RuntimePermission "getenv.CLICOLOR_FORCE";
+	permission java.lang.RuntimePermission "getenv.CLICOLOR";
+	permission java.lang.RuntimePermission "getenv.ConEmuANSI";
+	permission java.lang.RuntimePermission "setContextClassLoader";
+	permission java.lang.RuntimePermission "closeClassLoader";
 };
